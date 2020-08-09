@@ -18,7 +18,7 @@
         "scripts": ["background.js"],
         "persistent": false
     },
-    "options_page": "options.html",
+
     "offline_enabled":true,
     "manifest_version": 2
 }
