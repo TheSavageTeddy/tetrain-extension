@@ -179,7 +179,7 @@ function keydown(ev) {
       case KEY.LEFT:   actions.push(DIR.LEFT);  handled = true; break;
       case KEY.RIGHT:  actions.push(DIR.RIGHT); handled = true; break;
       case KEY.UP:     actions.push(DIR.UP);    handled = true; break;
-      case KEY.DOWN:   actions.push(DIR.DOWN);  handled = true; break;
+      case KEY.DOWN:   actions.push(DIR.DOWN);  ; handled = true; break;
       case KEY.ESC:    lose();                  handled = true; break;
     }
   }
@@ -239,7 +239,7 @@ function handle(action) {
     case DIR.LEFT:  move(DIR.LEFT);  break;
     case DIR.RIGHT: move(DIR.RIGHT); break;
     case DIR.UP:    rotate();        break;
-    case DIR.DOWN:  drop();          break;
+    case DIR.DOWN:  drop();          ; score = score + 1 ; break;
   }
 }
 
@@ -248,7 +248,7 @@ function move(dir) {
   switch(dir) {
     case DIR.RIGHT: x = x + 1; break;
     case DIR.LEFT:  x = x - 1; break;
-    case DIR.DOWN:  y = y + 1; break;
+    case DIR.DOWN:  y = y + 1; ; break;
   }
   if (unoccupied(current.type, x, y, current.dir)) {
     current.x = x;
@@ -291,7 +291,6 @@ function rotate() {
 
 function drop() {
   if (!move(DIR.DOWN)) {
-    addScore(10);
     dropPiece();
     removeLines();
     setCurrentPiece(next);
