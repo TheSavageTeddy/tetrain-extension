@@ -8,10 +8,13 @@
 
 
     <script type="module" src="../js/game.js"></script>
-    <p>Score: <span id='score'>0</span></p>
-    <p>Rows <span id="rows">0<canvas id="upcoming" height="50px" width="50px"></canvas></span></canvas></p>
     
-    <p id="start">Press Space to start</p>
+    <div style="overflow: hidden;">
+        <p style="float: left;">Score: <span id='score'>0</span></p>
+        <p style="float: right;">Rows: <span id="rows">0</span></p>
+    </div>
+    <canvas id="upcoming" height="100px" width="100px"></canvas>
+    <p id="start">Press <b>Space</b> to start</p>
     <canvas id="canvas" height="400px" width="200px">
       abc123
     </canvas>
