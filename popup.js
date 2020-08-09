@@ -62,7 +62,7 @@ function hidemenu(){
 function classic() {
   
   hidemenu()
-  window.location.replace("classic.html");
+  window.location.replace("app/html/classic.html");
 }
 
 // Add event listeners once the DOM has fully loaded by listening for the
