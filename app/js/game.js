@@ -1,3 +1,8 @@
+// Back to menu function
+function mainmenu() {
+    window.location.replace("../../popup.html");
+}
+
 // Put all code in config because async bad
 function saveSettings() {
     if (playing) {
@@ -323,6 +328,7 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
         }
         if (ev.keyCode == KEY.Q) {
             lose()
+            mainmenu()
         }
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
