@@ -11,9 +11,12 @@ function hidemenu(){
 }
 
 function classic() {
-  
   hidemenu()
   window.location.replace("app/html/classic.html");
+}
+function settings() {
+  hidemenu()
+  window.location.replace("app/html/settings.html");
 }
 
 // Add event listeners once the DOM has fully loaded by listening for the
@@ -21,7 +24,7 @@ function classic() {
 // specific elements when it triggers.
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('classic').addEventListener('click', classic);
-
+  document.getElementById('settings').addEventListener('click', settings);
 });
 
 
