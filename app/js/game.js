@@ -204,8 +204,6 @@ function run() {
 }
 
 
-
-
 function addEvents() {
   document.addEventListener('keydown', keydown, false);
   window.addEventListener('resize', resize, false);
@@ -223,47 +221,16 @@ function resize(event) {
 }
 
 
-
 function keydown(ev) {
   var handled = false;
-  /*
-  if (playing) {
-    var LEFT = false; 
-    var RIGHT = false;
-
-
-
-
-    document.onkeydown = function(e) {
-      if(e.keyCode == 37){
-        LEFT = true;
-      }
-      if(e.keyCode == 39){
-        RIGHT = true;
-      }
-    }
-
-    document.onkeyup = function(e) {
-      if(e.keyCode == 37) LEFT = false;
-      if(e.keyCode == 39) RIGHT = false;
-    }
-    if (LEFT){
-      actions.push(DIR.LEFT);  
-      drop()
-      handled = true;
-    }
-    */
     switch(ev.keyCode) {
       case KEY.LEFT:   actions.push(DIR.LEFT);  handled = true; break;
       case KEY.RIGHT:  actions.push(DIR.RIGHT); handled = true; break;
       case KEY.UP:     actions.push(DIR.UP);    handled = true; break;
       case KEY.DOWN:   actions.push(DIR.DOWN);  handled = true; break;
-      case KEY.SPACE:  actions.push(DIR.HARD);  handled = true; break;
       case KEY.ESC:    lose();                  handled = true; break;
     }
     if (ev.keyCode == KEY.ENTER) {
-      //var play_text = document.getElementById("press-to-play");
-      //play_text.remove();
       play(); handled = true;
     }
     if (handled)
@@ -321,7 +288,6 @@ function handle(action) {
     case DIR.LEFT:  move(DIR.LEFT);  break;
     case DIR.RIGHT: move(DIR.RIGHT); break;
     case DIR.UP:    rotate();        break;
-    case DIR.HARD:    harddrop();        break;
     case DIR.DOWN:  drop();          ; score = score + 1 ; break;
   }
 }
@@ -332,12 +298,6 @@ function move(dir) {
     case DIR.RIGHT: x = x + 1; break;
     case DIR.LEFT:  x = x - 1; break;
     case DIR.DOWN:  y = y + 1; ; break;
-    case DIR.HARD:
-      var ii = 0
-      while (unoccupied(current.type, x, y-ii, current.dir)){
-        ii=ii+1
-      }
-      y=y-ii
   }
   if (unoccupied(current.type, x, y, current.dir)) {
     current.x = x;
