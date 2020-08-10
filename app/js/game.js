@@ -4,18 +4,10 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-function saveSettings() {
-    if (playing) {
-        chrome.storage.local.set({
-            isPlaying: true
-        });
-    } else { // Set if game running or not
-        chrome.storage.local.set({
-            isPlaying: false
-        });
-    }
-}
-chrome.storage.local.get(["design", "isPlaying"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece"], function(value) {
+    //-------------------------------------------------------------------------
+    // config stuff
+    //-------------------------------------------------------------------------
     if (value.design == "clean") {
         var blockStyle = "smooth"
         console.log("Style of:" + blockStyle)
@@ -23,6 +15,25 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
         var blockStyle = "legends"
         console.log("Style of:" + blockStyle)
     }
+    function saveSettings() {
+        if (playing) {
+            chrome.storage.local.set({
+                isPlaying: true
+            });
+        } else { // Set if game running or not
+            chrome.storage.local.set({
+                isPlaying: false
+            });
+        }
+        chrome.storage.local.set({ grid: blocks }); // Save Grid
+        chrome.storage.local.set({ clearedRows: rows }); // Save cleared Rows
+        chrome.storage.local.set({ visualScore: vscore }); // Save Visual Score
+        chrome.storage.local.set({ currentScore: score }); // Save Current Score
+        chrome.storage.local.set({ currentPiece: current}); // Save Current Piece
+        chrome.storage.local.set({ nextPiece: next}); // Save Next Piece
+        chrome.storage.local.set({ timeSinceStart: dt}); // Save Time since start
+    }
+
 
     // the game engine is from https://github.com/jakesgordon/javascript-tetris
     // i modified it to fit with the extension and changed the style
@@ -259,6 +270,7 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
         var alr = true
 
         function frame() {
+            saveSettings()
             now = timestamp();
             update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
             draw();
@@ -335,6 +347,7 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
             handled = true;
         }
         if (ev.keyCode == KEY.SPACE) {
+            console.log(current)
             harddrop()
         }
         if (ev.keyCode == KEY.Q) {
@@ -432,13 +445,36 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
     }
 
     function reset() {
-        dt = 0;
-        clearActions();
-        clearBlocks();
-        clearRows();
-        clearScore();
-        setCurrentPiece(next);
-        setNextPiece();
+        if (value.isPlaying) {
+            dt = 0;
+            clearActions();
+            clearBlocks();
+            clearRows();
+            clearScore();
+            setCurrentPiece(next);
+            setNextPiece();
+            dt = value.timeSinceStart;
+            blocks = value.grid;
+            current = value.currentPiece;
+            score = value.currentScore;
+            vscore = value.visualScore;
+            rows = value.clearedRows
+            next = value.nextPiece;
+            console.log("Next piece:")
+            console.log(next)
+            console.log("Current piece:")
+            console.log(current)
+            setCurrentPiece(current);
+            setNextPiece(next);
+        } else {
+            dt = 0;
+            clearActions();
+            clearBlocks();
+            clearRows();
+            clearScore();
+            setCurrentPiece(next);
+            setNextPiece();
+        }
     }
 
     function update(idt) {
@@ -528,6 +564,10 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
         if (!move(DIR.DOWN)) {
             dropPiece();
             removeLines();
+            console.log("Next piece:")
+            console.log(next)
+            console.log("Current piece:")
+            console.log(current)
             setCurrentPiece(next);
             setNextPiece(randomPiece());
             clearActions();
