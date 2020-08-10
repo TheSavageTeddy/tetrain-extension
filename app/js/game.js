@@ -618,6 +618,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         while (unoccupied(current.type, x, y + ii, current.dir)) {
             ii = ii + 1
         }
+        addScore((ii-1)*2)
         current.y = y + ii - 1
     }
 
