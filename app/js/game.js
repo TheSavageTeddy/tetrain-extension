@@ -223,8 +223,8 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
   // GAME LOGIC
   //-------------------------------------------------------------------------
 
-  function play() { hide('start'); reset();          playing = true;  }
-  function lose() { show('start'); setVisualScore(); playing = false; }
+  function play() { hide('start'); reset();          playing = true; chrome.storage.local.set({ playing: true });  }
+  function lose() { show('start'); setVisualScore(); playing = false; chrome.storage.local.set({ playing: false });}
 
   function setVisualScore(n)      { vscore = n || score; invalidateScore(); }
   function setScore(n)            { score = n; setVisualScore(n);  }
