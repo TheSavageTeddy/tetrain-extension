@@ -477,6 +477,13 @@ function harddrop(){
     //ctx.strokeRect(x*dx, y*dy, dx, dy)
   }
 
+//draw the press enter to play
+
+  function enterToPlay(){
+
+  }
+
+
   //-------------------------------------------------------------------------
   // FINALLY, lets run the game
   //-------------------------------------------------------------------------
