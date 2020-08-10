@@ -77,6 +77,7 @@ var dx, dy,        // pixel size of a single tetris block
 // COSMETIC VARIABLES
 //
 //-------------------------------------------------------------------------
+var blockStyle = "smooth"
 async function getLocalStorageValue() {
   return new Promise((resolve, reject) => {
     try {
