@@ -270,11 +270,9 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
             if (alr){
                 if (playing){
                     enterToPlay("hide");
-                    console.log("p")
                     alr=false
                 }else{
                     console.log("Show")
-                    enterToPlay("show");
                 }
             }
             ctx.strokeStyle = "#FF0000";
