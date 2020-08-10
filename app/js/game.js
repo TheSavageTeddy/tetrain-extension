@@ -285,7 +285,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                     alr=false
                 }else{
                     enterToPlay("show");
-                    console.log("show")
                 }
             }
             ctx.strokeStyle = "#FF0000";
@@ -745,7 +744,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.fillText("Enter", canvas.width/2, 200);
             ctx.fillText("to play", canvas.width/2, 240);
         } else {
-            ctx.clearRect(0, 100, 300, 300);
+            //ctx.clearRect(0, 100, 300, 300);
+            //im fricking dumb
+            //we dont even need to clear it aaaaa
         }
     }
 
