@@ -205,7 +205,7 @@ chrome.storage.local.get(["design"], function (value) {
         case KEY.RIGHT:  actions.push(DIR.RIGHT); handled = true; break;
         case KEY.UP:     actions.push(DIR.UP);    handled = true; break;
         case KEY.DOWN:   actions.push(DIR.DOWN);  handled = true; break;
-        case KEY.ESC:    window.close();   handled = true; break;
+        case KEY.ESC:    window.close();          handled = true; break;
       }
       if (ev.keyCode == KEY.ENTER) {
         play(); handled = true;
