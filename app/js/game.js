@@ -210,6 +210,9 @@ chrome.storage.local.get(["design"], function (value) {
       if (ev.keyCode == KEY.ENTER) {
         play(); handled = true;
       }
+      if (ev.keyCode == KEY.SPACE) {
+        harddrop()
+      }
       if (handled)
         ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
     
@@ -362,6 +365,16 @@ chrome.storage.local.get(["design"], function (value) {
       }
     }
   }
+
+function harddrop(){
+  var x = current.x, y = current.y;
+  var ii=0
+  while (unoccupied(current.type, x, y+ii, current.dir)){
+    ii=ii+1
+  }
+  current.y=y+ii-1
+}
+
 
   function removeLine(n) {
     var x, y;
