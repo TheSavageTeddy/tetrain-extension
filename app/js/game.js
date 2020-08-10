@@ -158,9 +158,12 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
   //-------------------------------------------------------------------------
 
   function run() {
+    
     addEvents(); // attach keydown and resize events
     var now = timestamp();
     var last = now = timestamp();
+    
+    var alr=true
     function frame() {
       now = timestamp();
       update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
@@ -170,15 +173,26 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
       ctx.strokeRect(0, 20, canvas.width, 1);
       ctx.strokeStyle = "#000000";
 
-      enterToPlay();
+      
 
+
+      
       
 
       last = now;
       requestAnimationFrame(frame, canvas);
 
-      enterToPlay()
 
+      if (alr){
+        if (playing){
+          enterToPlay("hide");
+          console.log("p")
+          alr=false
+
+        }else{
+          enterToPlay("show");
+        }
+    }
       ctx.strokeStyle = "#FF0000";
       ctx.strokeRect(0, 20, canvas.width, 1);
       ctx.strokeStyle = "#000000";
@@ -218,6 +232,7 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
         case KEY.ESC:    window.close();          handled = true; break;
       }
       if (ev.keyCode == KEY.ENTER) {
+        enterToPlay("hide")
         play(); handled = true;
       }
       if (ev.keyCode == KEY.SPACE) {
@@ -234,7 +249,7 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
   //-------------------------------------------------------------------------
 
   function play() { hide('start'); reset();          playing = true;  }
-  function lose() { show('start'); setVisualScore(); playing = false; }
+  function lose() { show('start'); setVisualScore(); playing = false; enterToPlay("show");}
 
   function setVisualScore(n)      { vscore = n || score; invalidateScore(); }
   function setScore(n)            { score = n; setVisualScore(n);  }
@@ -491,12 +506,22 @@ function harddrop(){
 
 //draw the press enter to play
 
-  function enterToPlay(){
-    ctx.font = "20px Arial";
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillText("Press enter to play", 0, 50);
-  }
+  function enterToPlay(t){
+    if (t=="show"){
+      ctx.font = "40px Arial";
+      ctx.fillStyle = "#FFFFFF";
+      ctx.textAlign = "center";
+      ctx.fillText("Enter", canvas.width/2, 200);
+      ctx.fillText("to play", canvas.width/2, 240);
+    } else{
 
+      ctx.clearRect(0, 100, 300, 300);
+    }
+
+    
+
+  }
+  
   
   //-------------------------------------------------------------------------
   // FINALLY, lets run the game
