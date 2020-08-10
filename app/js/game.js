@@ -2,6 +2,7 @@
 // i modified it to fit with the extension and changed the style
 // and also some other changes
 
+
 //-------------------------------------------------------------------------
 // base helper methods
 //-------------------------------------------------------------------------
@@ -75,7 +76,42 @@ var dx, dy,        // pixel size of a single tetris block
 //
 // COSMETIC VARIABLES
 //
-var blockStyle = "smooth"
+//-------------------------------------------------------------------------
+async function getLocalStorageValue() {
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.storage.local.get(["design"], function (value) {
+        if (value.design == "clean"){
+          var blockStyle = "smooth"
+          console.log("Style of:" + blockStyle)
+        } else {
+          var blockStyle = "ledgends"
+          console.log("Style of:" + blockStyle)
+        }
+        resolve(value.design);
+      })
+    }
+    catch (ex) {
+      reject(ex);
+    }
+  });
+}
+
+getLocalStorageValue()
+//console.log(abcdefgsupercoolvar)
+/*
+if (abcdefgsupercoolvar == "clean"){
+  var blockStyle = "smooth"
+  console.log("Style of:" + blockStyle)
+} else {
+  var blockStyle = "ledgends"
+  console.log("Style of:" + blockStyle)
+} */
+
+
+
+
+
 //
 //
 //
@@ -143,7 +179,6 @@ function randomPiece() {
 //-------------------------------------------------------------------------
 
 function run() {
-
   addEvents(); // attach keydown and resize events
   var now = timestamp();
   var last = now = timestamp();
@@ -476,6 +511,4 @@ function drawBlock(ctx, x, y, color) {
 //-------------------------------------------------------------------------
 // FINALLY, lets run the game
 //-------------------------------------------------------------------------
-
 run();
-

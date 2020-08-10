@@ -14,8 +14,8 @@ function settings() {
 
 function createLocalStorage(){
   chrome.storage.local.set({ nextEnabled: true })
-  chrome.storage.local.set({ design: "classic" })
-
+  chrome.storage.local.set({ design: "clean" })
+  chrome.storage.local.set({ isConfigured: true })
 }
 
 // Add event listeners once the DOM has fully loaded by listening for the
@@ -24,6 +24,7 @@ function createLocalStorage(){
 document.addEventListener('DOMContentLoaded', function () {
   chrome.storage.local.get(['isConfigured'], function(config) {
     if (config.isConfigured == null){
+      console.log("Configuring Local Storage")
       createLocalStorage()
     }
   });

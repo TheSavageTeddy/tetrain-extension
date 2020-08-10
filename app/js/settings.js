@@ -13,16 +13,16 @@ function updateNextConfig() {
 }
 
 function updateDesignConfig() {
-    nextpiece = document.getElementById("design").value;
-    console.log(nextpiece)
-    if (nextpiece === "enabled") {
-        chrome.storage.local.set({ nextEnabled: true })
+    design = document.getElementById("design").value;
+    console.log(design)
+    if (design == "clean") {
+        chrome.storage.local.set({ design: "clean" })
     } else {
-        chrome.storage.local.set({ nextEnabled: false })
+        chrome.storage.local.set({ design: "ledgends" })
     }
     
-    chrome.storage.local.get(['nextEnabled'], function(config) {
-        console.log(config.nextEnabled);
+    chrome.storage.local.get(['design'], function(config) {
+        console.log(config.design);
     })
 }
 
@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var node_next = document.getElementById("next-piece")
     var option1 = document.createElement("option");
     var option2 = document.createElement("option");
+    var node_design = document.getElementById("design")
+    var design1 = document.createElement("option");
+    var design2 = document.createElement("option");
     //#endregion
     chrome.storage.local.get(['nextEnabled', 'design'], function(config) {   
         test = config.nextEnabled;
@@ -38,6 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
         option1.value = "enabled";
         option2.text = "Disabled";
         option2.value = "disabled";
+        design1.text = "Clean";
+        design1.value = "clean";
+        design2.text = "Ledgends";
+        design2.value = "ledgends";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -45,8 +52,14 @@ document.addEventListener('DOMContentLoaded', function () {
             node_next.appendChild(option2);
             node_next.appendChild(option1);
         }
+        if (config.design == "clean"){
+            node_design.appendChild(design1);
+            node_design.appendChild(design2);
+        } else {
+            node_design.appendChild(design2);
+            node_design.appendChild(design1);
+        }
 
-        
     });
      
     document.getElementById('next-piece').addEventListener('change', updateNextConfig);
