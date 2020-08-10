@@ -6,7 +6,10 @@ html{
 
 p{
     color:white;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
+
 
 #canvas{
     outline: white 3px solid;
