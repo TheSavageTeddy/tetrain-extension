@@ -4,7 +4,7 @@ chrome.storage.local.get(["design"], function (value) {
     var blockStyle = "smooth"
     console.log("Style of:" + blockStyle)
   } else {
-    var blockStyle = "ledgends"
+    var blockStyle = "legends"
     console.log("Style of:" + blockStyle)
   }
 

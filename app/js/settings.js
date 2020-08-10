@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
         option2.value = "disabled";
         design1.text = "Clean";
         design1.value = "clean";
-        design2.text = "Ledgends";
-        design2.value = "ledgends";
+        design2.text = "Legends";
+        design2.value = "legends";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
