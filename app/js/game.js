@@ -222,6 +222,8 @@ function resize(event) {
   invalidateNext();
 }
 
+
+
 function keydown(ev) {
   var handled = false;
   /*
@@ -256,6 +258,7 @@ function keydown(ev) {
       case KEY.RIGHT:  actions.push(DIR.RIGHT); handled = true; break;
       case KEY.UP:     actions.push(DIR.UP);    handled = true; break;
       case KEY.DOWN:   actions.push(DIR.DOWN);  handled = true; break;
+      case KEY.SPACE:  actions.push(DIR.HARD);  handled = true; break;
       case KEY.ESC:    lose();                  handled = true; break;
     }
     if (ev.keyCode == KEY.ENTER) {
@@ -318,6 +321,7 @@ function handle(action) {
     case DIR.LEFT:  move(DIR.LEFT);  break;
     case DIR.RIGHT: move(DIR.RIGHT); break;
     case DIR.UP:    rotate();        break;
+    case DIR.HARD:    harddrop();        break;
     case DIR.DOWN:  drop();          ; score = score + 1 ; break;
   }
 }
@@ -328,6 +332,12 @@ function move(dir) {
     case DIR.RIGHT: x = x + 1; break;
     case DIR.LEFT:  x = x - 1; break;
     case DIR.DOWN:  y = y + 1; ; break;
+    case DIR.HARD:
+      var ii = 0
+      while (unoccupied(current.type, x, y-ii, current.dir)){
+        ii=ii+1
+      }
+      y=y-ii
   }
   if (unoccupied(current.type, x, y, current.dir)) {
     current.x = x;
@@ -404,7 +414,15 @@ function removeLines() {
   }
   if (n > 0) {
     addRows(n);
-    addScore(100*Math.pow(2,n-1)); // 1: 100, 2: 200, 3: 400, 4: 800
+    if (n<4){
+      addScore(100+((n-1)*200)); // 1: 100, 2: 300, 3: 500, 4: 800
+    } else {
+      if (backtoback){
+        addScore(1200);
+      } else{
+        addScore(800);
+      }
+    }
   }
 }
 
