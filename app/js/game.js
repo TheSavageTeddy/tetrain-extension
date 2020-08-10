@@ -751,7 +751,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
 
     //draw the press enter to play
-var lost = false //
+    var lost = false //
     function enterToPlay(t) {
         if (t=="show"){
             ctx.font = "40px Arial";
