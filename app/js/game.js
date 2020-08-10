@@ -132,6 +132,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         score, // the current score
         vscore, // the currently displayed score (it catches up to score in small chunks - like a spinning slot machine)
         rows, // number of completed rows in the current game
+        backtoback,
         step; // how long before current piece drops by 1 row
 
     //-------------------------------------------------------------------------
@@ -616,11 +617,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             addRows(n);
             if (n < 4) {
                 addScore(100 + ((n - 1) * 200)); // 1: 100, 2: 300, 3: 500, 4: 800
+                backtoback=false
             } else {
                 if (backtoback) {
                     addScore(1200);
                 } else {
                     addScore(800);
+                    backtoback=true
                 }
             }
         }
