@@ -48,6 +48,7 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
       ucanvas = get('upcoming'),
       uctx    = ucanvas.getContext('2d'),
       speed   = { start: 0.6, decrement: 0.005, min: 0.1 }, // how long before piece drops by 1 row (seconds)
+      backtoback = false,
       nx      = 10, // width of tetris court (in blocks)
       ny      = 20, // height of tetris court (in blocks)
       nu      = 5;  // width/height of upcoming preview (in blocks)
@@ -164,11 +165,20 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
       now = timestamp();
       update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
       draw();
+
       ctx.strokeStyle = "#FF0000";
       ctx.strokeRect(0, 20, canvas.width, 1);
       ctx.strokeStyle = "#000000";
+
+      enterToPlay();
+
+      
+
       last = now;
       requestAnimationFrame(frame, canvas);
+
+      enterToPlay()
+
       ctx.strokeStyle = "#FF0000";
       ctx.strokeRect(0, 20, canvas.width, 1);
       ctx.strokeStyle = "#000000";
@@ -356,11 +366,13 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
       addRows(n);
       if (n<4){
         addScore(100+((n-1)*200)); // 1: 100, 2: 300, 3: 500, 4: 800
+        backtoback=false
       } else {
         if (backtoback){
           addScore(1200);
         } else{
           addScore(800);
+          backtoback=true
         }
       }
     }
@@ -480,10 +492,12 @@ function harddrop(){
 //draw the press enter to play
 
   function enterToPlay(){
-
+    ctx.font = "20px Arial";
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillText("Press enter to play", 0, 50);
   }
 
-
+  
   //-------------------------------------------------------------------------
   // FINALLY, lets run the game
   //-------------------------------------------------------------------------
