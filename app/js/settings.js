@@ -1,3 +1,12 @@
+function hidemenu(){
+    m = document.getElementById("menu-items")
+    m.style.display = "none"
+}
+function goBack(){
+    hidemenu()
+    window.location.replace("../../popup.html");
+}
+  
 function updateNextConfig() {
     nextpiece = document.getElementById("next-piece").value;
     console.log(nextpiece)
@@ -27,6 +36,7 @@ function updateDesignConfig() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('back').addEventListener('click', goBack);
     //#region Next Settings
     var node_next = document.getElementById("next-piece")
     var option1 = document.createElement("option");
