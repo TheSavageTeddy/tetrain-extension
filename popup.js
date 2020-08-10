@@ -15,6 +15,7 @@ function settings() {
 function createLocalStorage(){
   chrome.storage.local.set({ nextEnabled: true })
   chrome.storage.local.set({ design: "clean" })
+  chrome.storage.local.set({ isPlaying: false });
   chrome.storage.local.set({ isConfigured: true })
 }
 

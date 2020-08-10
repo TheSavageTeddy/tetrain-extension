@@ -248,8 +248,13 @@ chrome.storage.local.get(["design", "_playing"], function (value) {
   // GAME LOGIC
   //-------------------------------------------------------------------------
 
+<<<<<<< HEAD
   function play() { hide('start'); reset();          playing = true;  }
   function lose() { show('start'); setVisualScore(); playing = false; enterToPlay("show");}
+=======
+  function play() { hide('start'); reset();          playing = true; chrome.storage.local.set({ isPlaying: true });  }
+  function lose() { show('start'); setVisualScore(); playing = false; chrome.storage.local.set({ isPlaying: false });}
+>>>>>>> b033a05eb0229485841cb852d50e21e698eedbfc
 
   function setVisualScore(n)      { vscore = n || score; invalidateScore(); }
   function setScore(n)            { score = n; setVisualScore(n);  }
