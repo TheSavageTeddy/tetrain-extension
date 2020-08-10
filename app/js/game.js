@@ -221,6 +221,8 @@ function keydown(ev) {
       case KEY.ESC:    lose();                  handled = true; break;
     }
     if (ev.keyCode == KEY.ENTER) {
+      var play_text = document.getElementById("press-to-play");
+      play_text.remove();
       play(); handled = true;
     }
     if (handled)
