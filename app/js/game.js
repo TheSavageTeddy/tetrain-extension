@@ -84,7 +84,7 @@ var j = { size: 3, blocks: [0x8E00, 0x6440, 0x0E20, 0x44C0], color: 'blue'   };
 var l = { size: 3, blocks: [0x2E00, 0x4460, 0x0E80, 0xC440], color: 'orange' };
 var o = { size: 2, blocks: [0xCC00, 0xCC00, 0xCC00, 0xCC00], color: 'yellow' };
 var s = { size: 3, blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620], color: 'lime'  };
-var t = { size: 3, blocks: [0x4E00, 0x4640, 0x0E40, 0x4C40], color: 'purple' };
+var t = { size: 3, blocks: [0x4E00, 0x4640, 0x0E40, 0x4C40], color: 'magenta' };
 var z = { size: 3, blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: 'red'    };
 
 //------------------------------------------------
@@ -398,7 +398,9 @@ function draw() {
   ctx.strokeRect(0, 20, canvas.width, 1);
   ctx.strokeStyle = "#000000";
 
-  if (!blockStyle=="smooth"){
+  if (blockStyle=="smooth"){
+    
+  }else{
     ctx.translate(0.5, 0.5); // for crisp 1px black lines
   }
   drawCourt();
@@ -430,7 +432,9 @@ function drawNext() {
   if (invalid.next) {
     var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
     uctx.save();
-    if (!blockStyle=="smooth"){
+    if (blockStyle=="smooth"){
+      
+    } else{
       uctx.translate(0.5, 0.5);
     }
   
