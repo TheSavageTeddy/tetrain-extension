@@ -749,8 +749,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.textAlign = "center";
             ctx.fillText("Enter", canvas.width/2, 200);
             ctx.fillText("to play", canvas.width/2, 240);
-        } else if (t == "lose"){
-            
+        } else if (t == "lost"){
+          ctx.font = "40px Arial";
+          ctx.fillStyle = "#FFFFFF";
+          ctx.textAlign = "center";
+          ctx.fillText("You died!", canvas.width/2, 200);
+          ctx.fillText("Enter to", canvas.width/2, 240);
+          ctx.fillText("play again", canvas.width/2, 280);
         }else{
           //ctx.clearRect(0, 100, 300, 300);
           //im fricking dumb
