@@ -1,5 +1,5 @@
 // Put all code in config because async bad
-chrome.storage.local.get(["design"], function (value) {
+chrome.storage.local.get(["design", "_playing"], function (value) {
   if (value.design == "clean"){
     var blockStyle = "smooth"
     console.log("Style of:" + blockStyle)
@@ -480,6 +480,6 @@ function harddrop(){
   //-------------------------------------------------------------------------
   // FINALLY, lets run the game
   //-------------------------------------------------------------------------
+  
   run();
-
 });
