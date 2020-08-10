@@ -350,7 +350,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             harddrop()
         }
         if (ev.keyCode == KEY.Q) {
-            lose()
+            lose("kys")
             mainmenu()
         }
         if (handled)
@@ -372,14 +372,19 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         });
     }
 
-    function lose() {
+    function lose(s) {
         show('start');
         setVisualScore();
         playing = false;
         chrome.storage.local.set({
             isPlaying: false
         });
-        enterToPlay("show");
+        if (s=="lost"){
+          enterToPlay("lost")
+        }else{
+          enterToPlay("show");
+        }
+        
     }
 
     function setVisualScore(n) {
@@ -571,7 +576,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             setNextPiece(randomPiece());
             clearActions();
             if (occupied(current.type, current.x, current.y, current.dir)) {
-                lose();
+                lose("lost");
             }
         }
     }
@@ -744,10 +749,12 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.textAlign = "center";
             ctx.fillText("Enter", canvas.width/2, 200);
             ctx.fillText("to play", canvas.width/2, 240);
-        } else {
-            //ctx.clearRect(0, 100, 300, 300);
-            //im fricking dumb
-            //we dont even need to clear it aaaaa
+        } else if (t == "lose"){
+            
+        }else{
+          //ctx.clearRect(0, 100, 300, 300);
+          //im fricking dumb
+          //we dont even need to clear it aaaaa
         }
     }
 
