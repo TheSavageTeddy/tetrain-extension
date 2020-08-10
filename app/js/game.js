@@ -73,12 +73,16 @@ var dx, dy,        // pixel size of a single tetris block
 //
 //-------------------------------------------------------------------------
 
+
+//
+//
+//
 var i = { size: 4, blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: 'cyan'   };
-var j = { size: 3, blocks: [0x44C0, 0x8E00, 0x6440, 0x0E20], color: 'blue'   };
-var l = { size: 3, blocks: [0x4460, 0x0E80, 0xC440, 0x2E00], color: 'orange' };
+var j = { size: 3, blocks: [0x8E00, 0x6440, 0x0E20, 0x44C0], color: 'blue'   };
+var l = { size: 3, blocks: [0x2E00, 0x4460, 0x0E80, 0xC440], color: 'orange' };
 var o = { size: 2, blocks: [0xCC00, 0xCC00, 0xCC00, 0xCC00], color: 'yellow' };
 var s = { size: 3, blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620], color: 'green'  };
-var t = { size: 3, blocks: [0x0E40, 0x4C40, 0x4E00, 0x4640], color: 'purple' };
+var t = { size: 3, blocks: [0x4E00, 0x4640, 0x0E40, 0x4C40], color: 'purple' };
 var z = { size: 3, blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: 'red'    };
 
 //------------------------------------------------
@@ -123,7 +127,12 @@ function randomPiece() {
   if (pieces.length == 0)
     pieces = [i,j,l,o,s,t,z];
   var type = pieces.splice(random(0, pieces.length-1), 1)[0];
-  return { type: type, dir: DIR.UP, x: 4, y: 0 };
+  if (type == j || type == l || type == t || type == o){
+    return { type: type, dir: DIR.UP, x: 4, y: 1 };
+  }else{
+    return { type: type, dir: DIR.UP, x: 4, y: 0 };
+  }
+  
 }
 
 
@@ -145,6 +154,9 @@ function run() {
     ctx.strokeStyle = "#000000";
     last = now;
     requestAnimationFrame(frame, canvas);
+    ctx.strokeStyle = "#FF0000";
+    ctx.strokeRect(0, 20, canvas.width, 1);
+    ctx.strokeStyle = "#000000";
   }
 
   resize(); // setup all our sizing information
@@ -174,21 +186,48 @@ function resize(event) {
 
 function keydown(ev) {
   var handled = false;
+  /*
   if (playing) {
+    var LEFT = false; 
+    var RIGHT = false;
+
+
+
+
+    document.onkeydown = function(e) {
+      if(e.keyCode == 37){
+        LEFT = true;
+      }
+      if(e.keyCode == 39){
+        RIGHT = true;
+      }
+    }
+
+    document.onkeyup = function(e) {
+      if(e.keyCode == 37) LEFT = false;
+      if(e.keyCode == 39) RIGHT = false;
+    }
+    if (LEFT){
+      actions.push(DIR.LEFT);  
+      drop()
+      handled = true;
+    }
+    */
     switch(ev.keyCode) {
       case KEY.LEFT:   actions.push(DIR.LEFT);  handled = true; break;
       case KEY.RIGHT:  actions.push(DIR.RIGHT); handled = true; break;
       case KEY.UP:     actions.push(DIR.UP);    handled = true; break;
-      case KEY.DOWN:   actions.push(DIR.DOWN);  ; handled = true; break;
+      case KEY.DOWN:   actions.push(DIR.DOWN);  handled = true; break;
       case KEY.ESC:    lose();                  handled = true; break;
     }
+    if (ev.keyCode == KEY.SPACE) {
+      play(); handled = true;
+    }
+    if (handled)
+      ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
+  
   }
-  else if (ev.keyCode == KEY.SPACE) {
-    play(); handled = true;
-  }
-  if (handled)
-    ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
-}
+  
 
 //-------------------------------------------------------------------------
 // GAME LOGIC
@@ -302,8 +341,9 @@ function drop() {
   }
 }
 
-function dropPiece() {
+function dropPiece() { //not when dropping from top, its when it touches bottom/other pieces
   eachblock(current.type, current.x, current.y, current.dir, function(x, y) {
+    
     setBlock(x, y, current.type);
   });
 }
