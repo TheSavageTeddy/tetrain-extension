@@ -1,4 +1,4 @@
-// Config
+// Put all code in config because async bad
 chrome.storage.local.get(["design"], function (value) {
   if (value.design == "clean"){
     var blockStyle = "smooth"
