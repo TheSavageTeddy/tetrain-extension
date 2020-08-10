@@ -1,6 +1,6 @@
 html{
     max-height:900px;
-    max-width:300px;
+    min-width:360px;
     background-color: black;
 }
 
