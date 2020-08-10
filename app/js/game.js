@@ -256,6 +256,7 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
         addEvents(); // attach keydown and resize events
         var now = timestamp();
         var last = now = timestamp();
+        var alr = true
 
         function frame() {
             now = timestamp();
@@ -266,6 +267,16 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
             ctx.strokeStyle = "#000000";
             last = now;
             requestAnimationFrame(frame, canvas);
+            if (alr){
+                if (playing){
+                    enterToPlay("hide");
+                    console.log("p")
+                    alr=false
+                }else{
+                    console.log("Show")
+                    enterToPlay("show");
+                }
+            }
             ctx.strokeStyle = "#FF0000";
             ctx.strokeRect(0, 20, canvas.width, 1);
             ctx.strokeStyle = "#000000";
@@ -320,6 +331,7 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
                 break;
         }
         if (ev.keyCode == KEY.ENTER) {
+            enterToPlay("hide")
             play();
             handled = true;
         }
@@ -356,6 +368,7 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
         chrome.storage.local.set({
             isPlaying: false
         });
+        enterToPlay("show");
     }
 
     function setVisualScore(n) {
@@ -685,8 +698,16 @@ chrome.storage.local.get(["design", "isPlaying"], function(value) {
 
     //draw the press enter to play
 
-    function enterToPlay() {
-
+    function enterToPlay(t) {
+        if (t=="show"){
+            ctx.font = "40px Arial";
+            ctx.fillStyle = "#FFFFFF";
+            ctx.textAlign = "center";
+            ctx.fillText("Enter", canvas.width/2, 200);
+            ctx.fillText("to play", canvas.width/2, 240);
+        } else {
+            ctx.clearRect(0, 100, 300, 300);
+        }
     }
 
 
