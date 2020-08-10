@@ -10,7 +10,7 @@ function saveSettings() {
         });
     }
 }
-chrome.storage.local.get(["design", "_playing"], function(value) {
+chrome.storage.local.get(["design", "isPlaying"], function(value) {
     if (value.design == "clean") {
         var blockStyle = "smooth"
         console.log("Style of:" + blockStyle)
@@ -77,7 +77,8 @@ chrome.storage.local.get(["design", "_playing"], function(value) {
             UP: 38,
             RIGHT: 39,
             DOWN: 40,
-            ENTER: 13
+            ENTER: 13,
+            Q: 81
         },
         DIR = {
             UP: 0,
@@ -319,6 +320,9 @@ chrome.storage.local.get(["design", "_playing"], function(value) {
         }
         if (ev.keyCode == KEY.SPACE) {
             harddrop()
+        }
+        if (ev.keyCode == KEY.Q) {
+            lose()
         }
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
