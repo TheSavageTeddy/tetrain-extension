@@ -268,7 +268,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         var now = timestamp();
         var last = now = timestamp();
         var alr = true
-
+//
+//
+// main loop of things
+//
+//
         function frame() {
             saveSettings()
             now = timestamp();
@@ -279,14 +283,20 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.strokeStyle = "#000000";
             last = now;
             requestAnimationFrame(frame, canvas);
-            if (alr){
-                if (playing){
-                    enterToPlay("hide");
-                    alr=false
-                }else{
-                    enterToPlay("show");
-                }
-            }
+            if (!lost){
+
+            
+              if (alr){
+                  if (playing){
+                      enterToPlay("hide");
+                      alr=false
+                  }else{
+                      enterToPlay("show");
+                  }
+              }
+          } else{
+            enterToPlay("lost")
+          }
             ctx.strokeStyle = "#FF0000";
             ctx.strokeRect(0, 20, canvas.width, 1);
             ctx.strokeStyle = "#000000";
@@ -741,7 +751,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
 
     //draw the press enter to play
-
+var lost = false //
     function enterToPlay(t) {
         if (t=="show"){
             ctx.font = "40px Arial";
@@ -750,6 +760,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.fillText("Enter", canvas.width/2, 200);
             ctx.fillText("to play", canvas.width/2, 240);
         } else if (t == "lost"){
+          lost = true//
           ctx.font = "40px Arial";
           ctx.fillStyle = "#FFFFFF";
           ctx.textAlign = "center";
