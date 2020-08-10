@@ -402,7 +402,6 @@ chrome.storage.local.get(["design", "_playing"], function(value) {
     function setCurrentPiece(piece) {
         current = piece || randomPiece();
         invalidate();
-<<<<<<< HEAD
     }
 
     function setNextPiece(piece) {
@@ -430,57 +429,6 @@ chrome.storage.local.get(["design", "_playing"], function(value) {
                 dt = dt - step;
                 drop();
             }
-=======
-      }
-    }
-  }
-
-  function drop() {
-    if (!move(DIR.DOWN)) {
-      dropPiece();
-      removeLines();
-      setCurrentPiece(next);
-      setNextPiece(randomPiece());
-      clearActions();
-      if (occupied(current.type, current.x, current.y, current.dir)) {
-        lose();
-      }
-    }
-  }
-
-  function dropPiece() { //not when dropping from top, its when it touches bottom/other pieces
-    eachblock(current.type, current.x, current.y, current.dir, function(x, y) {
-      
-      setBlock(x, y, current.type);
-    });
-  }
-
-  function removeLines() {
-    var x, y, complete, n = 0;
-    for(y = ny ; y > 0 ; --y) {
-      complete = true;
-      for(x = 0 ; x < nx ; ++x) {
-        if (!getBlock(x, y))
-          complete = false;
-      }
-      if (complete) {
-        removeLine(y);
-        y = y + 1; // recheck same line
-        n++;
-      }
-    }
-    if (n > 0) {
-      addRows(n);
-      if (n<4){
-        addScore(100+((n-1)*200)); // 1: 100, 2: 300, 3: 500, 4: 800
-        backtoback=false
-      } else {
-        if (backtoback){
-          addScore(1200);
-        } else{
-          addScore(800);
-          backtoback=true
->>>>>>> 24aec49ee6ebea74c10cb1bb818af54b7f1d8c92
         }
     }
 
@@ -697,7 +645,6 @@ chrome.storage.local.get(["design", "_playing"], function(value) {
             uctx.restore();
             invalid.next = false;
         }
-<<<<<<< HEAD
     }
 
     function drawScore() {
@@ -738,81 +685,4 @@ chrome.storage.local.get(["design", "_playing"], function(value) {
     //-------------------------------------------------------------------------
 
     run();
-=======
-      }
-      ctx.strokeRect(0, 0, nx*dx - 1, ny*dy - 1); // court boundary
-      invalid.court = false;
-    }
-  }
-
-  function drawNext() {
-    if (invalid.next) {
-      var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
-      uctx.save();
-      if (blockStyle=="smooth"){
-        
-      } else{
-        uctx.translate(0.5, 0.5);
-      }
-    
-      uctx.clearRect(0, 0, nu*dx, nu*dy);
-      drawPiece(uctx, next.type, padding, padding, next.dir);
-      uctx.strokeStyle = 'black';
-      uctx.strokeRect(0, 0, nu*dx - 1, nu*dy - 1);
-      uctx.restore();
-      invalid.next = false;
-    }
-  }
-
-  function drawScore() {
-    if (invalid.score) {
-      html('score', (vscore));
-      invalid.score = false;
-    }
-  }
-
-  function drawRows() {
-    if (invalid.rows) {
-      html('rows', rows);
-      invalid.rows = false;
-    }
-  }
-
-  function drawPiece(ctx, type, x, y, dir) {
-    eachblock(type, x, y, dir, function(x, y) {
-      drawBlock(ctx, x, y, type.color);
-    });
-  }
-
-  function drawBlock(ctx, x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x*dx, y*dy, dx, dy);
-    //ctx.strokeRect(x*dx, y*dy, dx, dy)
-  }
-
-//draw the press enter to play
-
-  function enterToPlay(t){
-    if (t=="show"){
-      ctx.font = "40px Arial";
-      ctx.fillStyle = "#FFFFFF";
-      ctx.textAlign = "center";
-      ctx.fillText("Enter", canvas.width/2, 200);
-      ctx.fillText("to play", canvas.width/2, 240);
-    } else{
-
-      ctx.clearRect(0, 100, 300, 300);
-    }
-
-    
-
-  }
-  
-  
-  //-------------------------------------------------------------------------
-  // FINALLY, lets run the game
-  //-------------------------------------------------------------------------
-  
-  run();
->>>>>>> 24aec49ee6ebea74c10cb1bb818af54b7f1d8c92
 });
