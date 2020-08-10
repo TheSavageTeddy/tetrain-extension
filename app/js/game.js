@@ -87,30 +87,8 @@ chrome.storage.local.get(["design"], function (value) {
   // COSMETIC VARIABLES
   //
   //-------------------------------------------------------------------------
+  
   //var blockStyle = "smooth"
-
-
-  /*
-  while (true){
-    if (typeof blockStyle !== "undefined"){
-      console.log("Defined");
-      break;
-    }
-  }*/
-
-  //console.log(abcdefgsupercoolvar)
-  /*
-  if (abcdefgsupercoolvar == "clean"){
-    var blockStyle = "smooth"
-    console.log("Style of:" + blockStyle)
-  } else {
-    var blockStyle = "ledgends"
-    console.log("Style of:" + blockStyle)
-  } */
-
-
-
-
 
   //
   //
