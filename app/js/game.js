@@ -29,7 +29,7 @@ if (!window.requestAnimationFrame) { // http://paulirish.com/2011/requestanimati
 // game constants
 //-------------------------------------------------------------------------
 
-var KEY     = { ESC: 27, SPACE: 32, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40 },
+var KEY     = { ESC: 27, SPACE: 32, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40, ENTER: 13 },
     DIR     = { UP: 0, RIGHT: 1, DOWN: 2, LEFT: 3, MIN: 0, MAX: 3 },
 
     canvas  = get('canvas'),
@@ -220,7 +220,7 @@ function keydown(ev) {
       case KEY.DOWN:   actions.push(DIR.DOWN);  handled = true; break;
       case KEY.ESC:    lose();                  handled = true; break;
     }
-    if (ev.keyCode == KEY.SPACE) {
+    if (ev.keyCode == KEY.ENTER) {
       play(); handled = true;
     }
     if (handled)
