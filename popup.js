@@ -15,7 +15,7 @@ function settings() {
 }
 
 function help(){
-  
+  window.location.replace("app/html/help.html");
 }
 
 function createLocalStorage(){
