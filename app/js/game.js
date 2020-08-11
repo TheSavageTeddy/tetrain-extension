@@ -590,11 +590,18 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             invalidate();
             
         } else if (current.type == s){//cant rotate left side
+            if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
+                move(DIR.RIGHT)
+                current.dir = newdir;
+                rota=true
+                invalidate();
             
-
         }else if (current.type == z){//cant rotate right side
-
-        
+            if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
+                move(DIR.LEFT)
+                current.dir = newdir;
+                rota=true
+                invalidate();
         }else{
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
@@ -621,6 +628,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
     }
   }
+}
+}
     function drop() {
         if (!move(DIR.DOWN)) {
             dropPiece();
