@@ -115,7 +115,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             RIGHT: 39,
             DOWN: 40,
             ENTER: 13,
-            Q: 81
+            Q: 81,
+            C: 67
         },
         DIR = {
             UP: 0,
@@ -156,6 +157,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         backtoback, // back to back variable
         step, // how long before current piece drops by 1 row
         isr, // reset variable
+        hold_current, // Current Hold Piece
+        pieceinHold = false,
+        old_next,
+        old_current_piece,
+        canSwap,
         rota = false;
 
     //-------------------------------------------------------------------------
@@ -397,6 +403,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         if (ev.keyCode == KEY.SPACE) {
             console.log(current)
             harddrop()
+        }
+        if (ev.keyCode == KEY.C) {
+            hold()
         }
         if (ev.keyCode == KEY.Q) {
             lose("kys")
@@ -693,6 +702,23 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
         addScore((ii-1)*2)
         current.y = y + ii - 1
+    }
+
+    function hold() {
+        if (pieceinHold) {
+            console.log("Piece found")
+            pieceinHold = true
+            old_current_piece = current;
+            setCurrentPiece(hold_current);
+            hold_current = old_current_piece
+        } else {
+            console.log("No piece")
+            pieceinHold = true,
+            hold_current = current,
+            old_next = next;
+            setCurrentPiece(next);
+            setNextPiece();
+        }
     }
 
 
