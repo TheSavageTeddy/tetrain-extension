@@ -589,9 +589,12 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             rota=true
             invalidate();
             
-        } else if (current.type == s || current.type==z){
+        } else if (current.type == s){//cant rotate left side
             
 
+        }else if (current.type == z){//cant rotate right side
+
+        
         }else{
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
