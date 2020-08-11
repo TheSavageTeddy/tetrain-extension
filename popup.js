@@ -4,12 +4,16 @@ function hidemenu(){
 }
 
 function classic() {
-  hidemenu()
+
   window.location.replace("app/html/classic.html");
 }
 function settings() {
-  hidemenu()
+
   window.location.replace("app/html/settings.html");
+}
+
+function help(){
+  
 }
 
 function createLocalStorage(){
