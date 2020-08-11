@@ -133,7 +133,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         uctx = ucanvas.getContext('2d'),
         speed = {
             start: 0.6,
-            decrement: 0.005,
+            decrement: 0.1,
             min: 0.1
         }, // how long before piece drops by 1 row (seconds)
         nx = 10, // width of tetris court (in blocks)
@@ -314,17 +314,16 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             saveSettings()
             now = timestamp();
             if (rota){
-            rota = false
-            requestAnimationFrame(frame, canvas);
-        }else{
-          update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
-            draw();
-            ctx.strokeStyle = "#FF0000";
-            ctx.strokeRect(0, 20, canvas.width, 1);
-            ctx.strokeStyle = "#000000";
-            last = now;
-            
-            requestAnimationFrame(frame, canvas);
+                rota = false
+                requestAnimationFrame(frame, canvas);
+            }else{
+                update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
+                draw();
+                ctx.strokeStyle = "#FF0000";
+                ctx.strokeRect(0, 20, canvas.width, 1);
+                ctx.strokeStyle = "#000000";
+                last = now;
+                requestAnimationFrame(frame, canvas);
             if (!lost){
 
             
@@ -545,6 +544,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             if (dt > step) {
                 dt = dt - step;
                 drop();
+                
             }
         }
     }

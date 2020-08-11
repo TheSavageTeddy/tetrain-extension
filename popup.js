@@ -1,15 +1,21 @@
-function hidemenu(){
+
+
+function hidemenu(){ //this function in unnessasary, keep it just in case
   m = document.getElementById("menu-items")
   m.style.display = "none"
 }
 
 function classic() {
-  hidemenu()
+
   window.location.replace("app/html/classic.html");
 }
 function settings() {
-  hidemenu()
+
   window.location.replace("app/html/settings.html");
+}
+
+function help(){
+  window.location.replace("app/html/help.html");
 }
 
 function createLocalStorage(){
@@ -31,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   document.getElementById('classic').addEventListener('click', classic);
   document.getElementById('settings').addEventListener('click', settings);
+  document.getElementById('help').addEventListener('click', help);
   chrome.storage.local.get(['isPlaying'], function(config) {
     if (config.isPlaying){
       console.log("Game Detected")
