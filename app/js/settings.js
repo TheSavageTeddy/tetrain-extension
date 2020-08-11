@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var node_design = document.getElementById("design")
     var design1 = document.createElement("option");
     var design2 = document.createElement("option");
+    var design3 = document.createElement("option");
     //#endregion
     chrome.storage.local.get(['nextEnabled', 'design'], function(config) {   
         test = config.nextEnabled;
@@ -55,17 +56,28 @@ document.addEventListener('DOMContentLoaded', function () {
         design1.value = "clean";
         design2.text = "Classic";
         design2.value = "legends";
+        design3.text = "Bold";
+        design3.value = "bold";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
+
         } else {
             node_next.appendChild(option2);
             node_next.appendChild(option1);
+
         }
         if (config.design == "clean"){
             node_design.appendChild(design1);
             node_design.appendChild(design2);
-        } else {
+            node_design.appendChild(design3);
+        } else if (config.design == "legends"){
+            node_design.appendChild(design2);
+            node_design.appendChild(design1);
+            node_design.appendChild(design3);
+        } else{
+            console.log("bold")
+            node_design.appendChild(design3);
             node_design.appendChild(design2);
             node_design.appendChild(design1);
         }

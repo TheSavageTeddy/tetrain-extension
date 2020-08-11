@@ -11,8 +11,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     if (value.design == "clean") {
         var blockStyle = "smooth"
         console.log("Style of:" + blockStyle)
-    } else {
+    } else if (value.design == "legends"){
         var blockStyle = "legends"
+        console.log("Style of:" + blockStyle)
+    } else{
+        var blockStyle = "bold"
         console.log("Style of:" + blockStyle)
     }
     function saveSettings() {
@@ -99,7 +102,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             window.oRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
             function(callback, element) {
-                window.setTimeout(callback, 1000 / 60);
+                window.setTimeout(callback, 1000 / 60);//60fps
             }
     }
 
@@ -132,7 +135,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         uctx = ucanvas.getContext('2d'),
         speed = {
             start: 0.6,
-            decrement: 0.1,
+            decrement: 0.05,
             min: 0.1
         }, // how long before piece drops by 1 row (seconds)
         nx = 10, // width of tetris court (in blocks)
@@ -383,6 +386,10 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 break;
             case KEY.ESC:
                 window.close();
+                handled = true;
+                break;
+            case KEY.SPACE:
+                harddrop()
                 handled = true;
                 break;
         }
@@ -735,8 +742,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
 
         if (blockStyle == "smooth") {
 
-        } else {
+        } else if (blockStyle == "legends"){
+            ctx.lineWidth = 1;
             ctx.translate(0.5, 0.5); // for crisp 1px black lines
+        } else{
+            ctx.lineWidth = 5;
+            ctx.translate(0.5, 0.5);
+            ctx.lineWidth = 1;
         }
         drawCourt();
         drawNext();
@@ -769,8 +781,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             uctx.save();
             if (blockStyle == "smooth") {
 
-            } else {
-                uctx.translate(0.5, 0.5);
+            } else if (blockStyle == "legends"){
+                ctx.lineWidth = 1;
+                ctx.translate(0.5, 0.5); // for crisp 1px black lines
+            } else{
+                ctx.lineWidth = 2;
+                ctx.translate(0.5, 0.5);
+                ctx.lineWidth = 1;
             }
 
             uctx.clearRect(0, 0, nu * dx, nu * dy);
