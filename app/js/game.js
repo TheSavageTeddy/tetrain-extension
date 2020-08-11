@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //-------------------------------------------------------------------------
@@ -484,6 +484,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             vscore = value.visualScore;
             rows = value.clearedRows
             next = value.nextPiece;
+            lost = value.hasLost;
             console.log("Next piece:")
             console.log(next)
             console.log("Current piece:")
@@ -773,6 +774,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.fillText("to play", canvas.width/2, 240);
         } else if (t == "lost"){
           lost = true//
+          playing = false
           ctx.font = "40px Arial";
           ctx.fillStyle = "#FFFFFF";
           ctx.textAlign = "center";
