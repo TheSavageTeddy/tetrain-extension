@@ -1,4 +1,6 @@
-function hidemenu(){
+
+
+function hidemenu(){ //this function in unnessasary, keep it just in case
   m = document.getElementById("menu-items")
   m.style.display = "none"
 }
