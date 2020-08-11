@@ -299,13 +299,17 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         function frame() {
             saveSettings()
             now = timestamp();
-            update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
+            if (rota){
+            rota = false
+            requestAnimationFrame(frame, canvas);
+        }else{
+          update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
             draw();
             ctx.strokeStyle = "#FF0000";
             ctx.strokeRect(0, 20, canvas.width, 1);
             ctx.strokeStyle = "#000000";
             last = now;
-            rota=false
+            
             requestAnimationFrame(frame, canvas);
             if (!lost){
 
@@ -324,6 +328,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.strokeStyle = "#FF0000";
             ctx.strokeRect(0, 20, canvas.width, 1);
             ctx.strokeStyle = "#000000";
+        }
         }
 
         resize(); // setup all our sizing information
