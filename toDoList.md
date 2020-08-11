@@ -24,5 +24,5 @@
 * More settings
   * Can change key used to rotate, move
 * Add left rotate and right rotate
-# Optional
+#### Optional
 * Multiple next block options
