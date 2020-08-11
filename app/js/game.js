@@ -589,7 +589,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             rota=true
             invalidate();
             
-        } else {
+        } else if (!current.type == s && !current.type==z){
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
