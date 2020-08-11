@@ -64,6 +64,22 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         return new Date().getTime();
     }
 
+    function lose(s) {
+      show('start');
+      setVisualScore();
+      playing = false;
+      chrome.storage.local.set({
+          isPlaying: false
+      });
+      if (s=="lost"){
+        enterToPlay("lost")
+      }else{
+        enterToPlay("show");
+      }
+      
+  }
+
+
     function random(min, max) {
         return (min + (Math.random() * (max - min)));
     }
@@ -353,6 +369,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
         if (ev.keyCode == KEY.ENTER) {
             enterToPlay("hide")
+            lost = false
             play();
             handled = true;
         }
@@ -383,20 +400,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         });
     }
 
-    function lose(s) {
-        show('start');
-        setVisualScore();
-        playing = false;
-        chrome.storage.local.set({
-            isPlaying: false
-        });
-        if (s=="lost"){
-          enterToPlay("lost")
-        }else{
-          enterToPlay("show");
-        }
-        
-    }
+
 
     function setVisualScore(n) {
         vscore = n || score;
@@ -571,10 +575,10 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 move(DIR.LEFT)
                 current.dir = newdir;
                 invalidate();
-            }
+
         }
     }
-
+  }
     function drop() {
         if (!move(DIR.DOWN)) {
             dropPiece();
@@ -776,6 +780,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
           //we dont even need to clear it aaaaa
         }
     }
+
+
 
 
     //-------------------------------------------------------------------------
