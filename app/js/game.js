@@ -32,6 +32,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         chrome.storage.local.set({ currentPiece: current}); // Save Current Piece
         chrome.storage.local.set({ nextPiece: next}); // Save Next Piece
         chrome.storage.local.set({ timeSinceStart: dt}); // Save Time since start
+        if (lost) {
+            chrome.storage.local.set({ hasLost: true}); // Save lost var
+        } else {
+            chrome.storage.local.set({ hasLost: false});
+        }
     }
 
 
