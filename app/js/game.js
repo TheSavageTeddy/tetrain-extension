@@ -154,7 +154,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         vscore, // the currently displayed score (it catches up to score in small chunks - like a spinning slot machine)
         rows, // number of completed rows in the current game
         backtoback,
-        step; // how long before current piece drops by 1 row
+        step, // how long before current piece drops by 1 row
+        rota = false;
 
     //-------------------------------------------------------------------------
     // tetris pieces
@@ -304,6 +305,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             ctx.strokeRect(0, 20, canvas.width, 1);
             ctx.strokeStyle = "#000000";
             last = now;
+            rota=false
             requestAnimationFrame(frame, canvas);
             if (!lost){
 
@@ -561,25 +563,31 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         var newdir = (current.dir == DIR.MAX ? DIR.MIN : current.dir + 1);
         if (unoccupied(current.type, current.x, current.y, newdir)) {
             current.dir = newdir;
+            rota=true
             invalidate();
+            
         } else {
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
+                rota=true
                 invalidate();
             } else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
                 move(DIR.LEFT)
                 current.dir = newdir;
+                rota=true
                 invalidate();
             } else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
                 move(DIR.RIGHT)
                 move(DIR.RIGHT)
                 current.dir = newdir;
+                rota=true
                 invalidate();
             } else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
                 move(DIR.LEFT)
                 move(DIR.LEFT)
                 current.dir = newdir;
+                rota=true
                 invalidate();
 
         }
