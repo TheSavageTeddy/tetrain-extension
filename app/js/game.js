@@ -153,8 +153,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         score, // the current score
         vscore, // the currently displayed score (it catches up to score in small chunks - like a spinning slot machine)
         rows, // number of completed rows in the current game
-        backtoback,
+        backtoback, // back to back variable
         step, // how long before current piece drops by 1 row
+        isr, // reset variable
         rota = false;
 
     //-------------------------------------------------------------------------
@@ -379,6 +380,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             lost = false
             play();
             handled = true;
+            isr = false;
         }
         if (ev.keyCode == KEY.SPACE) {
             console.log(current)
@@ -402,6 +404,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         hide('start');
         reset();
         playing = true;
+        isr = false;
         chrome.storage.local.set({
             isPlaying: true
         });
@@ -471,7 +474,15 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
 
     function reset() {
-        if (value.isPlaying) {
+        if (isr) {
+            dt = 0;
+            clearActions();
+            clearBlocks();
+            clearRows();
+            clearScore();
+            setCurrentPiece(next);
+            setNextPiece();
+        } else if (value.isPlaying) {
             dt = 0;
             clearActions();
             clearBlocks();
@@ -783,6 +794,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         } else if (t == "lost"){
           lost = true//
           playing = false
+          isr = true
           ctx.font = "40px Arial";
           ctx.fillStyle = "#FFFFFF";
           ctx.textAlign = "center";
