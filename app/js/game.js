@@ -271,7 +271,14 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 x: 4,
                 y: 1
             };
-        } else {
+        } else if (type == i){
+            return {
+                type: type,
+                dir: DIR.UP,
+                x: 3,
+                y: 0
+            };
+        }else {
             return {
                 type: type,
                 dir: DIR.UP,
