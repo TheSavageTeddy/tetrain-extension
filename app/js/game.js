@@ -146,6 +146,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         ctx = canvas.getContext('2d'),
         ucanvas = get('upcoming'),
         uctx = ucanvas.getContext('2d'),
+        hcanvas = get('hold-canvas'),
+        hctx = hcanvas.getContext('2d'),
         speed = {
             start: 0.6,
             decrement: 0.05,
@@ -544,6 +546,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             if (value.ispieceinHold){
                 pieceinHold = true;
                 hold_current = value.currentHold;
+                drawHold();
             } else {
                 pieceinHold = false;
             }
@@ -774,6 +777,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 old_current_piece = current;
                 setCurrentPiece(hold_current);
                 hold_current = old_current_piece
+                drawHold();
             } else {
                 console.log("No piece")
                 pieceinHold = true;
@@ -807,6 +811,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 old_next = next;
                 setCurrentPiece(next);
                 setNextPiece();
+                drawHold();
             }
         }
     }
@@ -905,6 +910,30 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             uctx.strokeRect(0, 0, nu * dx - 1, nu * dy - 1);
             uctx.restore();
             invalid.next = false;
+        }
+    }
+
+    function drawHold() {
+        if (pieceinHold) {
+            console.log("Attempting to draw hold")
+            var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
+            hctx.save();
+            if (blockStyle == "smooth") {
+
+            } else if (blockStyle == "legends"){
+                hctx.lineWidth = 1;
+                hctx.translate(0.5, 0.5); // for crisp 1px black lines
+            } else{
+                hctx.lineWidth = 2;
+                hctx.translate(0.5, 0.5);
+                hctx.lineWidth = 1;
+            }
+
+            hctx.clearRect(0, 0, nu * dx, nu * dy);
+            drawPiece(hctx, hold_current.type, paddingh, paddingh, hold_current.dir);
+            hctx.strokeStyle = 'black';
+            hctx.strokeRect(0, 0, nu * dx - 1, nu * dy - 1);
+            hctx.restore();
         }
     }
 
