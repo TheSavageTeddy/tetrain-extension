@@ -143,11 +143,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         },
 
         canvas = get('canvas'),
-        ctx = canvas.getContext('2d'),
+        ctx = canvas.getContext('2d', { alpha: false }),
         ucanvas = get('upcoming'),
-        uctx = ucanvas.getContext('2d'),
+        uctx = ucanvas.getContext('2d', { alpha: false }),
         hcanvas = get('hold-canvas'),
-        hctx = hcanvas.getContext('2d'),
+        hctx = hcanvas.getContext('2d', { alpha: false }),
         speed = {
             start: 0.6,
             decrement: 0.05,
