@@ -28,8 +28,10 @@ function updateDesignConfig() {
         chrome.storage.local.set({ design: "clean" })
     } else if  (design == "legends") {
         chrome.storage.local.set({ design: "legends" })
-    } else {
+    } else if (design == "bold") {
         chrome.storage.local.set({ design: "bold" })
+    } else {
+        chrome.storage.local.set({ design: "tetra" })
     }
     
     chrome.storage.local.get(['design'], function(config) {
@@ -88,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var design1 = document.createElement("option");
     var design2 = document.createElement("option");
     var design3 = document.createElement("option");
+    var design4 = document.createElement("option");
     var border_select = document.getElementById("border");
     var border1 = document.createElement("option");
     var border2 = document.createElement("option");
@@ -110,6 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
         design2.value = "legends";
         design3.text = "Bold";
         design3.value = "bold";
+        design4.text = "Tetra";
+        design4.value = "tetra";
         border1.text = "Enabled";
         border1.value = "enabled";
         border2.text = "Disabled";
@@ -135,15 +140,23 @@ document.addEventListener('DOMContentLoaded', function () {
             node_design.appendChild(design1);
             node_design.appendChild(design2);
             node_design.appendChild(design3);
+            node_design.appendChild(design4);
         } else if (config.design == "legends"){
             node_design.appendChild(design2);
             node_design.appendChild(design1);
             node_design.appendChild(design3);
-        } else{
+            node_design.appendChild(design4);
+        } else if (config.design == "bold"){
             console.log("bold")
             node_design.appendChild(design3);
             node_design.appendChild(design2);
             node_design.appendChild(design1);
+            node_design.appendChild(design4);
+        } else {
+            node_design.appendChild(design4);
+            node_design.appendChild(design1);
+            node_design.appendChild(design2);
+            node_design.appendChild(design3);
         }
         if (config.hasBorder){
             border_select.appendChild(border1);

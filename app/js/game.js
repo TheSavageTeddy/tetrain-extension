@@ -977,8 +977,14 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
 
     function drawBlock(ctx, x, y, color) {
-        ctx.fillStyle = color;
-        ctx.fillRect(x * dx, y * dy, dx, dy);
+        if (value.design == "tetra") {
+            var img = new Image();
+            img.src = `../img/assets/stack-${color}.svg`
+            ctx.drawImage(img, x * dx, y * dx, dx, dy);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(x * dx, y * dy, dx, dy);
+        }
         //ctx.strokeRect(x*dx, y*dy, dx, dy)
     }
 
