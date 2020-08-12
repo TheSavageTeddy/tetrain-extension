@@ -285,21 +285,24 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 type: type,
                 dir: DIR.UP,
                 x: 4,
-                y: 1
+                y: 1,
+                piece_type: 0
             };
         } else if (type == i){
             return {
                 type: type,
                 dir: DIR.UP,
                 x: 3,
-                y: 0
+                y: 0,
+                piece_type: 1
             };
         }else {
             return {
                 type: type,
                 dir: DIR.UP,
                 x: 4,
-                y: 0
+                y: 0,
+                piece_type: 2
             };
         }
 
@@ -726,6 +729,31 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
 
     function hold() {
         if (pieceinHold) {
+            if (hold_current.piece_type == 0){
+                hold_current = {
+                    type: hold_current.type,
+                    dir: DIR.UP,
+                    x: 4,
+                    y: 1,
+                    piece_type: 0
+                }
+            } else if (hold_current.piece_type == 1){
+                hold_current = {
+                    type: hold_current.type,
+                    dir: DIR.UP,
+                    x: 3,
+                    y: 0,
+                    piece_type: 1
+                }
+            } else {
+                hold_current = {
+                    type: hold_current.type,
+                    dir: DIR.UP,
+                    x: 4,
+                    y: 0,
+                    piece_type: 2
+                }
+            }
             console.log("Piece found")
             pieceinHold = true
             old_current_piece = current;
@@ -733,8 +761,33 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             hold_current = old_current_piece
         } else {
             console.log("No piece")
-            pieceinHold = true,
-            hold_current = current,
+            pieceinHold = true;
+            hold_current = current;
+            if (hold_current.piece_type == 0){
+                hold_current = {
+                    type: hold_current.type,
+                    dir: DIR.UP,
+                    x: 4,
+                    y: 1,
+                    piece_type: 0
+                }
+            } else if (hold_current.piece_type == 1){
+                hold_current = {
+                    type: hold_current.type,
+                    dir: DIR.UP,
+                    x: 3,
+                    y: 0,
+                    piece_type: 1
+                }
+            } else {
+                hold_current = {
+                    type: hold_current.type,
+                    dir: DIR.UP,
+                    x: 4,
+                    y: 0,
+                    piece_type: 2
+                }
+            }
             old_next = next;
             setCurrentPiece(next);
             setNextPiece();
