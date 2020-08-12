@@ -79,6 +79,20 @@ function updateSidebarConfig() {
     })
 }
 
+function updateSizeConfig() {
+    size_element = document.getElementById("size").value;
+    if (size_element === "big") {
+        chrome.storage.local.set({ canvasSize:  "big"})
+    } else if (size_element === "medium") {
+        chrome.storage.local.set({ canvasSize: "medium" })
+    } else {
+        chrome.storage.local.set({ canvasSize: "small" })
+    }
+    
+    chrome.storage.local.get(['canvasSize'], function(config) {
+        console.log(config.canvasSize);
+    })
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
@@ -100,8 +114,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var sidebar_select = document.getElementById("sidebar");
     var sidebar1 = document.createElement("option");
     var sidebar2 = document.createElement("option");
+    var size_select = document.getElementById("size");
+    var size1 = document.createElement("option");
+    var size2 = document.createElement("option");
+    var size3 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled'], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize'], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -127,6 +145,12 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar1.value = "enabled";
         sidebar2.text = "Disabled";
         sidebar2.value = "disabled";
+        size1.text = "Big";
+        size1.value = "big";
+        size2.text = "Medium";
+        size2.value = "medium";
+        size3.text = "Small";
+        size3.value = "small";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -182,7 +206,20 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             sidebar_select.appendChild(sidebar2);
             sidebar_select.appendChild(sidebar1);
+        }
 
+        if (config.canvasSize == "big"){
+            size_select.appendChild(size1);
+            size_select.appendChild(size2);
+            size_select.appendChild(size3);
+        } else if (config.canvasSize == "medium"){
+            size_select.appendChild(size2);
+            size_select.appendChild(size1);
+            size_select.appendChild(size3);
+        } else {
+            size_select.appendChild(size3);
+            size_select.appendChild(size1);
+            size_select.appendChild(size2);
         }
 
     });
@@ -192,4 +229,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('border').addEventListener('change', updateBorderConfig);
     document.getElementById('hold').addEventListener('change', updateHoldConfig);
     document.getElementById('sidebar').addEventListener('change', updateSidebarConfig);
+    document.getElementById('size').addEventListener('change', updateSizeConfig);
 });

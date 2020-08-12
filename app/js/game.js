@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -207,6 +207,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         document.getElementById("hold-canvas").style.outline = "white 3px solid";
     }
     if (value.sidebarEnabled) {
+        document.getElementById('canvas').style.height = '400px';
+        document.getElementById('canvas').style.width = '200px';
         document.getElementById("classic-container").style.minWidth = "360px";
         document.getElementById("canvas").style.float = "left";
         document.getElementById("canvas").style.margin = "10px";
@@ -218,7 +220,18 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
     } else {
         document.getElementById('sidebar').style.display = 'none';
+        if (value.canvasSize == "big"){
+            document.getElementById('canvas').style.height = '560px';
+            document.getElementById('canvas').style.width = '280px';
+        } else if (value.canvasSize == "medium"){
+            document.getElementById('canvas').style.height = '500px';
+            document.getElementById('canvas').style.width = '250px';
+        } else {
+            document.getElementById('canvas').style.height = '400px';
+            document.getElementById('canvas').style.width = '200px';
+        }
     }
+    
 
     //var blockStyle = "smooth"
 
