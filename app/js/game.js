@@ -216,14 +216,15 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         if (value.canvasSize == "big"){
             document.getElementById('canvas').style.height = '560px';
             document.getElementById('canvas').style.width = '280px';
-            document.getElementById("classic-container").style.minWidth = "420px";
-            document.getElementById('hold-canvas').style.width = "100px"
-            document.getElementById('hold-canvas').style.height = "100px"
+            document.getElementById("classic-container").style.minWidth = "460px";
+            document.getElementById('hold-canvas').style.width = "140px"
+            document.getElementById('hold-canvas').style.height = "140px"
         } else if (value.canvasSize == "medium"){
             document.getElementById('canvas').style.height = '500px';
             document.getElementById('canvas').style.width = '250px';
             document.getElementById('hold-canvas').style.width = "125px"
             document.getElementById('hold-canvas').style.height = "125px"
+            document.getElementById("classic-container").style.minWidth = "420px";
         } else {
             document.getElementById('canvas').style.height = '400px';
             document.getElementById('canvas').style.width = '200px';
