@@ -215,6 +215,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         document.getElementById("hold-canvas").style.outline = "white 3px solid";
     }
     if (value.sidebarEnabled) {
+        document.getElementById('canvas-back').style.display = 'none';
         if (value.canvasSize == "big"){
             document.getElementById('canvas').style.height = '560px';
             document.getElementById('canvas').style.width = '280px';
@@ -256,6 +257,26 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
     }
     
+    if (value.markersEnabled && !value.sidebarEnabled && value.canvasSize == "big"){
+        document.getElementById('wrapper').style.position = "relative";
+        document.getElementById('wrapper').style.height = "560px";
+        document.getElementById('wrapper').style.width = "280px";
+        document.getElementById('canvas').style.position = "absolute"
+        document.getElementById('canvas').style.top = "0px";
+        document.getElementById('canvas').style.left = "0px";
+        document.getElementById('canvas-back').style.position = "absolute"
+        document.getElementById('canvas-back').style.top = "0px";
+        document.getElementById('canvas-back').style.left = "0px";
+        var bimg = new Image();
+        bimg.src = '../img/assets/grid-bg-cross.svg'
+        bimg.onload = function(){
+            for (let yb = 1; yb <= ny; yb++) {         
+                for (let xb = 0; xb <= nx; xb++) {
+                    bctx.drawImage(bimg, xb * dx, yb * dy, dx, dy);
+                }
+            }
+        }
+    }
 
     //var blockStyle = "smooth"
 
