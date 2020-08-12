@@ -51,6 +51,20 @@ function updateBorderConfig() {
     })
 }
 
+function updateHoldConfig() {
+    hold_element = document.getElementById("hold").value;
+    if (hold_element === "enabled") {
+        chrome.storage.local.set({ holdEnabled: true })
+    } else {
+        chrome.storage.local.set({ holdEnabled: false })
+    }
+    
+    chrome.storage.local.get(['holdEnabled'], function(config) {
+        console.log(config.holdEnabled);
+    })
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
     //#region Next Settings
@@ -64,8 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var border_select = document.getElementById("border");
     var border1 = document.createElement("option");
     var border2 = document.createElement("option");
+    var hold_select = document.getElementById("hold");
+    var hold1 = document.createElement("option");
+    var hold2 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder'], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled'], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -81,6 +98,10 @@ document.addEventListener('DOMContentLoaded', function () {
         border1.value = "enabled";
         border2.text = "Disabled";
         border2.value = "disabled";
+        hold1.text = "Enabled";
+        hold1.value = "enabled";
+        hold2.text = "Disabled";
+        hold2.value = "disabled";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -111,12 +132,21 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             border_select.appendChild(border2);
             border_select.appendChild(border1);
+        }
+        if (config.holdEnabled){
+            hold_select.appendChild(hold1);
+            hold_select.appendChild(hold2);
+
+        } else {
+            hold_select.appendChild(hold2);
+            hold_select.appendChild(hold1);
 
         }
 
     });
-     
+    
     document.getElementById('next-piece').addEventListener('change', updateNextConfig);
     document.getElementById('design').addEventListener('change', updateDesignConfig);
     document.getElementById('border').addEventListener('change', updateBorderConfig);
+    document.getElementById('hold').addEventListener('change', updateHoldConfig);
 });

@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -208,6 +208,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
     if (!value.nextEnabled){
         document.getElementById('upcoming').style.display = 'none';
+    }
+    if (!value.holdEnabled){
+        document.getElementById('hold-canvas').style.display = 'none';
     }
 
     //var blockStyle = "smooth"
@@ -437,7 +440,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             harddrop()
         }
         if (ev.keyCode == KEY.C) {
-            hold()
+            if (value.holdEnabled){
+                hold()
+            }
         }
         if (ev.keyCode == KEY.Q) {
             lose("kys")

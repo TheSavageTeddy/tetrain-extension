@@ -26,3 +26,4 @@
 * Add left rotate and right rotate
 #### Optional
 * Multiple next block options
+* Rewrite Settings Page for more efficency
