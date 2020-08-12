@@ -891,12 +891,12 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             if (blockStyle == "smooth") {
 
             } else if (blockStyle == "legends"){
-                ctx.lineWidth = 1;
-                ctx.translate(0.5, 0.5); // for crisp 1px black lines
+                uctx.lineWidth = 1;
+                uctx.translate(0.5, 0.5); // for crisp 1px black lines
             } else{
-                ctx.lineWidth = 2;
-                ctx.translate(0.5, 0.5);
-                ctx.lineWidth = 1;
+                uctx.lineWidth = 2;
+                uctx.translate(0.5, 0.5);
+                uctx.lineWidth = 1;
             }
 
             uctx.clearRect(0, 0, nu * dx, nu * dy);
