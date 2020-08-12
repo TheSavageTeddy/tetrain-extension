@@ -64,6 +64,19 @@ function updateHoldConfig() {
     })
 }
 
+function updateSidebarConfig() {
+    sidebar_element = document.getElementById("sidebar").value;
+    if (sidebar_element === "enabled") {
+        chrome.storage.local.set({ sidebarEnabled: true })
+    } else {
+        chrome.storage.local.set({ sidebarEnabled: false })
+    }
+    
+    chrome.storage.local.get(['sidebarEnabled'], function(config) {
+        console.log(config.sidebarEnabled);
+    })
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
@@ -81,8 +94,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var hold_select = document.getElementById("hold");
     var hold1 = document.createElement("option");
     var hold2 = document.createElement("option");
+    var sidebar_select = document.getElementById("sidebar");
+    var sidebar1 = document.createElement("option");
+    var sidebar2 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled'], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled'], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -102,6 +118,10 @@ document.addEventListener('DOMContentLoaded', function () {
         hold1.value = "enabled";
         hold2.text = "Disabled";
         hold2.value = "disabled";
+        sidebar1.text = "Enabled";
+        sidebar1.value = "enabled";
+        sidebar2.text = "Disabled";
+        sidebar2.value = "disabled";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -142,6 +162,15 @@ document.addEventListener('DOMContentLoaded', function () {
             hold_select.appendChild(hold1);
 
         }
+        if (config.sidebarEnabled){
+            sidebar_select.appendChild(sidebar1);
+            sidebar_select.appendChild(sidebar2);
+
+        } else {
+            sidebar_select.appendChild(sidebar2);
+            sidebar_select.appendChild(sidebar1);
+
+        }
 
     });
     
@@ -149,4 +178,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('design').addEventListener('change', updateDesignConfig);
     document.getElementById('border').addEventListener('change', updateBorderConfig);
     document.getElementById('hold').addEventListener('change', updateHoldConfig);
+    document.getElementById('sidebar').addEventListener('change', updateSidebarConfig);
 });

@@ -19,11 +19,12 @@ function help(){
 }
 
 function createLocalStorage(){
+  chrome.storage.local.set({ sidebarEnabled: false })
   chrome.storage.local.set({ nextEnabled: true })
   chrome.storage.local.set({ holdEnabled: true })
   chrome.storage.local.set({ design: "clean" })
   chrome.storage.local.set({ isPlaying: false });
-  chrome.storage.local.set({ hasBorder: true })
+  chrome.storage.local.set({ hasBorder: false })
   chrome.storage.local.set({ isConfigured: true })
 }
 
