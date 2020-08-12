@@ -207,9 +207,18 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         document.getElementById("hold-canvas").style.outline = "white 3px solid";
     }
     if (value.sidebarEnabled) {
-        document.getElementById('canvas').style.height = '400px';
-        document.getElementById('canvas').style.width = '200px';
-        document.getElementById("classic-container").style.minWidth = "360px";
+        if (value.canvasSize == "big"){
+            document.getElementById('canvas').style.height = '560px';
+            document.getElementById('canvas').style.width = '280px';
+            document.getElementById("classic-container").style.minWidth = "420px";
+        } else if (value.canvasSize == "medium"){
+            document.getElementById('canvas').style.height = '500px';
+            document.getElementById('canvas').style.width = '250px';
+        } else {
+            document.getElementById('canvas').style.height = '400px';
+            document.getElementById('canvas').style.width = '200px';
+            document.getElementById("classic-container").style.minWidth = "360px";
+        }
         document.getElementById("canvas").style.float = "left";
         document.getElementById("canvas").style.margin = "10px";
         if (!value.nextEnabled){
