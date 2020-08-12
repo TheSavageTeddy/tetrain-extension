@@ -68,6 +68,12 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         return document.getElementById(id);
     }
 
+    function setWidth() {//use to change size of a square canvas
+        var canvas = document.getElementById("myCanvas");  
+        canvas.width = width;
+      }
+
+
     function hide(id) {
         get(id).style.visibility = 'hidden';
     }
@@ -218,6 +224,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             document.getElementById('canvas').style.height = '400px';
             document.getElementById('canvas').style.width = '200px';
             document.getElementById("classic-container").style.minWidth = "360px";
+            document.getElementById('hold-canvas').style.width = "100px"
+            document.getElementById('hold-canvas').style.height = "100px"
         }
         document.getElementById("canvas").style.float = "left";
         document.getElementById("canvas").style.margin = "10px";
