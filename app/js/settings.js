@@ -26,8 +26,10 @@ function updateDesignConfig() {
     console.log(design)
     if (design == "clean") {
         chrome.storage.local.set({ design: "clean" })
+    } else if  (design == "legends") {
+        chrome.storage.local.set({ design: "legends" })
     } else {
-        chrome.storage.local.set({ design: "ledgends" })
+        chrome.storage.local.set({ design: "bold" })
     }
     
     chrome.storage.local.get(['design'], function(config) {
