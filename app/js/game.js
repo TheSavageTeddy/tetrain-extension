@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -41,6 +41,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         } else {
             chrome.storage.local.set({ currentHold: hold_current}); // Save current hold piece
             chrome.storage.local.set({ ispieceinHold: true});
+        }
+        if (canSwap) {
+            chrome.storage.local.set({ isabletoSwap: true});
+        } else {
+            chrome.storage.local.set({ isabletoSwap: false});
         }
         if (lost) {
             chrome.storage.local.set({ hasLost: true}); // Save lost var
@@ -171,7 +176,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         pieceinHold = false,
         old_next,
         old_current_piece,
-        canSwap,
+        canSwap = true,
         rota = false;
 
     //-------------------------------------------------------------------------
@@ -513,6 +518,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     function reset() {
         if (isr) {
             dt = 0;
+            canSwap = true;
             clearActions();
             clearBlocks();
             clearRows();
@@ -541,6 +547,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             } else {
                 pieceinHold = false;
             }
+            if (value.isabletoSwap) {
+                canSwap = true;
+            } else {
+                canSwap = false;
+            }
             console.log("Next piece:")
             console.log(next)
             console.log("Current piece:")
@@ -549,6 +560,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             setNextPiece(next);
         } else {
             dt = 0;
+            canSwap = true;
             clearActions();
             clearBlocks();
             clearRows();
@@ -673,6 +685,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             setCurrentPiece(next);
             setNextPiece(randomPiece());
             clearActions();
+            canSwap = true;
             if (occupied(current.type, current.x, current.y, current.dir)) {
                 lose("lost");
             }
@@ -728,69 +741,73 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
 
     function hold() {
-        if (pieceinHold) {
-            if (hold_current.piece_type == 0){
-                hold_current = {
-                    type: hold_current.type,
-                    dir: DIR.UP,
-                    x: 4,
-                    y: 1,
-                    piece_type: 0
+        if (canSwap) {
+            if (pieceinHold) {
+                if (hold_current.piece_type == 0){
+                    hold_current = {
+                        type: hold_current.type,
+                        dir: DIR.UP,
+                        x: 4,
+                        y: 1,
+                        piece_type: 0
+                    }
+                } else if (hold_current.piece_type == 1){
+                    hold_current = {
+                        type: hold_current.type,
+                        dir: DIR.UP,
+                        x: 3,
+                        y: 0,
+                        piece_type: 1
+                    }
+                } else {
+                    hold_current = {
+                        type: hold_current.type,
+                        dir: DIR.UP,
+                        x: 4,
+                        y: 0,
+                        piece_type: 2
+                    }
                 }
-            } else if (hold_current.piece_type == 1){
-                hold_current = {
-                    type: hold_current.type,
-                    dir: DIR.UP,
-                    x: 3,
-                    y: 0,
-                    piece_type: 1
-                }
+                console.log("Piece found")
+                pieceinHold = true;
+                canSwap = false;
+                old_current_piece = current;
+                setCurrentPiece(hold_current);
+                hold_current = old_current_piece
             } else {
-                hold_current = {
-                    type: hold_current.type,
-                    dir: DIR.UP,
-                    x: 4,
-                    y: 0,
-                    piece_type: 2
+                console.log("No piece")
+                pieceinHold = true;
+                canSwap = false;
+                hold_current = current;
+                if (hold_current.piece_type == 0){
+                    hold_current = {
+                        type: hold_current.type,
+                        dir: DIR.UP,
+                        x: 4,
+                        y: 1,
+                        piece_type: 0
+                    }
+                } else if (hold_current.piece_type == 1){
+                    hold_current = {
+                        type: hold_current.type,
+                        dir: DIR.UP,
+                        x: 3,
+                        y: 0,
+                        piece_type: 1
+                    }
+                } else {
+                    hold_current = {
+                        type: hold_current.type,
+                        dir: DIR.UP,
+                        x: 4,
+                        y: 0,
+                        piece_type: 2
+                    }
                 }
+                old_next = next;
+                setCurrentPiece(next);
+                setNextPiece();
             }
-            console.log("Piece found")
-            pieceinHold = true
-            old_current_piece = current;
-            setCurrentPiece(hold_current);
-            hold_current = old_current_piece
-        } else {
-            console.log("No piece")
-            pieceinHold = true;
-            hold_current = current;
-            if (hold_current.piece_type == 0){
-                hold_current = {
-                    type: hold_current.type,
-                    dir: DIR.UP,
-                    x: 4,
-                    y: 1,
-                    piece_type: 0
-                }
-            } else if (hold_current.piece_type == 1){
-                hold_current = {
-                    type: hold_current.type,
-                    dir: DIR.UP,
-                    x: 3,
-                    y: 0,
-                    piece_type: 1
-                }
-            } else {
-                hold_current = {
-                    type: hold_current.type,
-                    dir: DIR.UP,
-                    x: 4,
-                    y: 0,
-                    piece_type: 2
-                }
-            }
-            old_next = next;
-            setCurrentPiece(next);
-            setNextPiece();
         }
     }
 
