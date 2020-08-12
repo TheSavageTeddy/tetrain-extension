@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -244,6 +244,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             document.getElementById('hold-canvas').style.display = 'none';
         }
     } else {
+        if (!value.markersEnabled){
+            document.getElementById('canvas-back').style.display = 'none';
+        }
         document.getElementById('sidebar').style.display = 'none';
         if (value.canvasSize == "big"){
             document.getElementById('canvas').style.height = '560px';

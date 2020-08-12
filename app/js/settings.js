@@ -94,6 +94,19 @@ function updateSizeConfig() {
     })
 }
 
+function updateMarkersConfig() {
+    markers_element = document.getElementById("markers").value;
+    if (markers_element === "enabled") {
+        chrome.storage.local.set({ markersEnabled: true })
+    } else {
+        chrome.storage.local.set({ markersEnabled: false })
+    }
+    
+    chrome.storage.local.get(['markersEnabled'], function(config) {
+        console.log(config.markersEnabled);
+    })
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
     //#region Next Settings
@@ -118,8 +131,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var size1 = document.createElement("option");
     var size2 = document.createElement("option");
     var size3 = document.createElement("option");
+    var markers_select = document.getElementById("markers");
+    var markers1 = document.createElement("option");
+    var markers2 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize'], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled'], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -151,6 +167,10 @@ document.addEventListener('DOMContentLoaded', function () {
         size2.value = "medium";
         size3.text = "Small";
         size3.value = "small";
+        markers1.text = "Enabled";
+        markers1.value = "enabled";
+        markers2.text = "Disabled";
+        markers2.value = "disabled";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -220,6 +240,12 @@ document.addEventListener('DOMContentLoaded', function () {
             size_select.appendChild(size3);
             size_select.appendChild(size1);
             size_select.appendChild(size2);
+        } if (config.markersEnabled) {
+            markers_select.appendChild(markers1);
+            markers_select.appendChild(markers2);
+        } else {
+            markers_select.appendChild(markers2);
+            markers_select.appendChild(markers1);
         }
 
     });
@@ -230,4 +256,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('hold').addEventListener('change', updateHoldConfig);
     document.getElementById('sidebar').addEventListener('change', updateSidebarConfig);
     document.getElementById('size').addEventListener('change', updateSizeConfig);
+    document.getElementById('markers').addEventListener('change', updateMarkersConfig);
 });
