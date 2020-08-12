@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -205,6 +205,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         document.getElementById("canvas").style.outline = "white 3px solid";
         document.getElementById("upcoming").style.outline = "white 3px solid";
         document.getElementById("hold-canvas").style.outline = "white 3px solid";
+    }
+    if (!value.nextEnabled){
+        document.getElementById('upcoming').style.display = 'none';
     }
 
     //var blockStyle = "smooth"
