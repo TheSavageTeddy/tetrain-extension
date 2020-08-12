@@ -60,3 +60,7 @@ p{
     opacity: 1;
     
 }
+
+body { 
+    margin:0; 
+} /* Remove body margins */

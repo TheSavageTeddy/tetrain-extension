@@ -208,6 +208,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
     if (value.sidebarEnabled) {
         document.getElementById("classic-container").style.minWidth = "360px";
+        document.getElementById("canvas").style.float = "left";
+        document.getElementById("canvas").style.margin = "10px";
         if (!value.nextEnabled){
             document.getElementById('upcoming').style.display = 'none';
         }
