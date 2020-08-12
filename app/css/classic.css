@@ -65,3 +65,11 @@ p{
 body { 
     margin:0; 
 } /* Remove body margins */
+#wrapper {
+    position: relative;
+    height: 560px;
+    width: 280px;
+}
+#canvas,#canvas-bottom{
+    position:absolute; top:0px; left:0px;
+}

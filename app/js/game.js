@@ -154,6 +154,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         uctx = ucanvas.getContext('2d', { alpha: false }),
         hcanvas = get('hold-canvas'),
         hctx = hcanvas.getContext('2d', { alpha: false }),
+        bcanvas = get('canvas-back'),
+        bctx = bcanvas.getContext('2d', { alpha: false }),
         speed = {
             start: 0.6,
             decrement: 0.05,
@@ -1017,7 +1019,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         if (value.design == "tetra") {
             var img = new Image();
             img.src = `../img/assets/stack-${color}.svg`
-            ctx.drawImage(img, x * dx, y * dx, dx, dy);
+            img.onload = function(){
+                ctx.drawImage(img, x * dx, y * dx, dx, dy);
+            }
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);
