@@ -37,6 +37,20 @@ function updateDesignConfig() {
     })
 }
 
+function updateBorderConfig() {
+    border_element = document.getElementById("border").value;
+    console.log(border_element)
+    if (border_element === "enabled") {
+        chrome.storage.local.set({ hasBorder: true })
+    } else {
+        chrome.storage.local.set({ hasBorder: false })
+    }
+    
+    chrome.storage.local.get(['hasBorder'], function(config) {
+        console.log(config.hasBorder);
+    })
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
     //#region Next Settings
@@ -47,8 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var design1 = document.createElement("option");
     var design2 = document.createElement("option");
     var design3 = document.createElement("option");
+    var border_select = document.getElementById("border");
+    var border1 = document.createElement("option");
+    var border2 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design'], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder'], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -60,6 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
         design2.value = "legends";
         design3.text = "Bold";
         design3.value = "bold";
+        border1.text = "Enabled";
+        border1.value = "enabled";
+        border2.text = "Disabled";
+        border2.value = "disabled";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -83,9 +104,19 @@ document.addEventListener('DOMContentLoaded', function () {
             node_design.appendChild(design2);
             node_design.appendChild(design1);
         }
+        if (config.hasBorder){
+            border_select.appendChild(border1);
+            border_select.appendChild(border2);
+
+        } else {
+            border_select.appendChild(border2);
+            border_select.appendChild(border1);
+
+        }
 
     });
      
     document.getElementById('next-piece').addEventListener('change', updateNextConfig);
     document.getElementById('design').addEventListener('change', updateDesignConfig);
+    document.getElementById('border').addEventListener('change', updateBorderConfig);
 });
