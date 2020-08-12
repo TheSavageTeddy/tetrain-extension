@@ -4,10 +4,10 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
-    //-------------------------------------------------------------------------
+    //---------------------------------------- ---------------------------------
     if (value.design == "clean") {
         var blockStyle = "smooth"
         console.log("Style of:" + blockStyle)
@@ -35,6 +35,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         chrome.storage.local.set({ currentPiece: current}); // Save Current Piece
         chrome.storage.local.set({ nextPiece: next}); // Save Next Piece
         chrome.storage.local.set({ timeSinceStart: dt}); // Save Time since start
+        if (pieceinHold){
+            chrome.storage.local.set({ currentHold: hold_current}); // Save current hold piece
+            chrome.storage.local.set({ ispieceinHold: true});
+        } else {
+            chrome.storage.local.set({ currentHold: hold_current}); // Save current hold piece
+            chrome.storage.local.set({ ispieceinHold: true});
+        }
         if (lost) {
             chrome.storage.local.set({ hasLost: true}); // Save lost var
         } else {
@@ -525,6 +532,12 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             rows = value.clearedRows
             next = value.nextPiece;
             lost = value.hasLost;
+            if (value.ispieceinHold){
+                pieceinHold = true;
+                hold_current = value.currentHold;
+            } else {
+                pieceinHold = false;
+            }
             console.log("Next piece:")
             console.log(next)
             console.log("Current piece:")
