@@ -1,10 +1,12 @@
 # H1 To do list
 ### a list of things we need to do before publishing a version
+#put ✓ after item to mark it done!
 
 ### Beta 2.01
 #### Essentials
 * Fix all bugs!
-  * Glitching when rotating
+  * Glitching when rotating ✓
+  * **NEW BUG** can't rotate on side now, used to be able to can do
   * Other bugs
 * Make scoring and rows cleared look and positioned better
 * Better key input detection
