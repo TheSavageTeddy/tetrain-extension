@@ -1,6 +1,6 @@
 # H1 To do list
 ### a list of things we need to do before publishing a version
-#put ✓ after item to mark it done!
+# put ✓ after item to mark it done!
 
 ### Beta 2.01
 #### Essentials
