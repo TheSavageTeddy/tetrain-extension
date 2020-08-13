@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -150,6 +150,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         uctx = ucanvas.getContext('2d', { alpha: false }),
         hcanvas = get('hold-canvas'),
         hctx = hcanvas.getContext('2d', { alpha: false }),
+        bcanvas = get('canvas-back'),
+        bctx = bcanvas.getContext('2d', { alpha: false }),
         speed = {
             start: 0.6,
             decrement: 0.05,
@@ -209,6 +211,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         document.getElementById("hold-canvas").style.outline = "white 3px solid";
     }
     if (value.sidebarEnabled) {
+        document.getElementById('canvas-back').style.display = 'none';
         if (value.canvasSize == "big"){
             document.getElementById('canvas').style.height = '560px';
             document.getElementById('canvas').style.width = '280px';
@@ -230,6 +233,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             document.getElementById('hold-canvas').style.display = 'none';
         }
     } else {
+        if (!value.markersEnabled){
+            document.getElementById('canvas-back').style.display = 'none';
+        }
         document.getElementById('sidebar').style.display = 'none';
         if (value.canvasSize == "big"){
             document.getElementById('canvas').style.height = '560px';
@@ -243,6 +249,28 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
     }
     
+    if (value.markersEnabled && !value.sidebarEnabled && value.canvasSize == "big"){
+        document.getElementById('wrapper').style.position = "relative";
+        document.getElementById('wrapper').style.height = "560px";
+        document.getElementById('wrapper').style.width = "280px";
+        document.getElementById('canvas').style.position = "absolute"
+        document.getElementById('canvas').style.top = "0px";
+        document.getElementById('canvas').style.left = "0px";
+        document.getElementById('canvas-back').style.position = "absolute"
+        document.getElementById('canvas-back').style.top = "0px";
+        document.getElementById('canvas-back').style.left = "0px";
+        
+    }
+
+    var bimg = new Image();
+    bimg.src = '../img/assets/grid-bg-cross.svg'
+    bimg.onload = function(){
+        for (let yb = 1; yb <= ny; yb++) {         
+            for (let xb = 0; xb <= nx; xb++) {
+                bctx.drawImage(bimg, xb * dx, yb * dy, dx, dy);
+            }
+        }
+    }
 
     //var blockStyle = "smooth"
 
@@ -1006,7 +1034,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         if (value.design == "tetra") {
             var img = new Image();
             img.src = `../img/assets/stack-${color}.svg`
-            ctx.drawImage(img, x * dx, y * dx, dx, dy);
+            img.onload = function(){
+                ctx.drawImage(img, x * dx, y * dx, dx, dy);
+            }
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);

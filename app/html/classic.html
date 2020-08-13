@@ -9,9 +9,14 @@
 
     <script type="module" src="../js/game.js"></script>
     <div style="overflow: hidden;" id="classic-container">
-      <canvas id="canvas">
-        abc123
-      </canvas>
+      <div id="wrapper">
+        <canvas id="canvas-back" height="560px" width="280px">
+          abc123
+        </canvas>
+        <canvas id="canvas">
+          abc123
+        </canvas>
+      </div>
       <div id="sidebar">
         <canvas style="float: right; margin: 10px" id="upcoming" height="100px" width="100px"></canvas>
         <p >Score: <span id='score'>0</span></p>

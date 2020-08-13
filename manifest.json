@@ -1,7 +1,7 @@
 {
     "name": "t3tris",
     "version": "1.01",
-    "description": "T3tris game - opens in a popup window",
+    "description": "T3tris is a fun chrome extension game",
     "author": "Roxiun & TheSavageTeddy",
     "permissions": [
         "activeTab", 
