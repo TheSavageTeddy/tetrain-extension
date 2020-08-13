@@ -270,13 +270,15 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         document.getElementById('canvas-back').style.position = "absolute"
         document.getElementById('canvas-back').style.top = "0px";
         document.getElementById('canvas-back').style.left = "0px";
-        var bimg = new Image();
-        bimg.src = '../img/assets/grid-bg-cross.svg'
-        bimg.onload = function(){
-            for (let yb = 1; yb <= ny; yb++) {         
-                for (let xb = 0; xb <= nx; xb++) {
-                    bctx.drawImage(bimg, xb * dx, yb * dy, dx, dy);
-                }
+        
+    }
+
+    var bimg = new Image();
+    bimg.src = '../img/assets/grid-bg-cross.svg'
+    bimg.onload = function(){
+        for (let yb = 1; yb <= ny; yb++) {         
+            for (let xb = 0; xb <= nx; xb++) {
+                bctx.drawImage(bimg, xb * dx, yb * dy, dx, dy);
             }
         }
     }
