@@ -8,14 +8,15 @@
   * Glitching when rotating ✓
   * **NEW BUG** can't rotate on side now, used to be able to can do
   * Other bugs
-* Make scoring and rows cleared look and positioned better
+* Make scoring and rows cleared look and positioned better ✓
+* Fix size for hold and next canvas
 * Better key input detection
-* Finished help page
+* Finish help page
 * Next piece setting work
 * Add hold and option to toggle on/off
 #### Optionals
-* Better style for blocks and positions
-* Resizable popup
+* Better style for blocks and positions ✓
+* Resizable popup ✓
 * Multiple next block options
 
 ### Release 1.01
