@@ -702,6 +702,19 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
     }
 
+
+    // (default)
+    // COLOURS/COLORS
+    // I piece = light blue
+    // L piece = orange
+    // J piece = blue
+    // O piece = yellow
+    // S piece = green
+    // Z piece = red
+    //
+    //
+    //
+
     function rotate() {
         var newdir = (current.dir == DIR.MAX ? DIR.MIN : current.dir + 1);
         if (unoccupied(current.type, current.x, current.y, newdir)) {
@@ -709,45 +722,54 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             //rota=true
             invalidate();
     
-        } else if (current.type == s) { //cant rotate left side
+        } else if (current.type == z) { //cant rotate left side
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
                 rota = true
                 invalidate();
+            } else if (unoccupied(current.type, current.x, current.y, newdir)){
+                current.dir = newdir;
+                rota = true
+                invalidate();
             }
-        } else if (current.type == z) { //cant rotate right side
+        } else if (current.type == s) { //cant rotate right side
                 if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
                     move(DIR.LEFT)
                     current.dir = newdir;
                     rota = true
                     invalidate();
+                }else if (unoccupied(current.type, current.x, current.y, newdir)){
+                    current.dir = newdir;
+                    rota = true
+                    invalidate();
                 }
         } else {
-            
-                    if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
-                        move(DIR.RIGHT)
-                        current.dir = newdir;
-                        rota = true
-                        invalidate();
-                    } else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
-                        move(DIR.LEFT)
-                        current.dir = newdir;
-                        rota = true
-                        invalidate();
-                    } else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                        move(DIR.RIGHT)
-                        move(DIR.RIGHT)
-                        current.dir = newdir;
-                        rota = true
-                        invalidate();
-                    } else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
-                        move(DIR.LEFT)
-                        move(DIR.LEFT)
-                        current.dir = newdir;
-                        rota = true
-                        invalidate();
-                    }
+            if (current.type == l){//cant rotate left side
+                if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
+                    move(DIR.RIGHT)
+                    current.dir = newdir;
+                    rota = true
+                    invalidate();
+            }
+                } else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
+                    move(DIR.LEFT)
+                    current.dir = newdir;
+                    rota = true
+                    invalidate();
+                } else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
+                    move(DIR.RIGHT)
+                    move(DIR.RIGHT)
+                    current.dir = newdir;
+                    rota = true
+                    invalidate();
+                } else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
+                    move(DIR.LEFT)
+                    move(DIR.LEFT)
+                    current.dir = newdir;
+                    rota = true
+                    invalidate();
+                }
                 }
             
         }
