@@ -154,7 +154,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         bctx = bcanvas.getContext('2d', { alpha: false }),
         speed = {
             start: 0.6,
-            decrement: 0.05,
+            decrement: 0.005,
             min: 0.1
         }, // how long before piece drops by 1 row (seconds)
         nx = 10, // width of tetris court (in blocks)
@@ -768,12 +768,14 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 rota = true
                 invalidate();
             }
-        } else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-            move(DIR.RIGHT)
-            move(DIR.RIGHT)
-            current.dir = newdir;
-            rota = true
-            invalidate();
+        } else if (current.type == t){
+            if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
+                move(DIR.RIGHT)
+                move(DIR.RIGHT)
+                current.dir = newdir;
+                rota = true
+                invalidate();
+            }
         } else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
             move(DIR.LEFT)
             move(DIR.LEFT)
