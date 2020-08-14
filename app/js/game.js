@@ -728,7 +728,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            } else if (unoccupied(current.type, current.x, current.y, newdir)) {
+            } else if (unoccupied(current.type, current.x-1, current.y, newdir)) {
+                move(DIR.LEFT)
                 current.dir = newdir;
                 rota = true
                 invalidate();
@@ -739,7 +740,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            } else if (unoccupied(current.type, current.x, current.y, newdir)) {
+            } else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
+                move(DIR.RIGHT)
                 current.dir = newdir;
                 rota = true
                 invalidate();
@@ -768,9 +770,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 rota = true
                 invalidate();
             }
-        } else if (current.type == t){
-            if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                move(DIR.RIGHT)
+        } else if (current.type == t){//both sides need check
+            if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
+                move(DIR.LEFT)
+                current.dir = newdir;
+                rota = true
+                invalidate();
+            }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
                 rota = true
