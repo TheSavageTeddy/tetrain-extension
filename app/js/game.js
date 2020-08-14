@@ -706,50 +706,52 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         var newdir = (current.dir == DIR.MAX ? DIR.MIN : current.dir + 1);
         if (unoccupied(current.type, current.x, current.y, newdir)) {
             current.dir = newdir;
-            rota=true
+            //rota=true
             invalidate();
-            
-        } else if (current.type == s){//cant rotate left side
+    
+        } else if (current.type == s) { //cant rotate left side
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
-                rota=true
+                rota = true
                 invalidate();
+            }
+        } else if (current.type == z) { //cant rotate right side
+                if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
+                    move(DIR.LEFT)
+                    current.dir = newdir;
+                    rota = true
+                    invalidate();
+                }
+        } else {
             
-        }else if (current.type == z){//cant rotate right side
-            if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
-                move(DIR.LEFT)
-                current.dir = newdir;
-                rota=true
-                invalidate();
-        }else{
-            if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
-                move(DIR.RIGHT)
-                current.dir = newdir;
-                rota=true
-                invalidate();
-            } else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
-                move(DIR.LEFT)
-                current.dir = newdir;
-                rota=true
-                invalidate();
-            } else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                move(DIR.RIGHT)
-                move(DIR.RIGHT)
-                current.dir = newdir;
-                rota=true
-                invalidate();
-            } else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
-                move(DIR.LEFT)
-                move(DIR.LEFT)
-                current.dir = newdir;
-                rota=true
-                invalidate();
+                    if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
+                        move(DIR.RIGHT)
+                        current.dir = newdir;
+                        rota = true
+                        invalidate();
+                    } else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
+                        move(DIR.LEFT)
+                        current.dir = newdir;
+                        rota = true
+                        invalidate();
+                    } else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
+                        move(DIR.RIGHT)
+                        move(DIR.RIGHT)
+                        current.dir = newdir;
+                        rota = true
+                        invalidate();
+                    } else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
+                        move(DIR.LEFT)
+                        move(DIR.LEFT)
+                        current.dir = newdir;
+                        rota = true
+                        invalidate();
+                    }
+                }
+            
         }
-    }
-  }
-}
-}
+    
     function drop() {
         if (!move(DIR.DOWN)) {
             dropPiece();
