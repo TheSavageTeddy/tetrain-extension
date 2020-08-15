@@ -800,7 +800,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            }else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
+            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
                 move(DIR.LEFT)
                 move(DIR.LEFT)
                 current.dir = newdir;
