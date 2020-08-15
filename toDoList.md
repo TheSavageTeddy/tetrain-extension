@@ -1,4 +1,4 @@
-# H1 To do list
+# To do list
 ### a list of things we need to do before publishing a version
 #### put ✓ after item to mark it done!
 
