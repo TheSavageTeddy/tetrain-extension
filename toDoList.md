@@ -1,28 +1,31 @@
 # To do list
 ### a list of things we need to do before publishing a version
-#### put ✓ after item to mark it done!
+#### put ✓ before item to mark it done!
 
-### Beta 2.01
+### First release! (v3.01)
 #### Essentials
 * Fix all bugs!
-  * Glitching when rotating ✓
-  * **NEW BUG** can't rotate on side now, used to be able to can do
+  ✓ Glitching when rotating
+  ✓ **NEW BUG** can't rotate on side now, used to be able to can do
   * Other bugs
+  * FIX THE FREAKING GRID
+   * glitches when you don't show overlay
+   * also make it show when overlay is on
+  * Fix image blocks flashing (when style is 'tetra')
 * Make scoring and rows cleared look and positioned better ✓
 * Fix size for hold and next canvas
 * Better key input detection
 * Finish help page
 * Next piece setting work
-* Add hold and option to toggle on/off
+* Add hold and option to toggle on/off ✓
 #### Optionals
 * Better style for blocks and positions ✓
 * Resizable popup ✓
 * Multiple next block options
 
-### Release 1.01
+### Other releases
 #### Essentials
 * Add 'modern' mode (or call it normal mode)
-  * Contains hold (positioned right bottom of screen
   * Can 'roll' blocks across ground
 * More settings
   * Can change key used to rotate, move
