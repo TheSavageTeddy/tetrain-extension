@@ -9,7 +9,7 @@
         "storage"
     ],
     "browser_action":{
-        "default_icon": "app/img/t3tris_128x.png",
+        "default_icon": "app/img/tetrain_128x.png",
         "default_popup": "popup.html",
         "default_title": "TETRAIN"
     },
