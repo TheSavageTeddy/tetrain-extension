@@ -1,5 +1,5 @@
 # To do list
-### a list of things we need to do before publishing a version
+### this is not actually a README lol
 #### put ✓ before item to mark it done!
 #### put ! before item to mark it important/major issue!
 
