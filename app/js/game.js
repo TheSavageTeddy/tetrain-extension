@@ -463,6 +463,11 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     function keydown(ev) {
         var handled = false;
         switch (ev.keyCode) {
+            case KEY.SPACE:
+                harddrop()
+                handled = true;
+
+                break;
             case KEY.LEFT:
                 actions.push(DIR.LEFT);
                 handled = true;
@@ -483,10 +488,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 window.close();
                 handled = true;
                 break;
-            case KEY.SPACE:
-                harddrop()
-                handled = true;
-                break;
+            
         }
         if (ev.keyCode == KEY.ENTER) {
             enterToPlay("hide")
@@ -649,8 +651,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
 
     function update(idt) {
         if (playing) {
-            if (vscore < score)
-                setVisualScore(score);
+            setVisualScore(score);
             handle(actions.shift());
             dt = dt + idt;
             if (dt > step) {
@@ -794,18 +795,21 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            }else if (unoccupied(current.type, current.x + 2, current.y+1, newdir)) {
+            /*
+            }else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
                 move(DIR.RIGHT)
                 move(DIR.RIGHT)
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            }else if (unoccupied(current.type, current.x - 2, current.y+1, newdir)) {
+            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
                 move(DIR.LEFT)
                 move(DIR.LEFT)
                 current.dir = newdir;
                 rota = true
                 invalidate();
+            }
+            */
             }
         }
     }
@@ -867,15 +871,20 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
     }
 
+
     function harddrop() {
+
         var x = current.x,
             y = current.y;
         var ii = 0
+
         while (unoccupied(current.type, x, y + ii, current.dir)) {
             ii = ii + 1
         }
+        
         addScore((ii-1)*2)
         current.y = y + ii - 1
+        drop()
     }
 
     function hold() {
