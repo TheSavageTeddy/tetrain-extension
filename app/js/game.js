@@ -219,6 +219,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         } else if (value.canvasSize == "medium"){
             document.getElementById('canvas').style.height = '500px';
             document.getElementById('canvas').style.width = '250px';
+            document.getElementById("classic-container").style.minWidth = "390px";
         } else {
             document.getElementById('canvas').style.height = '400px';
             document.getElementById('canvas').style.width = '200px';
