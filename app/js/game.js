@@ -485,7 +485,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             case KEY.SPACE:
                 harddrop()
                 handled = true;
-
                 break;
             case KEY.LEFT:
                 actions.push(DIR.LEFT);
@@ -517,7 +516,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             isr = false;
         }
         if (ev.keyCode == KEY.SPACE) {
-            harddrop()
+            //harddrop()
         }
         if (ev.keyCode == KEY.C) {
             if (value.holdEnabled && value.sidebarEnabled){
@@ -688,7 +687,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 rotate();
                 break;
             case DIR.DOWN:
-                drop();;
+                drop();
                 score = score + 1;
                 break;
         }
