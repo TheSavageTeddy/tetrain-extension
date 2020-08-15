@@ -153,7 +153,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         bcanvas = get('canvas-back'),
         bctx = bcanvas.getContext('2d', { alpha: false }),
         speed = {
-            start: 0.6,
+            start: 0.8,
             decrement: 0.005,
             min: 0.1
         }, // how long before piece drops by 1 row (seconds)
@@ -794,13 +794,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            }else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
+            }else if (unoccupied(current.type, current.x + 2, current.y+1, newdir)) {
                 move(DIR.RIGHT)
                 move(DIR.RIGHT)
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
+            }else if (unoccupied(current.type, current.x - 2, current.y+1, newdir)) {
                 move(DIR.LEFT)
                 move(DIR.LEFT)
                 current.dir = newdir;
