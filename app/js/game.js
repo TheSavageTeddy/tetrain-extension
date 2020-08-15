@@ -263,6 +263,28 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         
     }
 
+    if (value.design == "tetra") {
+        var tetra_images,
+            icntr;
+        icntr = 0
+        tetra_images = {
+            'blue':new Image(),
+            'cyan':new Image(),
+            'lime':new Image(),
+            'magenta':new Image(),
+            'orange':new Image(),
+            'red':new Image(),
+            'yellow':new Image()
+        };
+        for (const [key, value] of Object.entries(tetra_images)) {
+            tetra_images[key].onload = function () {
+                icntr++;
+            };
+            tetra_images[key].src = `../img/assets/stack-${key}.svg`;
+            console.log(key, value);    
+        };
+    }
+
     var bimg = new Image();
     bimg.src = '../img/assets/grid-bg-cross.svg'
     bimg.onload = function(){
@@ -272,6 +294,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             }
         }
     }
+    
 
     //var blockStyle = "smooth"
 
@@ -1103,11 +1126,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
 
     function drawBlock(ctx, x, y, color) {
         if (value.design == "tetra") {
-            var img = new Image();
-            img.src = `../img/assets/stack-${color}.svg`
-            img.onload = function(){
-                ctx.drawImage(img, x * dx, y * dx, dx, dy);
-            }
+            ctx.drawImage(tetra_images[color], x * dx, y * dx, dx, dy);
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);
