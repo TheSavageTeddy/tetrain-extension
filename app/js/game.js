@@ -10,13 +10,10 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     //---------------------------------------- ---------------------------------
     if (value.design == "clean") {
         var blockStyle = "smooth"
-        console.log("Style of:" + blockStyle)
     } else if (value.design == "legends"){
         var blockStyle = "legends"
-        console.log("Style of:" + blockStyle)
     } else{
         var blockStyle = "bold"
-        console.log("Style of:" + blockStyle)
     }
     function saveSettings() {
         if (playing) {
@@ -281,7 +278,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 icntr++;
             };
             tetra_images[key].src = `../img/assets/stack-${key}.svg`;
-            console.log(key, value);    
         };
     }
 
@@ -521,7 +517,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             isr = false;
         }
         if (ev.keyCode == KEY.SPACE) {
-            console.log(current)
             harddrop()
         }
         if (ev.keyCode == KEY.C) {
@@ -654,10 +649,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             } else {
                 canSwap = false;
             }
-            console.log("Next piece:")
-            console.log(next)
-            console.log("Current piece:")
-            console.log(current)
             setCurrentPiece(current);
             setNextPiece(next);
         } else {
@@ -843,10 +834,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         if (!move(DIR.DOWN)) {
             dropPiece();
             removeLines();
-            console.log("Next piece:")
-            console.log(next)
-            console.log("Current piece:")
-            console.log(current)
             setCurrentPiece(next);
             setNextPiece(randomPiece());
             clearActions();
@@ -938,7 +925,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                         piece_type: 2
                     }
                 }
-                console.log("Piece found")
                 pieceinHold = true;
                 canSwap = false;
                 old_current_piece = current;
@@ -946,7 +932,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 hold_current = old_current_piece
                 drawHold();
             } else {
-                console.log("No piece")
                 pieceinHold = true;
                 canSwap = false;
                 hold_current = current;
@@ -1082,7 +1067,6 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
 
     function drawHold() {
         if (pieceinHold) {
-            console.log("Attempting to draw hold")
             var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
             hctx.save();
             if (blockStyle == "smooth") {
