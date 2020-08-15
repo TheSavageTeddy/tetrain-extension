@@ -1,26 +1,26 @@
 # To do list
 ### a list of things we need to do before publishing a version
 #### put ✓ before item to mark it done!
+#### put ! before item to mark it important/major issue!
 
 ### First release! (v3.01)
 #### Essentials
 * Fix all bugs!
-  ✓ Glitching when rotating
+  ✓ Glitching when rotating (needs testing)
   ✓ **NEW BUG** can't rotate on side now, used to be able to can do
-  * Other bugs
   * FIX THE FREAKING GRID
-   * glitches when you don't show overlay
+   ! glitches when you don't show overlay
    * also make it show when overlay is on
   * Fix image blocks flashing (when style is 'tetra')
-* Make scoring and rows cleared look and positioned better ✓
+! Make scoring and rows cleared look and positioned better
 * Fix size for hold and next canvas
-* Better key input detection
+! Better key input detection
 * Finish help page
-* Next piece setting work
-* Add hold and option to toggle on/off ✓
+✓ Next piece setting work
+✓ Add hold and option to toggle on/off
 #### Optionals
-* Better style for blocks and positions ✓
-* Resizable popup ✓
+✓ Better style for blocks and positions
+✓ Resizable popup (needs fixing)
 * Multiple next block options
 
 ### Other releases
