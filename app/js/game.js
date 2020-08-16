@@ -440,6 +440,7 @@ var highscore = 0 //roxiun add local storage here
             }else{
                 update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
                 draw();
+                checkHighScore()
                 ctx.strokeStyle = "#FF0000";
                 ctx.strokeRect(0, 20, canvas.width, 1);
                 ctx.strokeStyle = "#000000";
