@@ -83,9 +83,19 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         return new Date().getTime();
     }
 
+var highscore = 0 //roxiun add local storage here
+
+    function checkHighScore(){
+        if (score>highscore){
+            highscore = score
+            html("high-score", highscore)
+        }
+    }
+
     function lose(s) {
       show('start');
       setVisualScore();
+      checkHighScore();
       playing = false;
       chrome.storage.local.set({
           isPlaying: false
