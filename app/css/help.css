@@ -2,6 +2,11 @@ html{
     min-height:400px;
     min-width:300px;
     background-color: black;
+
+}
+
+.helptext{
+    color:white;
 }
 
 p{
@@ -14,19 +19,20 @@ footer{
 
 .menu-container{
     text-align: center;
+    color: white
 }
 
 #title{
     color:white;
 }
-h2{
+h1{
     position: relative;
     top: 50%;
     transform: translateY(-40%);
     color:white;
 }
 
-.menu-button{
+.back-button{
     /* colors */
 	background-color:#000000;
 	border-radius:4px;
@@ -50,7 +56,7 @@ h2{
     transition-duration: 200ms;
 }
 
-.menu-button:hover{
+.back-button:hover{
     /* colors */
     color: black;
 
