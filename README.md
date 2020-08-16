@@ -8,8 +8,9 @@
 * Fix all bugs!
   ✓ Glitching when rotating (needs testing)
   ✓ **NEW BUG** can't rotate on side now, used to be able to can do
+    ! I piece can't rotate on side, if i turn the function on for it to be able to, it can sometimes glitch through blocks when rotating
   * FIX THE FREAKING GRID
-   ! glitches when you don't show overlay
+   * doesn't work in medium or small size
    * also make it show when overlay is on
   ✓ Fix image blocks flashing (when style is 'tetra')
 ! Make scoring and rows cleared look and positioned better
