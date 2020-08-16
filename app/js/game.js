@@ -812,6 +812,7 @@ var highscore = 0 //roxiun add local storage here
                 invalidate();
             }
         } else if (current.type== i){
+            /*
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
                 move(DIR.LEFT)
                 current.dir = newdir;
@@ -822,8 +823,9 @@ var highscore = 0 //roxiun add local storage here
                 current.dir = newdir;
                 rota = true
                 invalidate();
-            /*
-            }else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
+            
+            }
+            else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
                 move(DIR.RIGHT)
                 move(DIR.RIGHT)
                 current.dir = newdir;
@@ -835,11 +837,28 @@ var highscore = 0 //roxiun add local storage here
                 current.dir = newdir;
                 rota = true
                 invalidate();
+            
+            
             }
             */
-            }
+            if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
+                move(DIR.RIGHT)
+                move(DIR.RIGHT)
+                current.dir = newdir;
+                rota = true
+                invalidate();
+            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
+                move(DIR.LEFT)
+                move(DIR.LEFT)
+                current.dir = newdir;
+                rota = true
+                invalidate();
+            
+        
+        }
         }
     }
+
             
         
     
