@@ -482,10 +482,13 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     function keydown(ev) {
         var handled = false;
         switch (ev.keyCode) {
+            
             case KEY.SPACE:
-                harddrop()
-                handled = true;
-                break;
+                if (playing==true){
+                    harddrop()
+                    handled = true;
+                    break;
+                }
             case KEY.LEFT:
                 actions.push(DIR.LEFT);
                 handled = true;
