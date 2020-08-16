@@ -11,7 +11,7 @@
   * FIX THE FREAKING GRID
    ! glitches when you don't show overlay
    * also make it show when overlay is on
-  * Fix image blocks flashing (when style is 'tetra')
+  ✓ Fix image blocks flashing (when style is 'tetra')
 ! Make scoring and rows cleared look and positioned better
 * Fix size for hold and next canvas
 ! Better key input detection
