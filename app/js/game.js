@@ -54,8 +54,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
 
 
     // the game engine is from https://github.com/jakesgordon/javascript-tetris
-    // i modified it to fit with the extension and changed the style
+    // i (TheSavageTeddy) modified it to fit with the extension and changed the style
     // and also some other changes
+    // Roxiun did mostly local storage and also other stuff
 
 
     //-------------------------------------------------------------------------
