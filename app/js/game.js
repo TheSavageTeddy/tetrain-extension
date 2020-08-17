@@ -475,6 +475,7 @@ var highscore = 0 //roxiun add local storage here
                 ctx.strokeStyle = "#000000";
                 last = now;
                 requestAnimationFrame(frame, canvas);
+                draw()
             if (!lost){
 
             
@@ -1211,7 +1212,8 @@ var highscore = 0 //roxiun add local storage here
             ctx.drawImage(tetra_images[color], x * dx, y * dx, dx, dy);
         } else {
             ctx.strokeStyle = color;
-            ctx.strokeRect(x * dx, y * dy, dx, dy);
+            ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
+            ctx.strokeStyle = "#000000";
         }
         //ctx.strokeRect(x*dx, y*dy, dx, dy)
     }
