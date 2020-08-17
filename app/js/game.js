@@ -497,7 +497,8 @@ var highscore = 0 //roxiun add local storage here
 
 
     function addEvents() {
-        document.addEventListener('keydown', keydown, false);
+        window.addEventListener('keydown', keydown, false);
+        //
         window.addEventListener('resize', resize, false);
     }
 
