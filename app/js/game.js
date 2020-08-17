@@ -15,6 +15,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     } else{
         var blockStyle = "bold"
     }
+    html("high-score", value.savedHighScore)
     function saveSettings() {
         if (playing) {
             chrome.storage.local.set({
