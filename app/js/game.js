@@ -1104,15 +1104,17 @@ var highscore = 0 //roxiun add local storage here
                 var padding = (nu - next.type.size) / 3;
             }
             uctx.save();
-            if (blockStyle == "smooth") {
+            if (blockStyle == "smooth") { 
 
             } else if (blockStyle == "legends"){
                 uctx.lineWidth = 1;
                 uctx.translate(0.5, 0.5); // for crisp 1px black lines
+                
             } else{
                 uctx.lineWidth = 2;
                 uctx.translate(0.5, 0.5);
                 uctx.lineWidth = 1;
+                console.log("potato")
             }
 
             uctx.clearRect(0, 0, nu * dx, nu * dy);
