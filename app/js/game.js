@@ -277,7 +277,7 @@ var highscore = 0 //roxiun add local storage here
         
     }
 
-    if (value.design == "tetra") {
+    if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
         var tetra_images,
             icntr;
         icntr = 0
@@ -290,12 +290,28 @@ var highscore = 0 //roxiun add local storage here
             'red':new Image(),
             'yellow':new Image()
         };
-        for (const [key, value] of Object.entries(tetra_images)) {
-            tetra_images[key].onload = function () {
-                icntr++;
+        if (value.design == "tetra") {
+            for (const [key, value] of Object.entries(tetra_images)) {
+                tetra_images[key].onload = function () {
+                    icntr++;
+                };
+                tetra_images[key].src = `../img/assets/tetra/stack-${key}.svg`;
             };
-            tetra_images[key].src = `../img/assets/stack-${key}.svg`;
-        };
+        } else if (value.design == "crafty") {
+            for (const [key, value] of Object.entries(tetra_images)) {
+                tetra_images[key].onload = function () {
+                    icntr++;
+                };
+                tetra_images[key].src = `../img/assets/crafty/${key}.jpeg`;
+            };
+        } else {
+            for (const [key, value] of Object.entries(tetra_images)) {
+                tetra_images[key].onload = function () {
+                    icntr++;
+                };
+                tetra_images[key].src = `../img/assets/wool/wool_colored_${key}.jpeg`;
+            };
+        }
     }
 
     var bimg = new Image();
@@ -1152,7 +1168,7 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function drawBlock(ctx, x, y, color) {
-        if (value.design == "tetra") {
+        if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
             ctx.drawImage(tetra_images[color], x * dx, y * dx, dx, dy);
         } else {
             ctx.fillStyle = color;

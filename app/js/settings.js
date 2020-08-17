@@ -30,8 +30,12 @@ function updateDesignConfig() {
         chrome.storage.local.set({ design: "legends" })
     } else if (design == "bold") {
         chrome.storage.local.set({ design: "bold" })
-    } else {
+    } else if (design == "tetra"){
         chrome.storage.local.set({ design: "tetra" })
+    } else if (design == "wool"){
+        chrome.storage.local.set({ design: "wool" })
+    } else {
+        chrome.storage.local.set({ design: "crafty" })
     }
     
     chrome.storage.local.get(['design'], function(config) {
@@ -118,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var design2 = document.createElement("option");
     var design3 = document.createElement("option");
     var design4 = document.createElement("option");
+    var design5 = document.createElement("option");
+    var design6 = document.createElement("option");
     var border_select = document.getElementById("border");
     var border1 = document.createElement("option");
     var border2 = document.createElement("option");
@@ -149,6 +155,10 @@ document.addEventListener('DOMContentLoaded', function () {
         design3.value = "bold";
         design4.text = "Tetra";
         design4.value = "tetra";
+        design5.text = "Wool";
+        design5.value = "wool";
+        design6.text = "Crafty";
+        design6.value = "crafty";
         border1.text = "Enabled";
         border1.value = "enabled";
         border2.text = "Disabled";
@@ -185,22 +195,44 @@ document.addEventListener('DOMContentLoaded', function () {
             node_design.appendChild(design2);
             node_design.appendChild(design3);
             node_design.appendChild(design4);
+            node_design.appendChild(design5);
+            node_design.appendChild(design6);
         } else if (config.design == "legends"){
             node_design.appendChild(design2);
             node_design.appendChild(design1);
             node_design.appendChild(design3);
             node_design.appendChild(design4);
+            node_design.appendChild(design5);
+            node_design.appendChild(design6);
         } else if (config.design == "bold"){
             console.log("bold")
             node_design.appendChild(design3);
             node_design.appendChild(design2);
             node_design.appendChild(design1);
             node_design.appendChild(design4);
-        } else {
+            node_design.appendChild(design5);
+            node_design.appendChild(design6);
+        } else if (config.design == "tetra"){
             node_design.appendChild(design4);
             node_design.appendChild(design1);
             node_design.appendChild(design2);
             node_design.appendChild(design3);
+            node_design.appendChild(design5);
+            node_design.appendChild(design6);
+        } else if (config.design == "wool"){
+            node_design.appendChild(design5);
+            node_design.appendChild(design1);
+            node_design.appendChild(design2);
+            node_design.appendChild(design3);
+            node_design.appendChild(design4);
+            node_design.appendChild(design6);
+        } else {
+            node_design.appendChild(design6);
+            node_design.appendChild(design1);
+            node_design.appendChild(design2);
+            node_design.appendChild(design3);
+            node_design.appendChild(design4);
+            node_design.appendChild(design5);
         }
         if (config.hasBorder){
             border_select.appendChild(border1);
