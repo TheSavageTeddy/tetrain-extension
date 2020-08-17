@@ -1075,7 +1075,11 @@ var highscore = 0 //roxiun add local storage here
 
     function drawNext() {
         if (invalid.next) {
-            var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
+            if (value.canvasSize == "small") {
+                var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
+            } else {
+                var padding = (nu - next.type.size) / 3;
+            }
             uctx.save();
             if (blockStyle == "smooth") {
 
