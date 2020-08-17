@@ -564,7 +564,6 @@ var highscore = 0 //roxiun add local storage here
         chrome.storage.local.set({
             isPlaying: true
         });
-        checkHighScore();
     }
 
 
