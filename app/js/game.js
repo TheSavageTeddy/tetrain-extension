@@ -465,7 +465,7 @@ var highscore = 0 //roxiun add local storage here
                 draw();
                 checkHighScore()
                 ctx.strokeStyle = "#FF0000";
-                ctx.strokeRect(0, 20, canvas.width, 1);
+                ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
                 ctx.strokeStyle = "#000000";
                 last = now;
                 requestAnimationFrame(frame, canvas);
@@ -484,7 +484,7 @@ var highscore = 0 //roxiun add local storage here
             enterToPlay("lost")
           }
             ctx.strokeStyle = "#FF0000";
-            ctx.strokeRect(0, 20, canvas.width, 1);
+            ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
             ctx.strokeStyle = "#000000";
         }
         }
@@ -1059,7 +1059,7 @@ var highscore = 0 //roxiun add local storage here
         ctx.save();
         ctx.lineWidth = 1;
         ctx.strokeStyle = "#FF0000";
-        ctx.strokeRect(0, 20, canvas.width, 1);
+        ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
         ctx.strokeStyle = "#000000";
 
         if (blockStyle == "smooth") {
