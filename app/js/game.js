@@ -451,7 +451,13 @@ var highscore = 0 //roxiun add local storage here
         var alr = true
 //
 //
+//
+//
+//
 // main loop of things
+//
+//
+//
 //
 //
         function frame() {
@@ -1076,9 +1082,29 @@ var highscore = 0 //roxiun add local storage here
         drawNext();
         drawScore();
         drawRows();
+        drawGhost();
         ctx.restore();
 
     }
+    
+    function drawGhost(){
+        var type = current.type,
+        x=current.x,
+        y=current.y,
+        dir=current.dir;
+
+        var ii=0
+        while (unoccupied(current.type, x, y + ii, current.dir)) {
+            ii = ii + 1
+        }
+
+        y=y+ii-1
+
+        eachblock(type, x, y, dir, function(x, y) {
+            drawGhostBlock(ctx, x, y, type.color);
+        });
+    }
+    
 
     function drawCourt() {
         if (invalid.court) {
@@ -1176,6 +1202,16 @@ var highscore = 0 //roxiun add local storage here
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);
+        }
+        //ctx.strokeRect(x*dx, y*dy, dx, dy)
+    }
+
+    function drawGhostBlock(ctx, x, y, color) {
+        if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
+            ctx.drawImage(tetra_images[color], x * dx, y * dx, dx, dy);
+        } else {
+            ctx.strokeStyle = color;
+            ctx.strokeRect(x * dx, y * dy, dx, dy);
         }
         //ctx.strokeRect(x*dx, y*dy, dx, dy)
     }
