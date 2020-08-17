@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -89,6 +89,11 @@ var highscore = 0 //roxiun add local storage here
     function checkHighScore(){
         if (score>highscore){
             highscore = score
+            if (value.savedHighScore>highscore) {
+                highscore = value.savedHighScore
+            } else {
+                chrome.storage.local.set({ savedHighScore: highscore })
+            }
             html("high-score", highscore)
         }
     }
@@ -1076,7 +1081,11 @@ var highscore = 0 //roxiun add local storage here
 
     function drawNext() {
         if (invalid.next) {
-            var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
+            if (value.canvasSize == "small") {
+                var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
+            } else {
+                var padding = (nu - next.type.size) / 3;
+            }
             uctx.save();
             if (blockStyle == "smooth") {
 
