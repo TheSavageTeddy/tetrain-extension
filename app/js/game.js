@@ -192,7 +192,7 @@ var highscore = 0 //roxiun add local storage here
     //-------------------------------------------------------------------------
     // game variables (initialized during reset)
     //-------------------------------------------------------------------------
-
+    let dpi = window.devicePixelRatio;
     var dx, dy, // pixel size of a single tetris block
         blocks, // 2 dimensional array (nx*ny) representing tetris court - either empty block or occupied by a 'piece'
         actions, // queue of user actions (inputs)
@@ -232,6 +232,13 @@ var highscore = 0 //roxiun add local storage here
     // COSMETIC STUFF
     //
     //-------------------------------------------------------------------------
+    var peConfigured;
+    var pe = new Image();
+    pe.src = '../img/pe.png';
+    pe.onload = function(){
+        peConfigured = true;
+    }
+
 
     if (value.hasBorder) {
         document.getElementById("canvas").style.outline = "white 3px solid";
@@ -1281,11 +1288,17 @@ var highscore = 0 //roxiun add local storage here
     var lost = false //
     function enterToPlay(t) {
         if (t=="show"){
+            
+            /*console.log(pe)
+            if (peConfigured){
+                ctx.drawImage(pe, 140, 200 );
+            } */
             ctx.font = "40px Arial";
             ctx.fillStyle = "#FFFFFF";
             ctx.textAlign = "center";
             ctx.fillText("Enter", canvas.width/2, 200);
             ctx.fillText("to play", canvas.width/2, 240);
+            
         } else if (t == "lost"){
           lost = true//
           playing = false
