@@ -248,7 +248,7 @@ var highscore = 0 //roxiun add local storage here
             document.getElementById('hold-canvas').style.display = 'none';
         }
     } else {
-        if (!value.markersEnabled){
+        if (!value.markersEnabled || value.canvasSize != "big"){
             document.getElementById('canvas-back').style.display = 'none';
         }
         document.getElementById('sidebar').style.display = 'none';
@@ -279,9 +279,19 @@ var highscore = 0 //roxiun add local storage here
 
     if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
         var tetra_images,
+            tetra_ghost,
             icntr;
         icntr = 0
         tetra_images = {
+            'blue':new Image(),
+            'cyan':new Image(),
+            'lime':new Image(),
+            'magenta':new Image(),
+            'orange':new Image(),
+            'red':new Image(),
+            'yellow':new Image()
+        };
+        tetra_ghost = {
             'blue':new Image(),
             'cyan':new Image(),
             'lime':new Image(),
@@ -296,6 +306,12 @@ var highscore = 0 //roxiun add local storage here
                     icntr++;
                 };
                 tetra_images[key].src = `../img/assets/tetra/stack-${key}.svg`;
+            };
+            for (const [key, value] of Object.entries(tetra_ghost)) {
+                tetra_ghost[key].onload = function () {
+                    icntr++;
+                };
+                tetra_ghost[key].src = `../img/assets/tetra/ghost-${key}.svg`;
             };
         } else if (value.design == "crafty") {
             for (const [key, value] of Object.entries(tetra_images)) {
@@ -1209,7 +1225,7 @@ var highscore = 0 //roxiun add local storage here
 
     function drawGhostBlock(ctx, x, y, color) {
         if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
-            ctx.drawImage(tetra_images[color], x * dx, y * dx, dx, dy);
+            ctx.drawImage(tetra_ghost[color], x * dx, y * dx, dx, dy);
         } else {
             ctx.strokeStyle = color;
             ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
