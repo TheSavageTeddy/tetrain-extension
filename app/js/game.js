@@ -182,7 +182,7 @@ var highscore = 0 //roxiun add local storage here
             start: 0.8,
             decrement: 0.005,
             min: 0.1,
-            increase: 0.02
+            increase: 0.2
         }, // how long before piece drops by 1 row (seconds)
         level = 1,
         nx = 10, // width of tetris court (in blocks)
@@ -654,6 +654,7 @@ var highscore = 0 //roxiun add local storage here
     function setRows(n) {
         rows = n;
         step = Math.max(speed.min, speed.start - (speed.increase*level));
+        console.log(speed.increase*level)
         invalidateRows();
     }
 
