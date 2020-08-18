@@ -247,11 +247,25 @@ var highscore = 0 //roxiun add local storage here
         } else if (value.canvasSize == "medium"){
             document.getElementById('canvas').style.height = '500px';
             document.getElementById('canvas').style.width = '250px';
-            document.getElementById("classic-container").style.minWidth = "390px";
+            document.getElementById("classic-container").style.minWidth = "420px";
+
+            //next canvas
+            document.getElementById('upcoming').style.height = '125px';
+            document.getElementById('upcoming').style.width = '125px';
+            //hold canvas
+            document.getElementById('hold-canvas').style.height = '125px';
+            document.getElementById('hold-canvas').style.width = '125px';
+
         } else {
             document.getElementById('canvas').style.height = '400px';
             document.getElementById('canvas').style.width = '200px';
             document.getElementById("classic-container").style.minWidth = "360px";
+            //next canvas
+            document.getElementById('upcoming').style.height = '100px';
+            document.getElementById('upcoming').style.width = '100px';
+            //hold canvas
+            document.getElementById('hold-canvas').style.height = '100px';
+            document.getElementById('hold-canvas').style.width = '100px';
         }
         document.getElementById("canvas").style.float = "left";
         document.getElementById("canvas").style.margin = "10px";
