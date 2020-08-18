@@ -109,7 +109,6 @@ var highscore = 0 //roxiun add local storage here
       });
       if (s=="lost"){
         enterToPlay("lost")
-        clearHold()
       }else{
         enterToPlay("show");
       }
@@ -602,7 +601,6 @@ var highscore = 0 //roxiun add local storage here
             level=1
             html("level", level)
             enterToPlay("hide")
-            clearHold()
             lost = false
             play();
             handled = true;
@@ -1091,13 +1089,7 @@ var highscore = 0 //roxiun add local storage here
             }
         }
     }
-
-    function clearHold() {
-        pieceinHold = false;
-        canSwap = true;
-        chrome.storage.local.set({ ispieceinHold: true});
-        hold_current = 0;
-    }
+    
 
     function removeLine(n) {
         var x, y;
