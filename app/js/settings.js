@@ -70,6 +70,19 @@ function updateHoldConfig() {
     })
 }
 
+function updatePreviewConfig() {
+    preview_element = document.getElementById("preview").value;
+    if (preview_element === "enabled") {
+        chrome.storage.local.set({ previewEnabled: true })
+    } else {
+        chrome.storage.local.set({ previewEnabled: false })
+    }
+    
+    chrome.storage.local.get(['previewEnabled'], function(config) {
+        console.log(config.previewEnabled);
+    })
+}
+
 function updateSidebarConfig() {
     sidebar_element = document.getElementById("sidebar").value;
     if (sidebar_element === "enabled") {
@@ -125,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var design5 = document.createElement("option");
     var design6 = document.createElement("option");
     var border_select = document.getElementById("border");
+    var preview_select = document.getElementById("preview");
     var border1 = document.createElement("option");
     var border2 = document.createElement("option");
     var hold_select = document.getElementById("hold");
@@ -140,8 +154,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var markers_select = document.getElementById("markers");
     var markers1 = document.createElement("option");
     var markers2 = document.createElement("option");
+    var preview1 = document.createElement("option");
+    var preview2 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled'], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled', 'previewEnabled'], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -181,6 +197,10 @@ document.addEventListener('DOMContentLoaded', function () {
         markers1.value = "enabled";
         markers2.text = "Disabled";
         markers2.value = "disabled";
+        preview1.text = "Enabled";
+        preview1.value = "enabled";
+        preview2.text = "Disabled";
+        preview2.value = "disabled";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -278,6 +298,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             markers_select.appendChild(markers2);
             markers_select.appendChild(markers1);
+        } if (config.previewEnabled) {
+            preview_select.appendChild(preview1);
+            preview_select.appendChild(preview2);
+        } else {
+            preview_select.appendChild(preview2);
+            preview_select.appendChild(preview1);
         }
 
     });
@@ -289,4 +315,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('sidebar').addEventListener('change', updateSidebarConfig);
     document.getElementById('size').addEventListener('change', updateSizeConfig);
     document.getElementById('markers').addEventListener('change', updateMarkersConfig);
+    document.getElementById('preview').addEventListener('change', updatePreviewConfig);
 });

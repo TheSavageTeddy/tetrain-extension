@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -1099,7 +1099,9 @@ var highscore = 0 //roxiun add local storage here
         drawNext();
         drawScore();
         drawRows();
-        drawGhost();
+        if (value.previewEnabled){
+            drawGhost();
+        }
         ctx.restore();
 
     }
