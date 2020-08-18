@@ -138,18 +138,7 @@ var highscore = 0 //roxiun add local storage here
     // game constants
     //-------------------------------------------------------------------------
 
-    var /*KEY = {
-            ESC: 27,
-            SPACE: 32,
-            LEFT: 37,
-            UP: 38,
-            RIGHT: 39,
-            DOWN: 40,
-            ENTER: 13,
-            Q: 81,
-            C: 67
-        },*/
-        KEY = {
+    var KEY = {
             ESC: 27,
             SPACE: 32,
             LEFT: 37,
@@ -160,6 +149,18 @@ var highscore = 0 //roxiun add local storage here
             Q: 81,
             C: 67
         },
+        /*
+        KEY = {
+            ESC: 27,
+            SPACE: 87,//w
+            LEFT: 65,//a
+            UP: 78,//n
+            RIGHT: 68,//d
+            DOWN: 83,//s
+            ENTER: 13,
+            Q: 81,
+            C: 74//j
+        },*/
         DIR = {
             UP: 0,
             RIGHT: 1,
