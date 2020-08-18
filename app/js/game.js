@@ -1011,37 +1011,41 @@ var highscore = 0 //roxiun add local storage here
     function hold() {
         if (canSwap) {
             if (pieceinHold) {
-                if (hold_current.piece_type == 0){
-                    hold_current = {
-                        type: hold_current.type,
-                        dir: DIR.UP,
-                        x: 4,
-                        y: 1,
-                        piece_type: 0
+                try {
+                    if (hold_current.piece_type == 0){
+                        hold_current = {
+                            type: hold_current.type,
+                            dir: DIR.UP,
+                            x: 4,
+                            y: 1,
+                            piece_type: 0
+                        }
+                    } else if (hold_current.piece_type == 1){
+                        hold_current = {
+                            type: hold_current.type,
+                            dir: DIR.UP,
+                            x: 3,
+                            y: 0,
+                            piece_type: 1
+                        }
+                    } else {
+                        hold_current = {
+                            type: hold_current.type,
+                            dir: DIR.UP,
+                            x: 4,
+                            y: 0,
+                            piece_type: 2
+                        }
                     }
-                } else if (hold_current.piece_type == 1){
-                    hold_current = {
-                        type: hold_current.type,
-                        dir: DIR.UP,
-                        x: 3,
-                        y: 0,
-                        piece_type: 1
-                    }
-                } else {
-                    hold_current = {
-                        type: hold_current.type,
-                        dir: DIR.UP,
-                        x: 4,
-                        y: 0,
-                        piece_type: 2
-                    }
+                    pieceinHold = true;
+                    canSwap = false;
+                    old_current_piece = current;
+                    setCurrentPiece(hold_current);
+                    hold_current = old_current_piece
+                    drawHold();
+                } catch(err) {
+                    console.log(err)
                 }
-                pieceinHold = true;
-                canSwap = false;
-                old_current_piece = current;
-                setCurrentPiece(hold_current);
-                hold_current = old_current_piece
-                drawHold();
             } else {
                 pieceinHold = true;
                 canSwap = false;
@@ -1206,24 +1210,29 @@ var highscore = 0 //roxiun add local storage here
 
     function drawHold() {
         if (pieceinHold) {
-            var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
-            hctx.save();
-            if (blockStyle == "smooth") {
+            try {
+                var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
+                hctx.save();
+                if (blockStyle == "smooth") {
 
-            } else if (blockStyle == "legends"){
-                hctx.lineWidth = 1;
-                hctx.translate(0.5, 0.5); // for crisp 1px black lines
-            } else{
-                hctx.lineWidth = 2;
-                hctx.translate(0.5, 0.5);
-                hctx.lineWidth = 1;
+                } else if (blockStyle == "legends"){
+                    hctx.lineWidth = 1;
+                    hctx.translate(0.5, 0.5); // for crisp 1px black lines
+                } else{
+                    hctx.lineWidth = 2;
+                    hctx.translate(0.5, 0.5);
+                    hctx.lineWidth = 1;
+                }
+
+                hctx.clearRect(0, 0, nu * dx, nu * dy);
+                drawPiece(hctx, hold_current.type, paddingh, paddingh, hold_current.dir);
+                hctx.strokeStyle = 'black';
+                hctx.strokeRect(0, 0, nu * dx - 1, nu * dy - 1);
+                hctx.restore();
             }
-
-            hctx.clearRect(0, 0, nu * dx, nu * dy);
-            drawPiece(hctx, hold_current.type, paddingh, paddingh, hold_current.dir);
-            hctx.strokeStyle = 'black';
-            hctx.strokeRect(0, 0, nu * dx - 1, nu * dy - 1);
-            hctx.restore();
+            catch(err) {
+                console.log(err)
+            }
         }
     }
 
