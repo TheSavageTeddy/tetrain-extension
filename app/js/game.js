@@ -979,7 +979,8 @@ var highscore = 0 //roxiun add local storage here
             if (rows==0){
                 console.log("a")
             }else{
-                level=Math.floor(rows/10)
+                level=Math.floor(rows/10)+1
+                console.log(level)
             }
         
     }
