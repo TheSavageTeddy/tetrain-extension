@@ -100,7 +100,7 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function lose(s) {
-      show('start');
+
       setVisualScore();
       checkHighScore();
       playing = false;
@@ -479,6 +479,7 @@ var highscore = 0 //roxiun add local storage here
         var now = timestamp();
         var last = now = timestamp();
         var alr = true
+        html("level", level)
 //
 //
 //
@@ -589,6 +590,9 @@ var highscore = 0 //roxiun add local storage here
             
         }
         if (ev.keyCode == KEY.ENTER) {
+            show('start');
+            level=1
+            html("level", level)
             enterToPlay("hide")
             lost = false
             play();
@@ -982,6 +986,7 @@ var highscore = 0 //roxiun add local storage here
             }else{
                 level=Math.floor(rows/10)+1
                 console.log("level:"+level)
+                html("level", level)
             }
         
     }
@@ -1282,6 +1287,7 @@ var highscore = 0 //roxiun add local storage here
           ctx.fillText("You died!", canvas.width/2, 200);
           ctx.fillText("Enter to", canvas.width/2, 240);
           ctx.fillText("play again", canvas.width/2, 280);
+          
         }else{
           //ctx.clearRect(0, 100, 300, 300);
           //im fricking dumb
