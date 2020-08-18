@@ -520,7 +520,12 @@ var highscore = 0 //roxiun add local storage here
 
 
     function addEvents() {
-        window.addEventListener('keydown', keydown, false);
+        /*try {
+            document.removeEventListener("keydown", keydown);
+        } catch (e) {
+            console.error(e)
+        } */
+        document.addEventListener('keydown', keydown, false);
         //
         window.addEventListener('resize', resize, false);
     }
