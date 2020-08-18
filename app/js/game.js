@@ -234,7 +234,7 @@ var highscore = 0 //roxiun add local storage here
     //-------------------------------------------------------------------------
     var peConfigured;
     var pe = new Image();
-    pe.src = '../img/pe.png';
+    pe.src = '../img/pe.svg';
     pe.onload = function(){
         peConfigured = true;
     }
@@ -1291,7 +1291,7 @@ var highscore = 0 //roxiun add local storage here
             
             /*console.log(pe)
             if (peConfigured){
-                ctx.drawImage(pe, 140, 200 );
+                ctx.drawImage(pe, canvas.width/4, 200);
             } */
             ctx.font = "40px Arial";
             ctx.fillStyle = "#FFFFFF";
