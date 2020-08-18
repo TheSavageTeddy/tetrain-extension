@@ -27,6 +27,7 @@ function createLocalStorage(){
   chrome.storage.local.set({ design: "clean" })
   chrome.storage.local.set({ isPlaying: false });
   chrome.storage.local.set({ hasBorder: false })
+  chrome.storage.local.set({ previewEnabled: true })
   chrome.storage.local.set({ isConfigured: true })
 }
 
