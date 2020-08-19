@@ -1547,15 +1547,16 @@ var highscore = 0 //roxiun add local storage here
                     var padding = (nu - next.type.size) / 3;
                 } */
                 //var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
-
-                if (hold_current.size == 2){
-                    var paddingh = ((hold_current.size) / 2)+(2/5);
+                
+                if (hold_current.type.size == 2){
+                    var paddingh = ((hold_current.type.size) / 2)+(2/5);
     
-                }else if (hold_current.size == 3){
+                }else if (hold_current.type.size == 3){
                     var paddingh = 4/5
-                }else if (hold_current.size == 4){
-                    var padding = 2/5-(0.092);
+                }else if (hold_current.type.size == 4){
+                    var paddingh = 2/5-(0.092);
                 }
+                
 
 
                 hctx.save();
