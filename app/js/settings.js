@@ -138,6 +138,15 @@ function updateAutoPlayConfig() {
     }
     
 }
+function updateTransConfig() {
+    trans_element = document.getElementById("trans").value;
+    if (trans_element === "enabled") {
+        chrome.storage.local.set({ transEnabled: true })
+    } else {
+        chrome.storage.local.set({ transEnabled: false })
+    }
+    
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
@@ -169,14 +178,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var size2 = document.createElement("option");
     var size3 = document.createElement("option");
     var markers_select = document.getElementById("markers");
+    var trans_select = document.getElementById("trans");
     var markers1 = document.createElement("option");
     var markers2 = document.createElement("option");
     var preview1 = document.createElement("option");
     var preview2 = document.createElement("option");
     var autoplay1 = document.createElement("option");
     var autoplay2 = document.createElement("option");
+    var trans1 = document.createElement("option");
+    var trans2 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled', 'previewEnabled', "autoplayEnabled"], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled', 'previewEnabled', "autoplayEnabled", "transEnabled"], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -224,6 +236,10 @@ document.addEventListener('DOMContentLoaded', function () {
         autoplay1.value = "enabled";
         autoplay2.text = "Disabled";
         autoplay2.value = "disabled";
+        trans1.text = "Enabled";
+        trans1.value = "enabled";
+        trans2.text = "Disabled";
+        trans2.value = "disabled";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -337,6 +353,14 @@ document.addEventListener('DOMContentLoaded', function () {
             auto_select.appendChild(autoplay1);
         }
 
+        if (config.transEnabled){
+            trans_select.appendChild(trans1);
+            trans_select.appendChild(transplay2);
+        } else {
+            trans_select.appendChild(trans2);
+            trans_select.appendChild(trans1);
+        }
+
     });
     
     document.getElementById('next-piece').addEventListener('change', updateNextConfig);
@@ -348,4 +372,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('markers').addEventListener('change', updateMarkersConfig);
     document.getElementById('preview').addEventListener('change', updatePreviewConfig);
     document.getElementById('auto').addEventListener('change', updateAutoPlayConfig);
+    document.getElementById('trans').addEventListener('change', updateTransConfig);
 });

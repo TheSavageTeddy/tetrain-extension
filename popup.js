@@ -31,6 +31,7 @@ function createLocalStorage(){
   });
   chrome.storage.local.set({ sidebarEnabled: false })
   chrome.storage.local.set({ autoplayEnabled: true })
+  chrome.storage.local.set({ transEnabled: false })
   chrome.storage.local.set({ canvasSize:  "big"})
   chrome.storage.local.set({ nextEnabled: true })
   chrome.storage.local.set({ holdEnabled: true })
