@@ -1008,6 +1008,12 @@ var highscore = 0 //roxiun add local storage here
             case DIR.DOWN:
                 y = y + 1;;
                 break;
+            case DIR.RIGHTTWICE:
+                x = x + 2;
+                break;
+            case DIR.LEFTTWICE:
+                x = x - 2;
+                break;
         }
         if (unoccupied(current.type, x, y, current.dir)) {
             current.x = x;
@@ -1047,9 +1053,10 @@ var highscore = 0 //roxiun add local storage here
     //
     //
     //i have fixed these though
-    
+
     function rotate() {
         var newdir = (current.dir == DIR.MAX ? DIR.MIN : current.dir + 1);
+        var newreversedir = (current.dir == DIR.MAX ? DIR.MIN : current.dir -1);
         if (unoccupied(current.type, current.x, current.y, newdir)) {
             current.dir = newdir;
             //rota=true
@@ -1144,38 +1151,34 @@ var highscore = 0 //roxiun add local storage here
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.LEFT)
-                
+                isrotating==true
                 rota = true
                 invalidate();
                 console.log("i, x-1")
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.RIGHT)
-                
+                isrotating==true
                 rota = true
                 invalidate();
                 console.log("i, x+1")
-            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
-                move(DIR.LEFT)
-                move(DIR.LEFT)
-                current.dir = newdir;
-
-                
-                rota = true
-                invalidate();
-                console.log("i, x-2")
-            
-            }else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                move(DIR.RIGHT)
-                move(DIR.RIGHT)
-                current.dir = newdir;
-
-                
-                rota = true
-                invalidate();
-                console.log("i, x+2")
-            
             }
+            /*DOESNT WORK AAAA
+            else if (unoccupied(current.type, current.x+2, current.y, newreversedir)) {
+                current.dir = newdir;
+                move(DIR.RIGHTTWICE)
+                isrotating==true
+                rota = true
+                invalidate();
+
+            }else if (unoccupied(current.type, current.x-2, current.y, newreversedir)) {
+                current.dir = newdir;
+                move(DIR.LEFTTWICE)
+                isrotating==true
+                rota = true
+                invalidate();
+
+            }*/
             /* DO NOT USE
             else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
                 current.dir = newdir;
