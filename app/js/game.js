@@ -827,9 +827,9 @@ var highscore = 0 //roxiun add local storage here
             lose("kys")
             mainmenu()
         }
-        if (handled)
+        /*if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
-
+        */
     }
 
 
