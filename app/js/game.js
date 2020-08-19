@@ -393,7 +393,9 @@ var highscore = 0 //roxiun add local storage here
         old_next,
         old_current_piece,
         canSwap = true,
+        isrotating = false,
         rota = false;
+        
 
     //-------------------------------------------------------------------------
     // tetris pieces
@@ -1161,7 +1163,7 @@ var highscore = 0 //roxiun add local storage here
         
     
     function drop() {
-        if (!move(DIR.DOWN)) {
+        if (!move(DIR.DOWN) && !isrotating) {
             dropPiece();
             removeLines();
             setCurrentPiece(next);
