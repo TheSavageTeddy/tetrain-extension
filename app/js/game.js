@@ -433,7 +433,16 @@ var highscore = 0 //roxiun add local storage here
         if (value.canvasSize == "big"){
             document.getElementById('canvas').style.height = '560px';
             document.getElementById('canvas').style.width = '280px';
-            document.getElementById("classic-container").style.minWidth = "420px";
+            
+            document.getElementById("classic-container").style.minWidth = "470px";
+
+
+            //next canvas
+            document.getElementById('upcoming').style.height = '150px';
+            document.getElementById('upcoming').style.width = '150px';
+            //hold canvas
+            document.getElementById('hold-canvas').style.height = '150px';
+            document.getElementById('hold-canvas').style.width = '150px';
         } else if (value.canvasSize == "medium"){
             document.getElementById('canvas').style.height = '500px';
             document.getElementById('canvas').style.width = '250px';
