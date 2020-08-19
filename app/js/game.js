@@ -1490,8 +1490,16 @@ var highscore = 0 //roxiun add local storage here
 
     function drawNext() {
         if (invalid.next) {
-            if (value.canvasSize == "small") {
-                var padding = (next.type.size) / 2; // half-arsed attempt at centering next piece display
+            if (false) {
+                //wont need this
+                if (next.type.size == 2){
+                    var padding = ((next.type.size) / 2)+(2/5);
+
+                }else if (next.type.size == 3){
+                    var padding = 4/5+0.092;
+                }else if (next.type.size == 4){
+                    var padding = 2/5-(0.092);
+                }
             } else {
                 if (next.type.size == 2){
                     var padding = ((next.type.size) / 2)+(2/5);
@@ -1499,7 +1507,7 @@ var highscore = 0 //roxiun add local storage here
                 }else if (next.type.size == 3){
                     var padding = 4/5+0.092;
                 }else if (next.type.size == 4){
-                    var padding = (next.type.size) / 2;
+                    var padding = 2/5-(0.092);
                 }
 
                 
