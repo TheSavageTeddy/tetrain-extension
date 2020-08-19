@@ -1546,7 +1546,18 @@ var highscore = 0 //roxiun add local storage here
                 } else {
                     var padding = (nu - next.type.size) / 3;
                 } */
-                var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
+                //var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
+
+                if (hold_current.type == 2){
+                    var paddingh = ((next.type.size) / 2)+(2/5);
+    
+                }else if (hold_current.type == 3){
+                    var paddingh = 4/5
+                }else if (hold_current.type == 4){
+                    var padding = 2/5-(0.092);
+                }
+
+
                 hctx.save();
                 if (blockStyle == "smooth") {
 
@@ -1560,7 +1571,7 @@ var highscore = 0 //roxiun add local storage here
                 }
 
                 hctx.clearRect(0, 0, nu * dx, nu * dy);
-                drawPiece(hctx, hold_current.type, paddingh, paddingh, hold_current.dir);
+                drawPiece(hctx, hold_current.type, paddingh, paddingh, next.dir);
                 hctx.strokeStyle = 'black';
                 hctx.strokeRect(0, 0, nu * dx - 1, nu * dy - 1);
                 hctx.restore();
