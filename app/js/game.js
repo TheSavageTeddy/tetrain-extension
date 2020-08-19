@@ -1139,6 +1139,7 @@ var highscore = 0 //roxiun add local storage here
                 invalidate();
             
             }
+            /*
             else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.RIGHT)
@@ -1157,6 +1158,7 @@ var highscore = 0 //roxiun add local storage here
             
             }
             
+
             if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.RIGHT)
@@ -1176,7 +1178,8 @@ var highscore = 0 //roxiun add local storage here
                 invalidate();
             
         
-        }
+            }
+            */
         }
     }
 
