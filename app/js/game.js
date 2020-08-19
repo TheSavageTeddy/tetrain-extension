@@ -1149,7 +1149,11 @@ var highscore = 0 //roxiun add local storage here
 
     function drawNoSidebarScore(){
         if (!value.sidebarEnabled){
-            
+            ctx.font = "60px Arial";
+            ctx.fillStyle = "#FFFFFF";
+            ctx.textAlign = "center";
+            ctx.fillText(score, canvas.width/2, 80);
+
         }
     }
 
@@ -1357,6 +1361,10 @@ var highscore = 0 //roxiun add local storage here
         drawCourt();
         drawNext();
         drawScore();
+        if (!value.sidebarEnabled){
+            drawNoSidebarScore();
+        }
+
         drawRows();
         if (value.previewEnabled){
             drawGhost();
