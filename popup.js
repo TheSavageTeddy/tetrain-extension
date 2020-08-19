@@ -19,6 +19,16 @@ function help(){
 }
 
 function createLocalStorage(){
+  chrome.storage.local.set({ 
+    KEY_SETTINGS: {
+      LEFT:"left arrow",
+      RIGHT:"right arrow",
+      SOFT:"down arrow",
+      ROTATE_RIGHT:"up arrow",
+      HARD:"spacebar",
+      HOLD:"c",
+    }
+  });
   chrome.storage.local.set({ sidebarEnabled: false })
   chrome.storage.local.set({ canvasSize:  "big"})
   chrome.storage.local.set({ nextEnabled: true })
@@ -28,6 +38,9 @@ function createLocalStorage(){
   chrome.storage.local.set({ isPlaying: false });
   chrome.storage.local.set({ hasBorder: false })
   chrome.storage.local.set({ previewEnabled: true })
+  chrome.storage.local.set({ isabletoSwap: true});
+  chrome.storage.local.set({ hasLost: false});
+  chrome.storage.local.set({ currentHold: 0 });
   chrome.storage.local.set({ isConfigured: true })
 }
 

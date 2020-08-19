@@ -114,3 +114,13 @@ select{
     cursor: pointer;
     transition-duration: 200ms;
 }
+.back-button:hover{
+    /* colors */
+    color: black;
+
+    background-color: white;
+    user-select: none;
+
+    opacity: 1;
+    
+}
