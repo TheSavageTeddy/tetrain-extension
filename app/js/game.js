@@ -970,6 +970,7 @@ var highscore = 0 //roxiun add local storage here
             dt = dt + idt;
             if (dt > step) {
                 dt = dt - step;
+                isrotating=false
                 drop();
                 
             }
@@ -1036,18 +1037,22 @@ var highscore = 0 //roxiun add local storage here
         if (unoccupied(current.type, current.x, current.y, newdir)) {
             current.dir = newdir;
             //rota=true
+            isrotating==true
             invalidate();
-    
+    //x+1 is move right
+    //x-1 is move left
         } else if (current.type == z) { //cant rotate left side
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
                 rota = true
+                isrotating==true
                 invalidate();
             } else if (unoccupied(current.type, current.x-1, current.y, newdir)) {
                 move(DIR.LEFT)
                 current.dir = newdir;
                 rota = true
+                isrotating==true
                 invalidate();
             }
         } else if (current.type == s) { //cant rotate right side
@@ -1055,43 +1060,57 @@ var highscore = 0 //roxiun add local storage here
                 move(DIR.LEFT)
                 current.dir = newdir;
                 rota = true
+                isrotating==true
                 invalidate();
             } else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
                 rota = true
+                isrotating==true
                 invalidate();
             }
         } else if (current.type == l) { //cant rotate left side
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
+                current.dir = newdir;
                 move(DIR.RIGHT)
-                current.dir = newdir;
+
                 rota = true
+                isrotating==true
                 invalidate();
+                console.log("l, x+1")
             }else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
-                move(DIR.LEFT)
                 current.dir = newdir;
+                move(DIR.LEFT)
+
                 rota = true
                 invalidate();
+                console.log("l, x-1")
             }
         }else if (current.type== j){
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
+                current.dir = newdir;
                 move(DIR.LEFT)
-                current.dir = newdir;
+
                 rota = true
+                isrotating==true
                 invalidate();
+                console.log("j, x-1")
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
-                move(DIR.RIGHT)
                 current.dir = newdir;
+                move(DIR.RIGHT)
+
                 rota = true
                 invalidate();
+                console.log("j, x+1")
             }
         } else if (current.type == t){//both sides need check
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
                 move(DIR.LEFT)
                 current.dir = newdir;
                 rota = true
+                isrotating==true
                 invalidate();
+                
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 move(DIR.RIGHT)
                 current.dir = newdir;
@@ -1132,13 +1151,16 @@ var highscore = 0 //roxiun add local storage here
                 move(DIR.RIGHT)
                 move(DIR.RIGHT)
                 current.dir = newdir;
+                
                 rota = true
+                isrotating==true
                 invalidate();
             }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
                 move(DIR.LEFT)
                 move(DIR.LEFT)
                 current.dir = newdir;
                 rota = true
+                isrotating==true
                 invalidate();
             
         
