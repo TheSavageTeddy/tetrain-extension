@@ -437,22 +437,22 @@ var highscore = 0 //roxiun add local storage here
 
 
             //next canvas
-            document.getElementById('upcoming').style.height = '150px';
-            document.getElementById('upcoming').style.width = '150px';
+            document.getElementById('upcoming').style.height = '135px';
+            document.getElementById('upcoming').style.width = '135px';
             //hold canvas
-            document.getElementById('hold-canvas').style.height = '150px';
-            document.getElementById('hold-canvas').style.width = '150px';
+            document.getElementById('hold-canvas').style.height = '135px';
+            document.getElementById('hold-canvas').style.width = '135px';
         } else if (value.canvasSize == "medium"){
             document.getElementById('canvas').style.height = '500px';
             document.getElementById('canvas').style.width = '250px';
             document.getElementById("classic-container").style.minWidth = "420px";
 
             //next canvas
-            document.getElementById('upcoming').style.height = '125px';
-            document.getElementById('upcoming').style.width = '125px';
+            document.getElementById('upcoming').style.height = '120px';
+            document.getElementById('upcoming').style.width = '120px';
             //hold canvas
-            document.getElementById('hold-canvas').style.height = '125px';
-            document.getElementById('hold-canvas').style.width = '125px';
+            document.getElementById('hold-canvas').style.height = '120px';
+            document.getElementById('hold-canvas').style.width = '120px';
 
         } else {
             document.getElementById('canvas').style.height = '400px';
@@ -1144,7 +1144,16 @@ var highscore = 0 //roxiun add local storage here
         }
     }
 
+        
+
+
+    function drawNoSidebarScore(){
+        if (!value.sidebarEnabled){
             
+        }
+    }
+
+
         
     
     function drop() {
