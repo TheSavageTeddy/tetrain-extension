@@ -754,6 +754,8 @@ var highscore = 0 //roxiun add local storage here
         canvas.height = canvas.clientHeight; // (ditto)
         ucanvas.width = ucanvas.clientWidth;
         ucanvas.height = ucanvas.clientHeight;
+        hcanvas.width = ucanvas.clientWidth;
+        hcanvas.height = ucanvas.clientHeight;
         dx = canvas.width / nx; // pixel size of a single tetris block
         dy = canvas.height / ny; // (ditto)
         invalidate();
@@ -1415,6 +1417,11 @@ var highscore = 0 //roxiun add local storage here
     function drawHold() {
         if (pieceinHold) {
             try {
+                /*if (value.canvasSize == "small") {
+                    var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
+                } else {
+                    var padding = (nu - next.type.size) / 3;
+                } */
                 var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
                 hctx.save();
                 if (blockStyle == "smooth") {
