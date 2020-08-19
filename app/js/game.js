@@ -1031,7 +1031,23 @@ var highscore = 0 //roxiun add local storage here
     //
     //
     //
-
+    //NOTE ABOUT ROTATE
+    //
+    //i dont know WHY but you must put current.dir=newdir in front of the move() 
+    //thing or else pieces will glitch on the border of the canvas
+    //with a 2 block wide gap, L spin possible on the right column
+    //
+    //but for some reason, ONLY FOR USING THE MOVE FUNCTION TWICE 
+    //you need to put the move() before
+    //current.dir=newdir otherwise the 'I' piece
+    //can rotate into the wall without a specific setup,
+    //but with a specific rotation (I piece straight rotation
+    //lean left side then put it against the right wall
+    //and it will glitch)
+    //
+    //
+    //i have fixed these though
+    
     function rotate() {
         var newdir = (current.dir == DIR.MAX ? DIR.MIN : current.dir + 1);
         if (unoccupied(current.type, current.x, current.y, newdir)) {
@@ -1149,8 +1165,18 @@ var highscore = 0 //roxiun add local storage here
                 invalidate();
                 console.log("i, x-2")
             
+            }else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
+                move(DIR.RIGHT)
+                move(DIR.RIGHT)
+                current.dir = newdir;
+
+                
+                rota = true
+                invalidate();
+                console.log("i, x+2")
+            
             }
-            /*
+            /* DO NOT USE
             else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.RIGHT)
