@@ -1490,6 +1490,7 @@ var highscore = 0 //roxiun add local storage here
 
     function drawNext() {
         if (invalid.next) {
+            /*
             if (false) {
                 //wont need this
                 if (next.type.size == 2){
@@ -1501,16 +1502,18 @@ var highscore = 0 //roxiun add local storage here
                     var padding = 2/5-(0.092);
                 }
             } else {
-                if (next.type.size == 2){
-                    var padding = ((next.type.size) / 2)+(2/5);
 
-                }else if (next.type.size == 3){
-                    var padding = 4/5+0.092;
-                }else if (next.type.size == 4){
-                    var padding = 2/5-(0.092);
-                }
 
                 
+            }
+            */
+            if (next.type.size == 2){
+                var padding = ((next.type.size) / 2)+(2/5);
+
+            }else if (next.type.size == 3){
+                var padding = 4/5+0.092;
+            }else if (next.type.size == 4){
+                var padding = 2/5-(0.092);
             }
             uctx.save();
             if (blockStyle == "smooth") { 
