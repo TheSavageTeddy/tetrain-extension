@@ -6,6 +6,11 @@ function goBack(){
     hidemenu()
     window.location.replace("../../popup.html");
 }
+
+function customKeys(){
+    hidemenu()
+    window.location.replace("../html/customkeys.html");
+}
   
 function updateNextConfig() {
     nextpiece = document.getElementById("next-piece").value;
@@ -126,6 +131,7 @@ function updateMarkersConfig() {
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
+    document.getElementById('custom-keys').addEventListener('click', customKeys);
     //#region Next Settings
     var node_next = document.getElementById("next-piece")
     var option1 = document.createElement("option");

@@ -19,6 +19,16 @@ function help(){
 }
 
 function createLocalStorage(){
+  chrome.storage.local.set({ 
+    KEY_SETTINGS: {
+      LEFT:"left arrow",
+      RIGHT:"right arrow",
+      SOFT:"down arrow",
+      ROTATE_RIGHT:"up arrow",
+      HARD:"spacebar",
+      HOLD:"c",
+    }
+  });
   chrome.storage.local.set({ sidebarEnabled: false })
   chrome.storage.local.set({ canvasSize:  "big"})
   chrome.storage.local.set({ nextEnabled: true })

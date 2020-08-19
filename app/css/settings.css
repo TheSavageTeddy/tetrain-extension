@@ -83,6 +83,7 @@ select{
 
     cursor: pointer;
     transition-duration: 200ms;
+    text-transform: capitalize;
 }
 
 .back-button{
