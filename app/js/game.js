@@ -354,13 +354,13 @@ var highscore = 0 //roxiun add local storage here
         },
 
         canvas = get('canvas'),
-        ctx = canvas.getContext('2d', { alpha: false }),
+        ctx = canvas.getContext('2d'),
         ucanvas = get('upcoming'),
-        uctx = ucanvas.getContext('2d', { alpha: false }),
+        uctx = ucanvas.getContext('2d'),
         hcanvas = get('hold-canvas'),
-        hctx = hcanvas.getContext('2d', { alpha: false }),
+        hctx = hcanvas.getContext('2d'),
         bcanvas = get('canvas-back'),
-        bctx = bcanvas.getContext('2d', { alpha: false }),
+        bctx = bcanvas.getContext('2d'),
         speed = {
             start: 0.8,
             decrement: 0.005,

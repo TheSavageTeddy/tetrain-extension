@@ -129,6 +129,16 @@ function updateMarkersConfig() {
     })
 }
 
+function updateAutoPlayConfig() {
+    autoplay_element = document.getElementById("auto").value;
+    if (autoplay_element === "enabled") {
+        chrome.storage.local.set({ autoplayEnabled: true })
+    } else {
+        chrome.storage.local.set({ autoplayEnabled: false })
+    }
+    
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
     document.getElementById('custom-keys').addEventListener('click', customKeys);
@@ -151,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var hold1 = document.createElement("option");
     var hold2 = document.createElement("option");
     var sidebar_select = document.getElementById("sidebar");
+    var auto_select = document.getElementById("auto")
     var sidebar1 = document.createElement("option");
     var sidebar2 = document.createElement("option");
     var size_select = document.getElementById("size");
@@ -162,8 +173,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var markers2 = document.createElement("option");
     var preview1 = document.createElement("option");
     var preview2 = document.createElement("option");
+    var autoplay1 = document.createElement("option");
+    var autoplay2 = document.createElement("option");
     //#endregion
-    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled', 'previewEnabled'], function(config) {   
+    chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled', 'previewEnabled', "autoplayEnabled"], function(config) {   
         test = config.nextEnabled;
         option1.text = "Enabled";
         option1.value = "enabled";
@@ -207,6 +220,10 @@ document.addEventListener('DOMContentLoaded', function () {
         preview1.value = "enabled";
         preview2.text = "Disabled";
         preview2.value = "disabled";
+        autoplay1.text = "Enabled";
+        autoplay1.value = "enabled";
+        autoplay2.text = "Disabled";
+        autoplay2.value = "disabled";
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -312,6 +329,14 @@ document.addEventListener('DOMContentLoaded', function () {
             preview_select.appendChild(preview1);
         }
 
+        if (config.autoplayEnabled){
+            auto_select.appendChild(autoplay1);
+            auto_select.appendChild(autoplay2);
+        } else {
+            auto_select.appendChild(autoplay2);
+            auto_select.appendChild(autoplay1);
+        }
+
     });
     
     document.getElementById('next-piece').addEventListener('change', updateNextConfig);
@@ -322,4 +347,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('size').addEventListener('change', updateSizeConfig);
     document.getElementById('markers').addEventListener('change', updateMarkersConfig);
     document.getElementById('preview').addEventListener('change', updatePreviewConfig);
+    document.getElementById('auto').addEventListener('change', updateAutoPlayConfig);
 });
