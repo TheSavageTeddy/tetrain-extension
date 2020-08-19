@@ -330,13 +330,13 @@ var highscore = 0 //roxiun add local storage here
 
     const KeysDict = swap(keyCodes)
 
-    console.log(KeysDict[value.KEY_SETTINGS["HARD"]])
+    console.log(KeysDict[value.KEY_SETTINGS[""]])
 
     var KEY = {
             ESC: 27,
             SPACE: parseInt(KeysDict[value.KEY_SETTINGS["HARD"]]),
             LEFT: parseInt(KeysDict[value.KEY_SETTINGS["LEFT"]]),
-            UP: parseInt(KeysDict[value.KEY_SETTINGS["ROTAT_RIGHT"]]),
+            UP: parseInt(KeysDict[value.KEY_SETTINGS["ROTATE_RIGHT"]]),
             RIGHT: parseInt(KeysDict[value.KEY_SETTINGS["RIGHT"]]),
             DOWN: parseInt(KeysDict[value.KEY_SETTINGS["SOFT"]]),
             ENTER: 13,
