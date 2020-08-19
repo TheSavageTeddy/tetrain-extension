@@ -1043,28 +1043,32 @@ var highscore = 0 //roxiun add local storage here
     //x-1 is move left
         } else if (current.type == z) { //cant rotate left side
             if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
-                move(DIR.RIGHT)
                 current.dir = newdir;
+                move(DIR.RIGHT)
+                
                 rota = true
                 isrotating==true
                 invalidate();
             } else if (unoccupied(current.type, current.x-1, current.y, newdir)) {
-                move(DIR.LEFT)
                 current.dir = newdir;
+                move(DIR.LEFT)
+                
                 rota = true
                 isrotating==true
                 invalidate();
             }
         } else if (current.type == s) { //cant rotate right side
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
-                move(DIR.LEFT)
                 current.dir = newdir;
+                move(DIR.LEFT)
+                
                 rota = true
                 isrotating==true
                 invalidate();
             } else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
-                move(DIR.RIGHT)
                 current.dir = newdir;
+                move(DIR.RIGHT)
+
                 rota = true
                 isrotating==true
                 invalidate();
@@ -1105,60 +1109,68 @@ var highscore = 0 //roxiun add local storage here
             }
         } else if (current.type == t){//both sides need check
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
-                move(DIR.LEFT)
                 current.dir = newdir;
+                move(DIR.LEFT)
+                
                 rota = true
                 isrotating==true
                 invalidate();
                 
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
-                move(DIR.RIGHT)
                 current.dir = newdir;
+                move(DIR.RIGHT)
+                
                 rota = true
                 invalidate();
             }
         } else if (current.type== i){
-            /*
+            
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
-                move(DIR.LEFT)
                 current.dir = newdir;
+                move(DIR.LEFT)
+                
                 rota = true
                 invalidate();
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
-                move(DIR.RIGHT)
                 current.dir = newdir;
+                move(DIR.RIGHT)
+                
                 rota = true
                 invalidate();
             
             }
             else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                move(DIR.RIGHT)
-                move(DIR.RIGHT)
                 current.dir = newdir;
+                move(DIR.RIGHT)
+                move(DIR.RIGHT)
+                
                 rota = true
                 invalidate();
             }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
-                move(DIR.LEFT)
-                move(DIR.LEFT)
                 current.dir = newdir;
+                move(DIR.LEFT)
+                move(DIR.LEFT)
+                
                 rota = true
                 invalidate();
             
             
             }
-            */
+            
             if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                move(DIR.RIGHT)
-                move(DIR.RIGHT)
                 current.dir = newdir;
+                move(DIR.RIGHT)
+                move(DIR.RIGHT)
+                
                 
                 rota = true
                 isrotating==true
                 invalidate();
             }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
-                move(DIR.LEFT)
-                move(DIR.LEFT)
                 current.dir = newdir;
+                move(DIR.LEFT)
+                move(DIR.LEFT)
+                
                 rota = true
                 isrotating==true
                 invalidate();
