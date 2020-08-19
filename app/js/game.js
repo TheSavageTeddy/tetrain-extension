@@ -1131,12 +1131,23 @@ var highscore = 0 //roxiun add local storage here
                 
                 rota = true
                 invalidate();
+                console.log("i, x-1")
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.RIGHT)
                 
                 rota = true
                 invalidate();
+                console.log("i, x+1")
+            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
+                move(DIR.LEFT)
+                move(DIR.LEFT)
+                current.dir = newdir;
+
+                
+                rota = true
+                invalidate();
+                console.log("i, x-2")
             
             }
             /*
