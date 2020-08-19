@@ -9,6 +9,7 @@
   * ✓ Glitching when rotating (needs testing)
   * ✓ **NEW BUG** can't rotate on side now, used to be able to can do
     * ! I piece can't rotate on side, if i turn the function on for it to be able to, it can sometimes glitch through blocks when rotating
+    * All pieces can glitch (fixed now)
   * FIX THE FREAKING GRID
    * doesn't work in medium or small size
    * also make it show when overlay is on
@@ -25,6 +26,8 @@
 * ✓ Better style for blocks and positions
 * ✓ Resizable popup (needs fixing)
 * Multiple next block options
+* Better key input detection
+  * See https://stackoverflow.com/questions/29118791/how-to-move-an-element-via-arrow-keys-continuously-smoothly
 
 ### Other releases
 #### Essentials
