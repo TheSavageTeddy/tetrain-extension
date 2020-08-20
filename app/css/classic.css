@@ -65,3 +65,9 @@ p{
 body { 
     margin:0; 
 } /* Remove body margins */
+
+
+#hold-canvas{
+    position: absolute; 
+	top: 70%; 
+}
