@@ -414,6 +414,7 @@ var highscore = 0 //roxiun add local storage here
         blocks, // 2 dimensional array (nx*ny) representing tetris court - either empty block or occupied by a 'piece'
         blocks_clean,
         actions, // queue of user actions (inputs)
+        LRactions,
         playing, // true|false - game is in progress
         dt, // time since starting this game
         current, // the current piece
@@ -435,7 +436,10 @@ var highscore = 0 //roxiun add local storage here
         isrotating = false,
         rota = false,
         rdelay = 0,
-        ldelay = 0;
+        ldelay = 0,
+        rtimeout=0,
+        ltimeout=0,
+        handled;
         
 
     //-------------------------------------------------------------------------
@@ -767,7 +771,7 @@ var highscore = 0 //roxiun add local storage here
                 if (!right){
                     rdelay=0
                 }
-                
+
 
 
 
@@ -846,12 +850,14 @@ var highscore = 0 //roxiun add local storage here
                 left = true;
                 //actions.push(DIR.LEFT);
                 leftBetterKey();
+                ldelay=0
                 handled = true;
                 break;
             case KEY.RIGHT:
                 right = true;
                 //actions.push(DIR.RIGHT);
                 rightBetterKey();
+                rdelay=0
                 handled = true;
                 break;
             case KEY.UP:
@@ -899,10 +905,13 @@ var highscore = 0 //roxiun add local storage here
         switch (ev.keyCode) {
 
             case KEY.LEFT:
+                ldelay=0
                 left = false;
                 break;
             case KEY.RIGHT:
+                rdelay=0
                 right = false;
+                
                 break;
             
         }
@@ -916,38 +925,93 @@ var highscore = 0 //roxiun add local storage here
 
     async function leftBetterKey(){
         while (left){
-            if (ldelay==0){
-                actions.push(DIR.LEFT);
-                await new Promise(r => setTimeout(r, 500));
-                ldelay = 1
-                rdelay=0
-            }else if (ldelay==1){
-                actions.push(DIR.LEFT);
-                await new Promise(r => setTimeout(r, 80));
+            if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
+                if (ldelay==0){
+                    ldelay = 1
+                    rdelay=0
+                    LRactions.push(DIR.LEFT);
+                    ltimeout=1
+                    await new Promise(r => setTimeout(r, 500));
+                    ltimeout=0
+                    console.log("l1")
+                }else if (ldelay==1){
+                    ldelay = 1
+                    rdelay=0
+                    LRactions.push(DIR.LEFT);
+                    await new Promise(r => setTimeout(r, 80));
+                    console.log("l2")
+                }
+            }else{
+                if (ltimeout==2){
+                    if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
+                        if (ldelay==0){
+                            ldelay = 1
+                            rdelay=0
+                            LRactions.push(DIR.LEFT);
+                            ltimeout=1
+                            await new Promise(r => setTimeout(r, 500));
+                            ltimeout=0
+                            console.log("l1")
+                        }else {
+                        await new Promise(r => setTimeout(r, 40));
+                    }
+                }
+            
+                }else{
+                    ltimeout=2
+                    await new Promise(r => setTimeout(r, 40));
+                    ltimeout=0
+                }
             }
         }
-        if (!left){
-            ldelay=0
-        }
 
+    
     }
 
     async function rightBetterKey(){
         while (right){
-            if (rdelay==0){
-                actions.push(DIR.RIGHT);
-                await new Promise(r => setTimeout(r, 500));
-                rdelay=1
-                ldelay=0
-            }else if (rdelay==1){
-                actions.push(DIR.RIGHT);
-                await new Promise(r => setTimeout(r, 80));
+            if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
+                if (rdelay==0){
+                    rdelay=1
+                    ldelay=0
+                    LRactions.push(DIR.RIGHT);
+                    rtimeout=1
+                    await new Promise(r => setTimeout(r, 500));
+                    rtimeout=0
+                    console.log("r1")
+                }else if (rdelay==1){
+                    rdelay=1
+                    ldelay=0
+                    LRactions.push(DIR.RIGHT);
+                    await new Promise(r => setTimeout(r, 80));
+                    console.log("r2")
+                }
+            }else{
+                if (rtimeout==2){
+                    if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
+                        if (rdelay==0){
+                            rdelay=1
+                            ldelay=0
+                            LRactions.push(DIR.RIGHT);
+                            rtimeout=1
+                            await new Promise(r => setTimeout(r, 500));
+                            rtimeout=0
+                            console.log("r1")
+                        }
+                    }else{
+                        await new Promise(r => setTimeout(r, 40));
+                        rtimeout=0
+                    }
+                }else{
+                    rtimeout=2
+                    await new Promise(r => setTimeout(r, 40));
+                    rtimeout=0
+                }
+                
+
             }
-        }
-        if (!right){
-            rdelay=0
-        }
     }
+}
 
 
     //-------------------------------------------------------------------------
@@ -1016,6 +1080,7 @@ var highscore = 0 //roxiun add local storage here
 
     function clearActions() {
         actions = [];
+        LRactions=[]
     }
 
     function setCurrentPiece(piece) {
@@ -1085,6 +1150,7 @@ var highscore = 0 //roxiun add local storage here
         if (playing) {
             setVisualScore(score);
             handle(actions.shift());
+            LRhandle(LRactions.shift());
             dt = dt + idt;
             if (dt > step) {
                 dt = dt - step;
@@ -1095,14 +1161,48 @@ var highscore = 0 //roxiun add local storage here
         }
     }
 
-    function handle(action) {
-        switch (action) {
+    function LRhandle(LRaction) {
+        switch (LRaction) {
             case DIR.LEFT:
-                move(DIR.LEFT);
+                if (unoccupied(current.type, current.x-1, current.y, current.dir)){
+                    rdelay=0
+                    move(DIR.LEFT);
+                    console.log("left")
+                    
+                }
                 break;
             case DIR.RIGHT:
-                move(DIR.RIGHT);
+                if (unoccupied(current.type, current.x+1, current.y, current.dir)){
+                    ldelay=0
+                    move(DIR.RIGHT);
+                    console.log("right")
+                    
+                }
                 break;
+        }
+    }
+
+
+    function handle(action) {
+        switch (action) {
+            /*
+            case DIR.LEFT:
+                if (unoccupied(current.type, current.x-1, current.y, current.dir)){
+                    rdelay=0
+                    move(DIR.LEFT);
+                    console.log("left")
+                    
+                }
+                break;
+            case DIR.RIGHT:
+                if (unoccupied(current.type, current.x+1, current.y, current.dir)){
+                    ldelay=0
+                    move(DIR.RIGHT);
+                    console.log("right")
+                    
+                }
+                break;
+            */
             case DIR.UP:
                 rotate();
                 break;
