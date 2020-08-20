@@ -393,6 +393,7 @@ var highscore = 0 //roxiun add local storage here
         old_next,
         old_current_piece,
         canSwap = true,
+        keysPressed = {},
         isrotating = false,
         rota = false;
         
@@ -764,6 +765,7 @@ var highscore = 0 //roxiun add local storage here
             console.error(e)
         } */
         document.addEventListener('keydown', keydown, false);
+        document.addEventListener('keyup', keydown, false);
         //
         window.addEventListener('resize', resize, false);
     }
@@ -838,7 +840,6 @@ var highscore = 0 //roxiun add local storage here
         }
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
-
     }
 
 
