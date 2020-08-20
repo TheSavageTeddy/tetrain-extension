@@ -890,7 +890,7 @@ var highscore = 0 //roxiun add local storage here
         while (right){
             if (rdelay==0){
                 actions.push(DIR.RIGHT);
-                await new Promise(r => setTimeout(r, 100));
+                await new Promise(r => setTimeout(r, 400));
                 rdelay=1
             }else if (rdelay==1){
                 actions.push(DIR.RIGHT);
