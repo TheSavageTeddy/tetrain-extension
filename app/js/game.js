@@ -397,7 +397,9 @@ var highscore = 0 //roxiun add local storage here
         left = false,
         right = false,
         isrotating = false,
-        rota = false;
+        rota = false,
+        rdelay = 0,
+        ldelay = 0;
         
 
     //-------------------------------------------------------------------------
@@ -871,14 +873,14 @@ var highscore = 0 //roxiun add local storage here
     async function leftBetterKey(){
         while (left){
             actions.push(DIR.LEFT);
-            await new Promise(r => setTimeout(r, 300));
+            await new Promise(r => setTimeout(r, 100));
         }
     }
 
     async function rightBetterKey(){
         while (right){
             actions.push(DIR.RIGHT);
-            await new Promise(r => setTimeout(r, 300));
+            await new Promise(r => setTimeout(r, 100));
         }
     }
 
