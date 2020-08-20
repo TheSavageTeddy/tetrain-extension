@@ -2,9 +2,12 @@
 function mainmenu() {
     window.location.replace("../../popup.html");
 }
+function pause() {
+    window.location.replace("../html/pause.html");
+}
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -395,6 +398,11 @@ var highscore = 0 //roxiun add local storage here
         elemTop = 0,//elem.offsetTop,
         context = elem.getContext('2d'),
         elements = [];    
+    var elem2 = document.getElementById('canvas'),
+        elemLeft2 = elem2.offsetLeft,
+        elemTop2 = 0,//elem.offsetTop,
+        context2 = elem.getContext('2d'),
+        elements2 = [];  
     if (value.transEnabled) {
         var canvas = get('canvas', { alpha: false }),
             ctx = canvas.getContext('2d'),
@@ -437,6 +445,7 @@ var highscore = 0 //roxiun add local storage here
         isr, // reset variable
         hold_current, // Current Hold Piece
         pieceinHold = false,
+        paused = false,
         old_next,
         old_current_piece,
         canSwap = true,
@@ -488,6 +497,19 @@ var highscore = 0 //roxiun add local storage here
                 width: dx*2,
                 height: dy*2,
                 top: canvas.width/20,
+                left: 30
+            });
+        };
+        var paConfigured;
+        var pa = new Image();
+        pa.src = '../img/pause.png';
+        pa.onload = function(){
+            paConfigured = true;
+            elements2.push({
+                colour: '#FFFFFF',
+                width: dx*2,
+                height: dy*2,
+                top: canvas.width/1.25,
                 left: 30
             });
         }
@@ -854,6 +876,19 @@ var highscore = 0 //roxiun add local storage here
                 isr = false;
             }
         });
+        var x2 = event.pageX - elemLeft2,
+            y2 = event.pageY - elemTop2;
+        y2 = y2+200
+        x2 = x2-200;
+        console.log(x2, y2);
+        elements2.forEach(function(element2) {
+            console.log(elements2)
+            if (y2 > element2.top && y2 < element2.top + element2.height && x2 > element2.left && x2 < element2.left + element2.width) {
+                console.log('clicked an element');
+                console.log("pause called");
+                pause();
+            }
+        });
     }
 
 
@@ -929,7 +964,8 @@ var highscore = 0 //roxiun add local storage here
             level=1
             html("level", level)
             enterToPlay("hide")
-            lost = false
+            lost = false;
+            chrome.storage.local.set({ isPaused: false })
             play();
             handled = true;
             isr = false;
@@ -945,6 +981,9 @@ var highscore = 0 //roxiun add local storage here
         if (ev.keyCode == KEY.Q) {
             lose("kys")
             mainmenu()
+        }
+        if (ev.keyCode == 80) { // P
+            pause();
         }
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
@@ -1079,6 +1118,7 @@ var highscore = 0 //roxiun add local storage here
         reset();
         playing = true;
         isr = false;
+        paused = false;
         chrome.storage.local.set({
             isPlaying: true
         });
@@ -1508,6 +1548,9 @@ var highscore = 0 //roxiun add local storage here
             ctx.fillText(score, canvas.width/2, 80);
             if (reConfigured){
                 ctx.drawImage(re, canvas.width/20, 30 , dx*2, dy*2);
+            }
+            if (paConfigured){
+                ctx.drawImage(pa, canvas.width/1.25, 30 , dx*2, dy*2);
             }
         }
     }
@@ -1949,7 +1992,7 @@ var highscore = 0 //roxiun add local storage here
 
     run();
 
-    if (value.autoplayEnabled){
+    if (value.autoplayEnabled && !value.isPaused){
         show('start');
         level=1
         html("level", level)
