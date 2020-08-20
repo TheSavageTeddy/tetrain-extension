@@ -17,7 +17,7 @@
 * ! Make scoring and rows cleared look and positioned better
 * ✓ Add 'ghost' blocks indicating where block will land
 * ✓ Add levels
-* Fix size for hold and next canvas
+* ✓ Fix size for hold and next canvas
 * Finish help page
 * ✓ Next piece setting work
 * ✓ Add hold and option to toggle on/off
@@ -25,7 +25,7 @@
 * ✓ Better style for blocks and positions
 * ✓ Resizable popup (needs fixing)
 * Multiple next block options
-* ! Better key input detection
+* ✓ Better key input detection
   * See https://stackoverflow.com/questions/29118791/how-to-move-an-element-via-arrow-keys-continuously-smoothly
 
 ### Other releases
@@ -33,7 +33,7 @@
 * Add 'modern' mode (or call it normal mode)
   * Can 'roll' blocks across ground
 * More settings
-  * Can change key used to rotate, move
+  ✓ Can change key used to rotate, move
 * Add left rotate and right rotate
 #### Optional
 * Multiple next block options
