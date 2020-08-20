@@ -402,7 +402,9 @@ var highscore = 0 //roxiun add local storage here
         isrotating = false,
         rota = false,
         rdelay = 0,
-        ldelay = 0;
+        ldelay = 0,
+        rtimeout=0,
+        ltimeout=0;
         
 
     //-------------------------------------------------------------------------
@@ -868,10 +870,13 @@ var highscore = 0 //roxiun add local storage here
         switch (ev.keyCode) {
 
             case KEY.LEFT:
+                ldelay=0
                 left = false;
                 break;
             case KEY.RIGHT:
+                rdelay=0
                 right = false;
+                
                 break;
             
         }
@@ -885,22 +890,25 @@ var highscore = 0 //roxiun add local storage here
 
     async function leftBetterKey(){
         while (left){
-            if (unoccupied(current.type, current.x-1, current.y, current.dir)){
+            if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0){
                 if (ldelay==0){
                     ldelay = 1
                     rdelay=0
                     actions.push(DIR.LEFT);
+                    ltimeout=1
                     await new Promise(r => setTimeout(r, 500));
-
+                    ltimeout=0
+                    console.log("l1")
                 }else if (ldelay==1){
                     ldelay = 1
                     rdelay=0
                     actions.push(DIR.LEFT);
                     await new Promise(r => setTimeout(r, 80));
-
+                    console.log("l2")
                 }
             }else{
-                await new Promise(r => setTimeout(r, 500));
+                await new Promise(r => setTimeout(r, 40));
+                ltimeout=0
             }
         }
         if (!left){
@@ -911,22 +919,25 @@ var highscore = 0 //roxiun add local storage here
 
     async function rightBetterKey(){
         while (right){
-            if (unoccupied(current.type, current.x+1, current.y, current.dir)){
+            if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0){
                 if (rdelay==0){
                     rdelay=1
                     ldelay=0
                     actions.push(DIR.RIGHT);
+                    rtimeout=1
                     await new Promise(r => setTimeout(r, 500));
-
+                    rtimeout=0
+                    console.log("r1")
                 }else if (rdelay==1){
                     rdelay=1
                     ldelay=0
                     actions.push(DIR.RIGHT);
                     await new Promise(r => setTimeout(r, 80));
-
+                    console.log("r2")
                 }
             }else{
-                await new Promise(r => setTimeout(r, 500));
+                await new Promise(r => setTimeout(r, 40));
+                rtimeout=0
             }
         }
         if (!right){
