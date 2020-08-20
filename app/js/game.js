@@ -734,7 +734,7 @@ var highscore = 0 //roxiun add local storage here
                 if (!right){
                     rdelay=0
                 }
-                
+
 
 
 
@@ -813,12 +813,14 @@ var highscore = 0 //roxiun add local storage here
                 left = true;
                 //actions.push(DIR.LEFT);
                 leftBetterKey();
+                ldelay=0
                 handled = true;
                 break;
             case KEY.RIGHT:
                 right = true;
                 //actions.push(DIR.RIGHT);
                 rightBetterKey();
+                rdelay=0
                 handled = true;
                 break;
             case KEY.UP:
@@ -883,14 +885,20 @@ var highscore = 0 //roxiun add local storage here
 
     async function leftBetterKey(){
         while (left){
-            if (ldelay==0){
-                actions.push(DIR.LEFT);
+            if (unoccupied(current.type, current.x-1, current.y, current.dir)){
+                if (ldelay==0){
+                    actions.push(DIR.LEFT);
+                    await new Promise(r => setTimeout(r, 500));
+                    ldelay = 1
+                    rdelay=0
+                }else if (ldelay==1){
+                    actions.push(DIR.LEFT);
+                    await new Promise(r => setTimeout(r, 80));
+                    ldelay = 1
+                    rdelay=0
+                }
+            }else{
                 await new Promise(r => setTimeout(r, 500));
-                ldelay = 1
-                rdelay=0
-            }else if (ldelay==1){
-                actions.push(DIR.LEFT);
-                await new Promise(r => setTimeout(r, 80));
             }
         }
         if (!left){
@@ -901,14 +909,20 @@ var highscore = 0 //roxiun add local storage here
 
     async function rightBetterKey(){
         while (right){
-            if (rdelay==0){
-                actions.push(DIR.RIGHT);
+            if (unoccupied(current.type, current.x+1, current.y, current.dir)){
+                if (rdelay==0){
+                    actions.push(DIR.RIGHT);
+                    await new Promise(r => setTimeout(r, 500));
+                    rdelay=1
+                    ldelay=0
+                }else if (rdelay==1){
+                    actions.push(DIR.RIGHT);
+                    await new Promise(r => setTimeout(r, 80));
+                    rdelay=1
+                    ldelay=0
+                }
+            }else{
                 await new Promise(r => setTimeout(r, 500));
-                rdelay=1
-                ldelay=0
-            }else if (rdelay==1){
-                actions.push(DIR.RIGHT);
-                await new Promise(r => setTimeout(r, 80));
             }
         }
         if (!right){
@@ -1064,10 +1078,18 @@ var highscore = 0 //roxiun add local storage here
     function handle(action) {
         switch (action) {
             case DIR.LEFT:
-                move(DIR.LEFT);
+                if (unoccupied(current.type, current.x-1, current.y, current.dir)){
+                    move(DIR.LEFT);
+                    console.log("left")
+                    rdelay=0
+                }
                 break;
             case DIR.RIGHT:
-                move(DIR.RIGHT);
+                if (unoccupied(current.type, current.x+1, current.y, current.dir)){
+                    move(DIR.RIGHT);
+                    console.log("right")
+                    ldelay=0
+                }
                 break;
             case DIR.UP:
                 rotate();
