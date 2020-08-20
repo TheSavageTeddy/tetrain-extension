@@ -11,11 +11,11 @@ function keydown(ev){
 }
 
 function backPage(){
-    //nothing, already the most back page
+    window.location.replace("../html/help.html");
 }
 
 function frontPage(){
-    window.location.replace("../html/help2.html");
+    //window.location.replace("../../help2.html");
 }
 
 

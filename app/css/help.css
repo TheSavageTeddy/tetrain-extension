@@ -124,3 +124,39 @@ select{
     opacity: 1;
     
 }
+
+
+#frontpage, #backpage{
+    /* colors */
+	background-color:#000000;
+	border-radius:4px;
+	border:2px solid #ffffff;
+
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	text-decoration:none;
+
+    text-align: center;
+
+    min-height:50px;
+    min-width:250px;
+
+    margin: 10px;
+    user-select: none;
+
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+#frontpage, #backpage{
+    /* colors */
+    color: black;
+
+    background-color: white;
+    user-select: none;
+
+    opacity: 1;
+    
+}
