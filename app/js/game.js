@@ -56,6 +56,12 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         }
     }
 
+    function easterEgg(){
+        if (!playing){
+            window.location.replace("../html/easteregg.html");
+        }
+    }
+
     function clearGameSettings() {
         chrome.storage.local.set({
             isPlaying: false
@@ -430,7 +436,7 @@ var highscore = 0 //roxiun add local storage here
         old_next,
         old_current_piece,
         canSwap = true,
-        keysPressed = {},
+        keysPressed = [],
         left = false,
         right = false,
         isrotating = false,
@@ -898,6 +904,13 @@ var highscore = 0 //roxiun add local storage here
         }
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
+        if (ev.keyCode == 84 || ev.keyCode == 69 || ev.keyCode == 82 || ev.keyCode == 65 || ev.keyCode == 73 || ev.keyCode == 78){
+            keysPressed.push(keyCodes[ev.keyCode])
+            var combined = keysPressed.join("")
+            if (combined.includes("tetrain")){
+                easterEgg();
+            }
+        }
     }
 
     function keyup(ev) {
