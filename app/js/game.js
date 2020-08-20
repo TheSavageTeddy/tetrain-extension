@@ -890,7 +890,7 @@ var highscore = 0 //roxiun add local storage here
 
     async function leftBetterKey(){
         while (left){
-            if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0){
+            if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
                 if (ldelay==0){
                     ldelay = 1
                     rdelay=0
@@ -919,7 +919,7 @@ var highscore = 0 //roxiun add local storage here
 
     async function rightBetterKey(){
         while (right){
-            if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0){
+            if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
                 if (rdelay==0){
                     rdelay=1
                     ldelay=0
