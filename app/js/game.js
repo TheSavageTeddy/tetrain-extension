@@ -26,6 +26,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 isPlaying: false
             });
         }
+        chrome.storage.local.set({ grid: ldelay });//save delays for the smooth keystroke things
+        chrome.storage.local.set({ grid: rdelay });
+
         chrome.storage.local.set({ grid: blocks }); // Save Grid
         chrome.storage.local.set({ clearedRows: rows }); // Save cleared Rows
         chrome.storage.local.set({ visualScore: vscore }); // Save Visual Score
@@ -1708,6 +1711,8 @@ var highscore = 0 //roxiun add local storage here
             ctx.textAlign = "center";
             ctx.fillText("Enter", canvas.width/2, 200);
             ctx.fillText("to play", canvas.width/2, 240);
+            ldelay=0
+            rdelay=0
             
         } else if (t == "lost"){
           lost = true//
