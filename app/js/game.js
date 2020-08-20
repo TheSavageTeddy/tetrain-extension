@@ -367,9 +367,14 @@ var highscore = 0 //roxiun add local storage here
             increase: 0.05
         }, // how long before piece drops by 1 row (seconds)
         level = 1,
-        nx = 10, // width of tetris court (in blocks)
-        ny = 20, // height of tetris court (in blocks)
-        nu = 5; // width/height of upcoming preview (in blocks)
+        
+        nx = 10 // width of tetris court (in blocks)
+        if (value.sidebarEnabled){
+            var ny = 20 // height of tetris court (in blocks)
+        }else{
+            var ny = 26 // height of tetris court (in blocks)
+        }
+        var nu = 5; // width/height of upcoming preview (in blocks)
 
     //-------------------------------------------------------------------------
     // game variables (initialized during reset)
@@ -481,14 +486,16 @@ var highscore = 0 //roxiun add local storage here
         }
         document.getElementById('sidebar').style.display = 'none';
         if (value.canvasSize == "big"){
-            document.getElementById('canvas').style.height = '560px';
+            document.getElementById('canvas').style.height = '680px';
             document.getElementById('canvas').style.width = '280px';
+            document.getElementById("classic-container").style.minHeight = "360px";
         } else if (value.canvasSize == "medium"){
-            document.getElementById('canvas').style.height = '500px';
+            document.getElementById('canvas').style.height = '620px';
             document.getElementById('canvas').style.width = '250px';
         } else {
-            document.getElementById('canvas').style.height = '400px';
+            document.getElementById('canvas').style.height = '520px';
             document.getElementById('canvas').style.width = '200px';
+
         }
     }
     
@@ -715,6 +722,15 @@ var highscore = 0 //roxiun add local storage here
                 update(Math.min(1, (now - last) / 1000.0)); // using requestAnimationFrame have to be able to handle large delta's caused when it 'hibernates' in a background or non-visible tab
                 draw();
                 checkHighScore()
+
+
+
+                
+
+
+
+                
+
                 ctx.strokeStyle = "#FF0000";
                 ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
                 ctx.strokeStyle = "#000000";
@@ -1656,6 +1672,12 @@ var highscore = 0 //roxiun add local storage here
           //we dont even need to clear it aaaaa
         }
     }
+
+
+
+
+
+
 
 
 
