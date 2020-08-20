@@ -872,15 +872,33 @@ var highscore = 0 //roxiun add local storage here
 
     async function leftBetterKey(){
         while (left){
-            actions.push(DIR.LEFT);
-            await new Promise(r => setTimeout(r, 100));
+            if (ldelay==0){
+                actions.push(DIR.LEFT);
+                await new Promise(r => setTimeout(r, 400));
+                ldelay = 1
+            }else if (ldelay==1){
+                actions.push(DIR.LEFT);
+                await new Promise(r => setTimeout(r, 100));
+            }
+        }
+        if (!left){
+            ldelay=0
         }
     }
 
     async function rightBetterKey(){
         while (right){
-            actions.push(DIR.RIGHT);
-            await new Promise(r => setTimeout(r, 100));
+            if (rdelay==0){
+                actions.push(DIR.RIGHT);
+                await new Promise(r => setTimeout(r, 100));
+                rdelay=1
+            }else if (rdelay==1){
+                actions.push(DIR.RIGHT);
+                await new Promise(r => setTimeout(r, 100));
+            }
+        }
+        if (!right){
+            rdelay=0
         }
     }
 
