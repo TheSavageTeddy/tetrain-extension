@@ -33,7 +33,7 @@
 * Add 'modern' mode (or call it normal mode)
   * Can 'roll' blocks across ground
 * More settings
-  ✓ Can change key used to rotate, move
+  * ✓ Can change key used to rotate, move
 * Add left rotate and right rotate
 #### Optional
 * Multiple next block options
