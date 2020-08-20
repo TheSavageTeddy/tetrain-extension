@@ -879,6 +879,7 @@ var highscore = 0 //roxiun add local storage here
                 actions.push(DIR.LEFT);
                 await new Promise(r => setTimeout(r, 300));
                 ldelay = 1
+                rdelay=0
             }else if (ldelay==1){
                 actions.push(DIR.LEFT);
                 await new Promise(r => setTimeout(r, 80));
@@ -895,6 +896,7 @@ var highscore = 0 //roxiun add local storage here
                 actions.push(DIR.RIGHT);
                 await new Promise(r => setTimeout(r, 300));
                 rdelay=1
+                ldelay=0
             }else if (rdelay==1){
                 actions.push(DIR.RIGHT);
                 await new Promise(r => setTimeout(r, 80));
