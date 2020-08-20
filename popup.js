@@ -18,6 +18,10 @@ function help(){
   window.location.replace("app/html/help.html");
 }
 
+function credits(){
+  window.location.replace("app/html/credits.html");
+}
+
 function createLocalStorage(){
   chrome.storage.local.set({ 
     KEY_SETTINGS: {
@@ -59,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('classic').addEventListener('click', classic);
   document.getElementById('settings').addEventListener('click', settings);
   document.getElementById('help').addEventListener('click', help);
+  document.getElementById('credits').addEventListener('click', credits);
   chrome.storage.local.get(['isPlaying'], function(config) {
     if (config.isPlaying){
       console.log("Game Detected")
