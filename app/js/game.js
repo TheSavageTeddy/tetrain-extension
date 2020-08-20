@@ -919,11 +919,10 @@ var highscore = 0 //roxiun add local storage here
                             await new Promise(r => setTimeout(r, 500));
                             ltimeout=0
                             console.log("l1")
+                        }
                         }else {
                         await new Promise(r => setTimeout(r, 40));
                     }
-                }
-            
                 }else{
                     ltimeout=2
                     await new Promise(r => setTimeout(r, 40));
@@ -932,8 +931,8 @@ var highscore = 0 //roxiun add local storage here
             }
         }
 
-    
     }
+    
 
     async function rightBetterKey(){
         while (right){
