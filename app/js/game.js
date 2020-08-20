@@ -390,7 +390,11 @@ var highscore = 0 //roxiun add local storage here
         nx = 10, // width of tetris court (in blocks)
         ny = 20, // height of tetris court (in blocks)
         nu = 5; // width/height of upcoming preview (in blocks)
-        
+    var elem = document.getElementById('canvas'),
+        elemLeft = elem.offsetLeft,
+        elemTop = 0,//elem.offsetTop,
+        context = elem.getContext('2d'),
+        elements = [];    
     if (value.transEnabled) {
         var canvas = get('canvas', { alpha: false }),
             ctx = canvas.getContext('2d'),
@@ -472,6 +476,21 @@ var highscore = 0 //roxiun add local storage here
     pe.src = '../img/pe.svg';
     pe.onload = function(){
         peConfigured = true;
+    }
+    if (!value.sidebarEnabled){
+        var reConfigured;
+        var re = new Image();
+        re.src = '../img/restart.png';
+        re.onload = function(){
+            reConfigured = true;
+            elements.push({
+                colour: '#FFFFFF',
+                width: dx*2,
+                height: dy*2,
+                top: canvas.width/20,
+                left: 30
+            });
+        }
     }
 
 
@@ -815,6 +834,28 @@ var highscore = 0 //roxiun add local storage here
 
     }
 
+    function restart(event){
+        var x = event.pageX - elemLeft,
+            y = event.pageY - elemTop;
+        console.log(x, y);
+        elements.forEach(function(element) {
+            console.log(elements)
+            if (y > element.top && y < element.top + element.height && x > element.left && x < element.left + element.width) {
+                console.log('clicked an element');
+                console.log("restart called");
+                lose("kys");
+                show('start');
+                level=1
+                html("level", level)
+                enterToPlay("hide")
+                lost = false
+                play();
+                handled = true;
+                isr = false;
+            }
+        });
+    }
+
 
     function addEvents() {
         /*try {
@@ -824,6 +865,9 @@ var highscore = 0 //roxiun add local storage here
         } */
         document.addEventListener('keydown', keydown, false);
         document.addEventListener('keyup', keyup, false);
+        if (!value.sidebarEnabled){
+            elem.addEventListener('click', restart, false);
+        }
         //
         window.addEventListener('resize', resize, false);
     }
@@ -1462,12 +1506,13 @@ var highscore = 0 //roxiun add local storage here
             ctx.fillStyle = "#FFFFFF";
             ctx.textAlign = "center";
             ctx.fillText(score, canvas.width/2, 80);
-
+            if (reConfigured){
+                ctx.drawImage(re, canvas.width/20, 30 , dx*2, dy*2);
+            }
         }
     }
 
 
-        
     
     function drop() {
         if (!move(DIR.DOWN) && !isrotating) {
