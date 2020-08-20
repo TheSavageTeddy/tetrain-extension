@@ -4,7 +4,7 @@ function mainmenu() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -36,6 +36,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         chrome.storage.local.set({ currentPiece: current}); // Save Current Piece
         chrome.storage.local.set({ nextPiece: next}); // Save Next Piece
         chrome.storage.local.set({ timeSinceStart: dt}); // Save Time since start
+        chrome.storage.local.set({ currentLevel: level});// Save current level
         if (pieceinHold){
             chrome.storage.local.set({ currentHold: hold_current}); // Save current hold piece
             chrome.storage.local.set({ ispieceinHold: true});
@@ -53,6 +54,23 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         } else {
             chrome.storage.local.set({ hasLost: false});
         }
+    }
+
+    function clearGameSettings() {
+        chrome.storage.local.set({
+            isPlaying: false
+        });
+        chrome.storage.local.set({ grid: {} }); // Save Grid
+        chrome.storage.local.set({ clearedRows: 0 }); // Save cleared Rows
+        chrome.storage.local.set({ visualScore: 0 }); // Save Visual Score
+        chrome.storage.local.set({ currentScore: 0 }); // Save Current Score
+        chrome.storage.local.set({ currentPiece: 0}); // Save Current Piece
+        chrome.storage.local.set({ nextPiece: 0}); // Save Next Piece
+        chrome.storage.local.set({ timeSinceStart: 0}); // Save Time since start
+        chrome.storage.local.set({ currentLevel: 1});// Save current level
+        chrome.storage.local.set({ currentHold: 0}); // Save current hold piece
+        chrome.storage.local.set({ ispieceinHold: false});
+        chrome.storage.local.set({ isabletoSwap: true});
     }
 
 
@@ -110,6 +128,7 @@ var highscore = 0 //roxiun add local storage here
       chrome.storage.local.set({
           isPlaying: false
       });
+      //clearGameSettings()
       if (s=="lost"){
         enterToPlay("lost")
       }else{
@@ -355,14 +374,6 @@ var highscore = 0 //roxiun add local storage here
             MIN: 0,
             MAX: 3
         },
-        canvas = get('canvas'),
-        ctx = canvas.getContext('2d'),
-        ucanvas = get('upcoming'),
-        uctx = ucanvas.getContext('2d'),
-        hcanvas = get('hold-canvas'),
-        hctx = hcanvas.getContext('2d'),
-        bcanvas = get('canvas-back'),
-        bctx = bcanvas.getContext('2d'),
         speed = {
             start: 0.8,
             decrement: 0.005,
@@ -373,6 +384,27 @@ var highscore = 0 //roxiun add local storage here
         nx = 10, // width of tetris court (in blocks)
         ny = 20, // height of tetris court (in blocks)
         nu = 5; // width/height of upcoming preview (in blocks)
+        
+    if (value.transEnabled) {
+        var canvas = get('canvas', { alpha: false }),
+            ctx = canvas.getContext('2d'),
+            ucanvas = get('upcoming', { alpha: false }),
+            uctx = ucanvas.getContext('2d'),
+            hcanvas = get('hold-canvas', { alpha: false }),
+            hctx = hcanvas.getContext('2d'),
+            bcanvas = get('canvas-back', { alpha: false }),
+            bctx = bcanvas.getContext('2d');
+        
+    } else{
+        var canvas = get('canvas'),
+            ctx = canvas.getContext('2d'),
+            ucanvas = get('upcoming'),
+            uctx = ucanvas.getContext('2d'),
+            hcanvas = get('hold-canvas'),
+            hctx = hcanvas.getContext('2d'),
+            bcanvas = get('canvas-back'),
+            bctx = bcanvas.getContext('2d');   
+    }
 
     //-------------------------------------------------------------------------
     // game variables (initialized during reset)
@@ -380,6 +412,7 @@ var highscore = 0 //roxiun add local storage here
     let dpi = window.devicePixelRatio;
     var dx, dy, // pixel size of a single tetris block
         blocks, // 2 dimensional array (nx*ny) representing tetris court - either empty block or occupied by a 'piece'
+        blocks_clean,
         actions, // queue of user actions (inputs)
         LRactions,
         playing, // true|false - game is in progress
@@ -1085,6 +1118,7 @@ var highscore = 0 //roxiun add local storage here
             rows = value.clearedRows
             next = value.nextPiece;
             lost = value.hasLost;
+            level = value.currentLevel
             if (value.ispieceinHold){
                 pieceinHold = true;
                 hold_current = value.currentHold;
