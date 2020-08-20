@@ -909,16 +909,28 @@ var highscore = 0 //roxiun add local storage here
                     console.log("l2")
                 }
             }else{
-                await new Promise(r => setTimeout(r, 40));
-                ltimeout=0
+                if (ltimeout==2){
+                    if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
+                        if (ldelay==0){
+                            ldelay = 1
+                            rdelay=0
+                            LRactions.push(DIR.LEFT);
+                            ltimeout=1
+                            await new Promise(r => setTimeout(r, 500));
+                            ltimeout=0
+                            console.log("l1")
+                }else{
+                    ltimeout=2
+                    await new Promise(r => setTimeout(r, 40));
+                    ltimeout=0
+                }
             }
         }
-        if (!left){
-            ldelay=0
-        }
 
+    
     }
-
+}
+}
     async function rightBetterKey(){
         while (right){
             if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
@@ -938,7 +950,26 @@ var highscore = 0 //roxiun add local storage here
                     console.log("r2")
                 }
             }else{
-                await new Promise(r => setTimeout(r, 40));
+                if (rtimeout==2){
+                    if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
+                        if (rdelay==0){
+                            rdelay=1
+                            ldelay=0
+                            LRactions.push(DIR.RIGHT);
+                            rtimeout=1
+                            await new Promise(r => setTimeout(r, 500));
+                            rtimeout=0
+                            console.log("r1")
+                        }
+                    }else{
+                        await new Promise(r => setTimeout(r, 40));
+                        rtimeout=0
+                    }
+                }else{
+                    rtimeout=2
+                    await new Promise(r => setTimeout(r, 40));
+                    rtimeout=0
+                }
                 
 
             }
