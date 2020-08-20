@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (config.transEnabled){
             trans_select.appendChild(trans1);
-            trans_select.appendChild(transplay2);
+            trans_select.appendChild(trans2);
         } else {
             trans_select.appendChild(trans2);
             trans_select.appendChild(trans1);

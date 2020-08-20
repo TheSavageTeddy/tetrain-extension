@@ -765,7 +765,7 @@ var highscore = 0 //roxiun add local storage here
             console.error(e)
         } */
         document.addEventListener('keydown', keydown, false);
-        document.addEventListener('keyup', keyup, false);
+        //document.addEventListener('keyup', keyup, false);
         //
         window.addEventListener('resize', resize, false);
     }
