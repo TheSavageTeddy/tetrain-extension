@@ -772,7 +772,7 @@ var highscore = 0 //roxiun add local storage here
             console.error(e)
         } */
         document.addEventListener('keydown', keydown, false);
-        document.addEventListener('keyup', keydown, false);
+        document.addEventListener('keyup', keyup, false);
         //
         window.addEventListener('resize', resize, false);
     }
@@ -845,6 +845,30 @@ var highscore = 0 //roxiun add local storage here
             lose("kys")
             mainmenu()
         }
+        if (handled)
+            ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
+        
+    }
+
+    function keyup(ev) {
+        var handled = false;
+        switch (ev.keyCode) {
+
+            case KEY.LEFT:
+                actions.push(DIR.LEFT);
+                handled = true;
+                break;
+            case KEY.RIGHT:
+                actions.push(DIR.RIGHT);
+                handled = true;
+                break;
+            case KEY.DOWN:
+                actions.push(DIR.DOWN);
+                handled = true;
+                break;
+            
+        }
+            //harddrop()
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
         
