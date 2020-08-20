@@ -1822,7 +1822,7 @@ var highscore = 0 //roxiun add local storage here
 
     function drawBlock(ctx, x, y, color) {
         if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
-            ctx.drawImage(tetra_images[color], x * dx, y * dx, dx, dy);
+            ctx.drawImage(tetra_images[color], x * dx, y * dy, dx, dy);
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);
@@ -1832,7 +1832,7 @@ var highscore = 0 //roxiun add local storage here
 
     function drawGhostBlock(ctx, x, y, color) {
         if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
-            ctx.drawImage(tetra_ghost[color], x * dx, y * dx, dx, dy);
+            ctx.drawImage(tetra_ghost[color], x * dx, y * dy, dx, dy);
         } else {
             ctx.strokeStyle = color;
             ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
