@@ -394,6 +394,8 @@ var highscore = 0 //roxiun add local storage here
         old_current_piece,
         canSwap = true,
         keysPressed = {},
+        left = false,
+        right = false,
         isrotating = false,
         rota = false;
         
@@ -765,7 +767,7 @@ var highscore = 0 //roxiun add local storage here
             console.error(e)
         } */
         document.addEventListener('keydown', keydown, false);
-        //document.addEventListener('keyup', keyup, false);
+        document.addEventListener('keyup', keyup, false);
         //
         window.addEventListener('resize', resize, false);
     }
@@ -795,11 +797,15 @@ var highscore = 0 //roxiun add local storage here
                     break;
                 }
             case KEY.LEFT:
-                actions.push(DIR.LEFT);
+                left = true;
+                //actions.push(DIR.LEFT);
+                leftBetterKey();
                 handled = true;
                 break;
             case KEY.RIGHT:
-                actions.push(DIR.RIGHT);
+                right = true;
+                //actions.push(DIR.RIGHT);
+                rightBetterKey();
                 handled = true;
                 break;
             case KEY.UP:
@@ -843,29 +849,37 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function keyup(ev) {
-        /*
-        var handled = false;
+
         switch (ev.keyCode) {
 
             case KEY.LEFT:
-                actions.push(DIR.LEFT);
-                handled = true;
+                left = false;
                 break;
             case KEY.RIGHT:
-                actions.push(DIR.RIGHT);
-                handled = true;
-                break;
-            case KEY.DOWN:
-                actions.push(DIR.DOWN);
-                handled = true;
+                right = false;
                 break;
             
         }
+        /*
         
             //harddrop()
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
         */
+    }
+
+    async function leftBetterKey(){
+        while (left){
+            actions.push(DIR.LEFT);
+            await new Promise(r => setTimeout(r, 2000));
+        }
+    }
+
+    async function rightBetterKey(){
+        while (right){
+            actions.push(DIR.RIGHT);
+            await new Promise(r => setTimeout(r, 2000));
+        }
     }
 
 
