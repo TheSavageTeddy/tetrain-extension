@@ -14,7 +14,6 @@
    * doesn't work in medium or small size
    * also make it show when overlay is on
   * ✓ Fix image blocks flashing (when style is 'tetra')
-* ! Make scoring and rows cleared look and positioned better
 * ✓ Add 'ghost' blocks indicating where block will land
 * ✓ Add levels
 * ✓ Fix size for hold and next canvas
@@ -33,8 +32,9 @@
 * Add 'modern' mode (or call it normal mode)
   * Can 'roll' blocks across ground
 * More settings
-  ✓ Can change key used to rotate, move
+  * ✓ Can change key used to rotate, move
 * Add left rotate and right rotate
+* Make scoring and rows cleared look and positioned better
 #### Optional
 * Multiple next block options
 * Rewrite Settings Page for more efficency
