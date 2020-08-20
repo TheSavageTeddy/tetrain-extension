@@ -887,15 +887,17 @@ var highscore = 0 //roxiun add local storage here
         while (left){
             if (unoccupied(current.type, current.x-1, current.y, current.dir)){
                 if (ldelay==0){
+                    ldelay = 1
+                    rdelay=0
                     actions.push(DIR.LEFT);
                     await new Promise(r => setTimeout(r, 500));
+
+                }else if (ldelay==1){
                     ldelay = 1
                     rdelay=0
-                }else if (ldelay==1){
                     actions.push(DIR.LEFT);
                     await new Promise(r => setTimeout(r, 80));
-                    ldelay = 1
-                    rdelay=0
+
                 }
             }else{
                 await new Promise(r => setTimeout(r, 500));
@@ -911,15 +913,17 @@ var highscore = 0 //roxiun add local storage here
         while (right){
             if (unoccupied(current.type, current.x+1, current.y, current.dir)){
                 if (rdelay==0){
+                    rdelay=1
+                    ldelay=0
                     actions.push(DIR.RIGHT);
                     await new Promise(r => setTimeout(r, 500));
+
+                }else if (rdelay==1){
                     rdelay=1
                     ldelay=0
-                }else if (rdelay==1){
                     actions.push(DIR.RIGHT);
                     await new Promise(r => setTimeout(r, 80));
-                    rdelay=1
-                    ldelay=0
+
                 }
             }else{
                 await new Promise(r => setTimeout(r, 500));
