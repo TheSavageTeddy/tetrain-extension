@@ -2,6 +2,12 @@ function hidemenu(){
     m = document.getElementById("menu-items")
     m.style.display = "none"
 }
+function keydown(ev){
+    switch (ev.keyCode) {
+        case 37:
+            goBack();
+    }
+}
 function goBack(){
     hidemenu()
     window.location.replace("../../popup.html");
@@ -385,4 +391,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('preview').addEventListener('change', updatePreviewConfig);
     document.getElementById('auto').addEventListener('change', updateAutoPlayConfig);
     document.getElementById('trans').addEventListener('change', updateTransConfig);
+    document.addEventListener('keydown', keydown, false);
 });
