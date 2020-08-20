@@ -843,6 +843,7 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function keyup(ev) {
+        /*
         var handled = false;
         switch (ev.keyCode) {
 
@@ -860,10 +861,11 @@ var highscore = 0 //roxiun add local storage here
                 break;
             
         }
+        
             //harddrop()
         if (handled)
             ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
-        
+        */
     }
 
 
