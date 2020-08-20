@@ -187,6 +187,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var autoplay2 = document.createElement("option");
     var trans1 = document.createElement("option");
     var trans2 = document.createElement("option");
+    var experimental = document.createElement("option");
+    var experimental2 = document.createElement("option");
     //#endregion
     chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled', 'previewEnabled', "autoplayEnabled", "transEnabled"], function(config) {   
         test = config.nextEnabled;
@@ -240,6 +242,12 @@ document.addEventListener('DOMContentLoaded', function () {
         trans1.value = "enabled";
         trans2.text = "Disabled";
         trans2.value = "disabled";
+        experimental.text = "(Experimental)";
+        experimental.value = "exp";
+        experimental.disabled = true;
+        experimental2.text = "(Experimental)";
+        experimental2.value = "exp";
+        experimental2.disabled = true;
         if (config.nextEnabled){
             node_next.appendChild(option1);
             node_next.appendChild(option2);
@@ -334,9 +342,11 @@ document.addEventListener('DOMContentLoaded', function () {
         } if (config.markersEnabled) {
             markers_select.appendChild(markers1);
             markers_select.appendChild(markers2);
+            markers_select.appendChild(experimental2);
         } else {
             markers_select.appendChild(markers2);
             markers_select.appendChild(markers1);
+            markers_select.appendChild(experimental2);
         } if (config.previewEnabled) {
             preview_select.appendChild(preview1);
             preview_select.appendChild(preview2);
@@ -356,9 +366,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (config.transEnabled){
             trans_select.appendChild(trans1);
             trans_select.appendChild(trans2);
+            trans_select.appendChild(experimental);
         } else {
             trans_select.appendChild(trans2);
             trans_select.appendChild(trans1);
+            trans_select.appendChild(experimental);
         }
 
     });
