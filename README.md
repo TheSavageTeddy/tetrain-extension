@@ -18,7 +18,6 @@
 * ✓ Add 'ghost' blocks indicating where block will land
 * ✓ Add levels
 * Fix size for hold and next canvas
-* ! Better key input detection
 * Finish help page
 * ✓ Next piece setting work
 * ✓ Add hold and option to toggle on/off
@@ -26,7 +25,7 @@
 * ✓ Better style for blocks and positions
 * ✓ Resizable popup (needs fixing)
 * Multiple next block options
-* Better key input detection
+* ! Better key input detection
   * See https://stackoverflow.com/questions/29118791/how-to-move-an-element-via-arrow-keys-continuously-smoothly
 
 ### Other releases
