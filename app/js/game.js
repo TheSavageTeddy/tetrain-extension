@@ -459,6 +459,7 @@ var highscore = 0 //roxiun add local storage here
         old_next,
         right_handled = false,
         left_handled = false,
+        down_handled,
         old_current_piece,
         canSwap = true,
         keysPressed = [],
@@ -948,9 +949,18 @@ var highscore = 0 //roxiun add local storage here
                     break;
                 }
             case KEY.DOWN:
-                
-                down=true
-                downBetterKey();
+                if (ev.repeat) {
+                    if (down_handled){
+                        down=true
+                    }else{
+                        down=true
+                        downBetterKey()
+                        down_handled=true
+                    }
+                }else{
+                    down=true
+                    downBetterKey()
+                }
                 handled = true;
                 break;
             case KEY.LEFT:
@@ -1178,10 +1188,20 @@ var highscore = 0 //roxiun add local storage here
     async function downBetterKey(){
         while (down){
 
+            /*
+            if (unoccupied(current.type, current.x, current.y+1, current.dir)){
+                LRactions.push(DIR.DOWN);
+                console.log("downbetterkey")
+                await new Promise(r => setTimeout(r, 80));
+            }else{
+                await new Promise(r => setTimeout(r, 80));
+            }
+            */
 
             LRactions.push(DIR.DOWN);
             console.log("downbetterkey")
-            await new Promise(r => setTimeout(r, 200));
+            await new Promise(r => setTimeout(r, 80));
+
 
 
 
