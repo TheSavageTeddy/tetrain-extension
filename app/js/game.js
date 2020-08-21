@@ -467,6 +467,8 @@ var highscore = 0 //roxiun add local storage here
         keysPressed = [],
         left = false,
         right = false,
+        rightthing=false,
+        leftthing=false,
         isrotating = false,
         rota = false,
         rdelay = 0,
@@ -1125,11 +1127,23 @@ var highscore = 0 //roxiun add local storage here
             */
             if (!right && unoccupied(current.type, current.x-1, current.y, current.dir)){
                 
-                LRactions.push(DIR.LEFT);
+                
                 if (leftrepeat){
+                    LRactions.push(DIR.LEFT);
+                    console.log("r50")
                     await new Promise(r => setTimeout(r, 50));
                 }else{
-                    await new Promise(r => setTimeout(r, 200));
+                    if (leftthing){
+                        console.log("200")
+                        await new Promise(r => setTimeout(r, 10));
+                    }else{
+
+                        leftthing=true
+                        LRactions.push(DIR.LEFT);
+                        console.log("200")
+                        await new Promise(r => setTimeout(r, 200));
+                        leftthing=false
+                    }
                 }
             }else{
                 await new Promise(r => setTimeout(r, 10));
@@ -1187,8 +1201,10 @@ var highscore = 0 //roxiun add local storage here
                 LRactions.push(DIR.RIGHT);
 
                 if (rightrepeat){
+                    console.log("r50")
                     await new Promise(r => setTimeout(r, 50));
                 }else{
+                    console.log("r200")
                     await new Promise(r => setTimeout(r, 200));
                 }
             }else{
@@ -1392,7 +1408,7 @@ var highscore = 0 //roxiun add local storage here
                 if (unoccupied(current.type, current.x-1, current.y, current.dir)){
                     rdelay=0
                     move(DIR.LEFT);
-                    console.log("left")
+
                     
                 }
                 break;
@@ -1400,7 +1416,7 @@ var highscore = 0 //roxiun add local storage here
                 if (unoccupied(current.type, current.x+1, current.y, current.dir)){
                     ldelay=0
                     move(DIR.RIGHT);
-                    console.log("right")
+
                     
                 }
                 break;
@@ -1408,7 +1424,7 @@ var highscore = 0 //roxiun add local storage here
                 if (unoccupied(current.type, current.x, current.y+1, current.dir)){
 
                     move(DIR.DOWN);
-                    console.log("down")
+
                     
                 }
                 break;
