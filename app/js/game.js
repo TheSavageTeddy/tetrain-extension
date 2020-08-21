@@ -18,6 +18,16 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     } else{
         var blockStyle = "bold"
     }
+
+    function goBack(){
+        playing=false
+        reset()
+        mainmenu()
+    }
+    
+
+    document.getElementById('back').addEventListener('click', goBack);
+
     html("high-score", value.savedHighScore)
     function saveSettings() {
         if (playing) {
@@ -2054,4 +2064,9 @@ var highscore = 0 //roxiun add local storage here
         handled = true;
         isr = false;
     }
+
+
+
+
 });
+
