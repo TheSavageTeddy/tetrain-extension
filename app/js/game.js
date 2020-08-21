@@ -458,7 +458,8 @@ var highscore = 0 //roxiun add local storage here
         ldelay = 0,
         rtimeout=0,
         ltimeout=0,
-        handled;
+        handled,
+        down;
         
 
     //-------------------------------------------------------------------------
@@ -950,7 +951,8 @@ var highscore = 0 //roxiun add local storage here
                 handled = true;
                 break;
             case KEY.DOWN:
-                actions.push(DIR.DOWN);
+                down=true
+                downBetterKey();
                 handled = true;
                 break;
             case KEY.ESC:
@@ -1007,6 +1009,12 @@ var highscore = 0 //roxiun add local storage here
             case KEY.RIGHT:
                 rdelay=0
                 right = false;
+                
+                break;
+            
+            case KEY.DOWN:
+
+                down=false;
                 
                 break;
             
@@ -1109,6 +1117,25 @@ var highscore = 0 //roxiun add local storage here
 }
 
 
+
+
+    async function downBetterKey(){
+        while (down){
+
+
+            LRactions.push(DIR.DOWN);
+
+            await new Promise(r => setTimeout(r, 200));
+
+            console.log("downbetter")
+
+
+
+
+    }
+    }
+
+
     //-------------------------------------------------------------------------
     // GAME LOGIC
     //-------------------------------------------------------------------------
@@ -1204,6 +1231,7 @@ var highscore = 0 //roxiun add local storage here
             ldelay=0
             left=false
             right=false
+            down=false
         } else if (value.isPlaying) {
             dt = 0;
             clearActions();
@@ -1240,6 +1268,7 @@ var highscore = 0 //roxiun add local storage here
             rdelay=0
             ldelay=0
             left=false
+            down=false
             right=false
         } else {
             dt = 0;
@@ -1286,6 +1315,14 @@ var highscore = 0 //roxiun add local storage here
                     
                 }
                 break;
+            case DIR.DOWN:
+                if (unoccupied(current.type, current.x, current.y+1, current.dir)){
+
+                    move(DIR.DOWN);
+                    console.log("down")
+                    
+                }
+                break;
         }
     }
 
@@ -1313,10 +1350,12 @@ var highscore = 0 //roxiun add local storage here
             case DIR.UP:
                 rotate();
                 break;
+            /*
             case DIR.DOWN:
                 drop();
                 score = score + 1;
                 break;
+            */
         }
     }
 
