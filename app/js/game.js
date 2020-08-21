@@ -1199,6 +1199,11 @@ var highscore = 0 //roxiun add local storage here
             clearScore();
             setCurrentPiece(next);
             setNextPiece();
+
+            rdelay=0
+            ldelay=0
+            left=false
+            right=false
         } else if (value.isPlaying) {
             dt = 0;
             clearActions();
@@ -1969,6 +1974,8 @@ var highscore = 0 //roxiun add local storage here
           ctx.fillText("You died!", canvas.width/2, 200);
           ctx.fillText("Enter to", canvas.width/2, 240);
           ctx.fillText("play again", canvas.width/2, 280);
+
+
           
         }else{
           //ctx.clearRect(0, 100, 300, 300);
