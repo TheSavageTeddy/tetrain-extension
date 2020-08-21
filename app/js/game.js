@@ -1235,6 +1235,12 @@ var highscore = 0 //roxiun add local storage here
             }
             setCurrentPiece(current);
             setNextPiece(next);
+
+
+            rdelay=0
+            ldelay=0
+            left=false
+            right=false
         } else {
             dt = 0;
             canSwap = true;
