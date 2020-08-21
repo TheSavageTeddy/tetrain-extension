@@ -458,6 +458,7 @@ var highscore = 0 //roxiun add local storage here
         paused = false,
         old_next,
         right_handled = false,
+        left_handled = false,
         old_current_piece,
         canSwap = true,
         keysPressed = [],
@@ -962,25 +963,21 @@ var highscore = 0 //roxiun add local storage here
                 break;
             case KEY.RIGHT:
                 if (ev.repeat) {
-                    // do the repeating hold down function
-                    console.log("KEYDOWN RIGHT REPEAT")
-                    if (!right_handled){
-                    } else {
-                        //function  to actiave smooth
-                        right_handled = true
+                    if (right_handled){
+                        right=true
+                    }else{
+                        right=true
+                        rightBetterKey()
+                        right_handled=true
                     }
-                    right = true;
-                    break;
+                    
                 } else {
-                    // do normal function
-                    console.log("KEYDOWN RIGHT")
-                    right = true;
-                    actions.push(DIR.RIGHT);
-                    //rightBetterKey();
-                    rdelay=0
+                    right=true
+                    rightBetterKey()
                     handled = true;
-                    break;
+
                 }
+                break;
 
             case KEY.UP:
                 actions.push(DIR.UP);
