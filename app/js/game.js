@@ -954,11 +954,18 @@ var highscore = 0 //roxiun add local storage here
                 handled = true;
                 break;
             case KEY.LEFT:
-                console.log("KEYDOWN LEFT")
-                left = true;
-                //actions.push(DIR.LEFT);
-                leftBetterKey();
-                ldelay=0
+                if (ev.repeat) {
+                    if (left_handled){
+                        left=true
+                    }else{
+                        left=true
+                        leftBetterKey()
+                        left_handled=true
+                    }
+                }else{
+                    left=true
+                    leftBetterKey()
+                }
                 handled = true;
                 break;
             case KEY.RIGHT:
@@ -977,6 +984,7 @@ var highscore = 0 //roxiun add local storage here
                     handled = true;
 
                 }
+                handled = true;
                 break;
 
             case KEY.UP:
