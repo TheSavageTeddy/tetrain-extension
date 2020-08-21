@@ -967,7 +967,6 @@ var highscore = 0 //roxiun add local storage here
                     if (!right_handled){
                     } else {
                         //function  to actiave smooth
-                        right_handled = ture
                     }
                     right = true;
                     break;
