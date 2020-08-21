@@ -1041,8 +1041,8 @@ var highscore = 0 //roxiun add local storage here
                 if (ltimeout==2){
                     if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
                         if (ldelay==0){
-                            ldelay = 1
-                            rdelay=0
+                            //ldelay = 1
+                            //rdelay=0
                             LRactions.push(DIR.LEFT);
                             ltimeout=1
                             await new Promise(r => setTimeout(r, 500));
@@ -1085,8 +1085,8 @@ var highscore = 0 //roxiun add local storage here
                 if (rtimeout==2){
                     if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
                         if (rdelay==0){
-                            rdelay=1
-                            ldelay=0
+                            //rdelay=1
+                            //ldelay=0
                             LRactions.push(DIR.RIGHT);
                             rtimeout=1
                             await new Promise(r => setTimeout(r, 500));
