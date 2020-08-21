@@ -904,11 +904,12 @@ var highscore = 0 //roxiun add local storage here
 
 
     function addEvents() {
-        /*try {
+        try {
             document.removeEventListener("keydown", keydown);
+            document.removeEventListener('keyup', keyup, false);
         } catch (e) {
             console.error(e)
-        } */
+        }
         document.addEventListener('keydown', keydown, false);
         document.addEventListener('keyup', keyup, false);
         if (!value.sidebarEnabled){
@@ -916,6 +917,8 @@ var highscore = 0 //roxiun add local storage here
         }
         //
         window.addEventListener('resize', resize, false);
+
+
     }
 
     function resize(event) {
@@ -943,11 +946,13 @@ var highscore = 0 //roxiun add local storage here
                     break;
                 }
             case KEY.DOWN:
+                
                 down=true
                 downBetterKey();
                 handled = true;
                 break;
             case KEY.LEFT:
+                console.log("KEYDOWN LEFT")
                 left = true;
                 //actions.push(DIR.LEFT);
                 leftBetterKey();
@@ -955,6 +960,7 @@ var highscore = 0 //roxiun add local storage here
                 handled = true;
                 break;
             case KEY.RIGHT:
+                console.log("KEYDOWN RIGHT")
                 right = true;
                 //actions.push(DIR.RIGHT);
                 rightBetterKey();
@@ -1016,11 +1022,12 @@ var highscore = 0 //roxiun add local storage here
             case KEY.LEFT:
                 ldelay=0
                 left = false;
+                console.log(left)
                 break;
             case KEY.RIGHT:
                 rdelay=0
                 right = false;
-                
+                console.log(right)
                 break;
             
             case KEY.DOWN:
