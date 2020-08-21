@@ -1079,7 +1079,8 @@ var highscore = 0 //roxiun add local storage here
                 }
             }
             */
-            if (!right){
+            if (!right && unoccupied(current.type, current.x-1, current.y, current.dir)){
+                
                 LRactions.push(DIR.LEFT);
 
                 await new Promise(r => setTimeout(r, 80));
@@ -1135,7 +1136,7 @@ var highscore = 0 //roxiun add local storage here
 
             }
             */
-            if (!left){
+            if (!left && (unoccupied(current.type, current.x+1, current.y, current.dir))){
                 LRactions.push(DIR.RIGHT);
                 await new Promise(r => setTimeout(r, 80));
             }else{
@@ -1152,7 +1153,7 @@ var highscore = 0 //roxiun add local storage here
 
 
             LRactions.push(DIR.DOWN);
-
+            console.log("downbetterkey")
             await new Promise(r => setTimeout(r, 200));
 
 
