@@ -55,7 +55,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
             chrome.storage.local.set({ ispieceinHold: true});
         } else {
             chrome.storage.local.set({ currentHold: hold_current}); // Save current hold piece
-            chrome.storage.local.set({ ispieceinHold: true});
+            chrome.storage.local.set({ ispieceinHold: false});
         }
         if (canSwap) {
             chrome.storage.local.set({ isabletoSwap: true});
@@ -1337,6 +1337,7 @@ var highscore = 0 //roxiun add local storage here
             left=false
             right=false
             down=false
+            pieceinHold=false
         } else if (value.isPlaying) {
             dt = 0;
             clearActions();
