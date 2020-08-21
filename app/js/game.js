@@ -1083,6 +1083,8 @@ var highscore = 0 //roxiun add local storage here
                 LRactions.push(DIR.LEFT);
 
                 await new Promise(r => setTimeout(r, 80));
+            }else{
+                await new Promise(r => setTimeout(r, 80));
             }
         }
 
@@ -1135,6 +1137,8 @@ var highscore = 0 //roxiun add local storage here
             */
             if (!left){
                 LRactions.push(DIR.RIGHT);
+                await new Promise(r => setTimeout(r, 80));
+            }else{
                 await new Promise(r => setTimeout(r, 80));
             }
     }
