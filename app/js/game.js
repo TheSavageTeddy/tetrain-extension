@@ -942,6 +942,11 @@ var highscore = 0 //roxiun add local storage here
                     handled = true;
                     break;
                 }
+            case KEY.DOWN:
+                down=true
+                downBetterKey();
+                handled = true;
+                break;
             case KEY.LEFT:
                 left = true;
                 //actions.push(DIR.LEFT);
@@ -960,11 +965,7 @@ var highscore = 0 //roxiun add local storage here
                 actions.push(DIR.UP);
                 handled = true;
                 break;
-            case KEY.DOWN:
-                down=true
-                downBetterKey();
-                handled = true;
-                break;
+
             case KEY.ESC:
                 window.close();
                 handled = true;
@@ -1039,6 +1040,7 @@ var highscore = 0 //roxiun add local storage here
 
     async function leftBetterKey(){
         while (left){
+            /*
             if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
                 if (ldelay==0){
                     ldelay = 1
@@ -1076,6 +1078,12 @@ var highscore = 0 //roxiun add local storage here
                     ltimeout=0
                 }
             }
+            */
+            if (!right){
+                LRactions.push(DIR.LEFT);
+
+                await new Promise(r => setTimeout(r, 80));
+            }
         }
 
     }
@@ -1083,6 +1091,7 @@ var highscore = 0 //roxiun add local storage here
 
     async function rightBetterKey(){
         while (right){
+            /*
             if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
                 if (rdelay==0){
                     rdelay=1
@@ -1123,6 +1132,11 @@ var highscore = 0 //roxiun add local storage here
                 
 
             }
+            */
+            if (!left){
+                LRactions.push(DIR.RIGHT);
+                await new Promise(r => setTimeout(r, 80));
+            }
     }
 }
 
@@ -1136,8 +1150,6 @@ var highscore = 0 //roxiun add local storage here
             LRactions.push(DIR.DOWN);
 
             await new Promise(r => setTimeout(r, 200));
-
-            console.log("downbetter")
 
 
 
