@@ -459,6 +459,8 @@ var highscore = 0 //roxiun add local storage here
         old_next,
         right_handled = false,
         left_handled = false,
+        rightrepeat=false,
+        leftrepeat=false,
         down_handled,
         old_current_piece,
         canSwap = true,
@@ -965,6 +967,7 @@ var highscore = 0 //roxiun add local storage here
                 break;
             case KEY.LEFT:
                 if (ev.repeat) {
+                    leftrepeat=true
                     if (left_handled){
                         left=true
                     }else{
@@ -973,6 +976,7 @@ var highscore = 0 //roxiun add local storage here
                         left_handled=true
                     }
                 }else{
+                    leftrepeat=false
                     left=true
                     leftBetterKey()
                 }
@@ -980,7 +984,9 @@ var highscore = 0 //roxiun add local storage here
                 break;
             case KEY.RIGHT:
                 if (ev.repeat) {
+                    rightrepeat=true
                     if (right_handled){
+                        
                         right=true
                     }else{
                         right=true
@@ -989,6 +995,7 @@ var highscore = 0 //roxiun add local storage here
                     }
                     
                 } else {
+                    rightrepeat=false
                     right=true
                     rightBetterKey()
                     handled = true;
@@ -1119,10 +1126,13 @@ var highscore = 0 //roxiun add local storage here
             if (!right && unoccupied(current.type, current.x-1, current.y, current.dir)){
                 
                 LRactions.push(DIR.LEFT);
-
-                await new Promise(r => setTimeout(r, 150));
+                if (leftrepeat){
+                    await new Promise(r => setTimeout(r, 80));
+                }else{
+                    await new Promise(r => setTimeout(r, 150));
+                }
             }else{
-                await new Promise(r => setTimeout(r, 150));
+                await new Promise(r => setTimeout(r, 10));
             }
         }
 
@@ -1175,9 +1185,14 @@ var highscore = 0 //roxiun add local storage here
             */
             if (!left && (unoccupied(current.type, current.x+1, current.y, current.dir))){
                 LRactions.push(DIR.RIGHT);
-                await new Promise(r => setTimeout(r, 150));
+
+                if (rightrepeat){
+                    await new Promise(r => setTimeout(r, 80));
+                }else{
+                    await new Promise(r => setTimeout(r, 150));
+                }
             }else{
-                await new Promise(r => setTimeout(r, 150));
+                await new Promise(r => setTimeout(r, 10));
             }
     }
 }
