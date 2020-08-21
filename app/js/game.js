@@ -2004,7 +2004,8 @@ var highscore = 0 //roxiun add local storage here
         level=1
         html("level", level)
         enterToPlay("hide")
-        lost = false
+        lost = false;
+        //chrome.storage.local.set({ isPaused: false })
         play();
         handled = true;
         isr = false;
