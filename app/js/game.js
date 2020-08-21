@@ -1129,7 +1129,7 @@ var highscore = 0 //roxiun add local storage here
                 if (leftrepeat){
                     await new Promise(r => setTimeout(r, 80));
                 }else{
-                    await new Promise(r => setTimeout(r, 150));
+                    await new Promise(r => setTimeout(r, 170));
                 }
             }else{
                 await new Promise(r => setTimeout(r, 10));
@@ -1189,7 +1189,7 @@ var highscore = 0 //roxiun add local storage here
                 if (rightrepeat){
                     await new Promise(r => setTimeout(r, 80));
                 }else{
-                    await new Promise(r => setTimeout(r, 150));
+                    await new Promise(r => setTimeout(r, 170));
                 }
             }else{
                 await new Promise(r => setTimeout(r, 10));
