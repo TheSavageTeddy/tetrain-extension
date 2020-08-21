@@ -473,6 +473,7 @@ var highscore = 0 //roxiun add local storage here
         rota = false,
         rdelay = 0,
         ldelay = 0,
+        
         rtimeout=0,
         ltimeout=0,
         handled,
@@ -1136,6 +1137,7 @@ var highscore = 0 //roxiun add local storage here
                     if (leftthing){
                         console.log("200")
                         await new Promise(r => setTimeout(r, 10));
+
                     }else{
 
                         leftthing=true
