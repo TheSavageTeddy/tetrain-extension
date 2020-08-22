@@ -1143,7 +1143,7 @@ var highscore = 0 //roxiun add local storage here
                         leftthing=true
                         LRactions.push(DIR.LEFT);
                         console.log("200")
-                        await new Promise(r => setTimeout(r, 200));
+                        await new Promise(r => setTimeout(r, 150));
                         leftthing=false
                     }
                 }
@@ -1200,14 +1200,23 @@ var highscore = 0 //roxiun add local storage here
             }
             */
             if (!left && (unoccupied(current.type, current.x+1, current.y, current.dir))){
-                LRactions.push(DIR.RIGHT);
+
 
                 if (rightrepeat){
+                    LRactions.push(DIR.RIGHT);
                     console.log("r50")
                     await new Promise(r => setTimeout(r, 50));
                 }else{
-                    console.log("r200")
-                    await new Promise(r => setTimeout(r, 200));
+                    if (rightthing){
+                        await new Promise(r => setTimeout(r, 10));
+                    }else{
+                        rightthing=true
+                        LRactions.push(DIR.RIGHT);
+                        console.log("r200")
+                        await new Promise(r => setTimeout(r, 150));
+                        rightthing=false
+                    }
+                    
                 }
             }else{
                 await new Promise(r => setTimeout(r, 10));
