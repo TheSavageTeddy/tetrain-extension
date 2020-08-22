@@ -129,6 +129,7 @@ select{
 
 .version-number{
     font-size: 20px;
+    height: 10px;
 }
 
 .description{
@@ -143,4 +144,8 @@ select{
 
 .change-container{
     text-align: left;
+}
+
+.date{
+    font-size: 14px;
 }
