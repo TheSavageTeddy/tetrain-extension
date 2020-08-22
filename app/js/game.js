@@ -7,7 +7,7 @@ function pause() {
 }
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused"], function(value) {
+chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler"], function(value) {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
@@ -20,8 +20,9 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     }
 
     function goBack(){
+        chrome.storage.local.set({ pausedHandler: true })
         playing=false
-        reset()
+        //reset()
         mainmenu()
     }
 
@@ -1047,7 +1048,8 @@ var highscore = 0 //roxiun add local storage here
             html("level", level)
             enterToPlay("hide")
             lost = false;
-            chrome.storage.local.set({ isPaused: false })
+            chrome.storage.local.set({ isPaused: false });
+            chrome.storage.local.set({ pausedHandler: false });
             play();
             handled = true;
             isr = false;
@@ -1288,6 +1290,7 @@ var highscore = 0 //roxiun add local storage here
         chrome.storage.local.set({
             isPlaying: true
         });
+        chrome.storage.local.set({ pausedHandler: false });
     }
 
 
@@ -1373,7 +1376,7 @@ var highscore = 0 //roxiun add local storage here
             right=false
             down=false
             pieceinHold=false
-        } else if (value.isPlaying) {
+        } else if (value.isPlaying || value.pausedHandler) {
             dt = 0;
             clearActions();
             clearBlocks();
@@ -2162,6 +2165,8 @@ var highscore = 0 //roxiun add local storage here
           lost = true//
           playing = false
           isr = true
+          pieceinHold = false
+          chrome.storage.local.set({ ispieceinHold: false});
           ctx.font = "40px Arial";
           ctx.fillStyle = "#FFFFFF";
           ctx.textAlign = "center";
