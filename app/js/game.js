@@ -1019,6 +1019,7 @@ var highscore = 0 //roxiun add local storage here
             
         }
         if (ev.keyCode == KEY.ENTER) {
+            clearHoldCanvas();
             show('start');
             level=1
             html("level", level)
