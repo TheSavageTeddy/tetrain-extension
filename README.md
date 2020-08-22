@@ -13,6 +13,8 @@
 * ✓ Soft drop smooth key
 * ✓ Left Right smooth key
 * ✓ Changelog added
+* ✓ Pause bugs fixed
+* ✓ Pause and go back button
 * **PUBLISH THE UPDATE**
 
 
