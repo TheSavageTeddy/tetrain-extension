@@ -136,7 +136,10 @@ select{
 
 .changes{
     font-size: 12px;
-    float:left;
 
     
+}
+
+.change-container{
+    text-align: left;
 }
