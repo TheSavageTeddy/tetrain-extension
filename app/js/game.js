@@ -24,6 +24,25 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
         reset()
         mainmenu()
     }
+
+    function pause(){
+        chrome.storage.local.get(["isPaused"], function(pausedvalue) {
+            if (!pausedvalue.isPaused){
+                window.location.replace("../html/pause.html");
+            } else if (!playing){
+                clearHoldCanvas();
+                show('start');
+                level=1
+                html("level", level)
+                enterToPlay("hide")
+                lost = false;
+                chrome.storage.local.set({ isPaused: false })
+                play();
+                handled = true;
+                isr = false;
+            }
+        });
+    }
     
 
     document.getElementById('back').addEventListener('click', goBack);
