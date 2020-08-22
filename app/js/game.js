@@ -50,6 +50,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     
 
     document.getElementById('back').addEventListener('click', goBack);
+    document.getElementById('pause').addEventListener('click', pause);
 
     html("high-score", value.savedHighScore)
     function saveSettings() {
