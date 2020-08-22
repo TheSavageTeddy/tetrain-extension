@@ -11,7 +11,13 @@
         "default_popup": "popup.html",
         "default_title": "TETRAIN"
     },
-
+    "options_ui": {
+        "page": "app/html/settings.html",
+        "open_in_tab": true
+    },
+    "icons": {
+        "128": "app/img/128.png"
+    },
     "offline_enabled":true,
     "manifest_version": 2
 }
