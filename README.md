@@ -3,7 +3,20 @@
 #### put ✓ before item to mark it done!
 #### put ! before item to mark it important/major issue!
 
-### First release! (v3.01)
+### Other
+
+* Add 'modern' mode (or call it normal mode)
+  * Can 'roll' blocks across ground
+
+### Release v1.02
+* ✓ Fix hold after dying/restarting bug
+* ✓ Soft drop smooth key
+* ✓ Left Right smooth key
+* ✓ Changelog added
+* **PUBLISH THE UPDATE**
+
+
+### ✓ First release! (v1.01)
 #### Essentials
 * Fix all bugs!
   * ✓ Glitching when rotating (needs testing)
@@ -17,7 +30,7 @@
 * ✓ Add 'ghost' blocks indicating where block will land
 * ✓ Add levels
 * ✓ Fix size for hold and next canvas
-* Finish help page
+* ✓ Finish help page
 * ✓ Next piece setting work
 * ✓ Add hold and option to toggle on/off
 #### Optionals
@@ -27,14 +40,4 @@
 * ✓ Better key input detection
   * See https://stackoverflow.com/questions/29118791/how-to-move-an-element-via-arrow-keys-continuously-smoothly
 
-### Other releases
-#### Essentials
-* Add 'modern' mode (or call it normal mode)
-  * Can 'roll' blocks across ground
-* More settings
-  * ✓ Can change key used to rotate, move
-* Add left rotate and right rotate
-* Make scoring and rows cleared look and positioned better
-#### Optional
-* Multiple next block options
-* Rewrite Settings Page for more efficency
+
