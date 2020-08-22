@@ -1342,6 +1342,7 @@ var highscore = 0 //roxiun add local storage here
             clearScore();
             setCurrentPiece(next);
             setNextPiece();
+            clearHoldCanvas();
 
             rdelay=0
             ldelay=0
@@ -1372,6 +1373,7 @@ var highscore = 0 //roxiun add local storage here
                 drawHold();
             } else {
                 pieceinHold = false;
+                clearHoldCanvas();
             }
             if (value.isabletoSwap) {
                 canSwap = true;
@@ -2065,6 +2067,13 @@ var highscore = 0 //roxiun add local storage here
             catch(err) {
                 console.log(err)
             }
+        }
+    }
+
+    function clearHoldCanvas(){
+        if (!pieceinHold || !value.ispieceinHold){
+            console.log("Clearing hold canvas")
+            hctx.clearRect(0, 0, hcanvas.width, hcanvas.height);
         }
     }
 
