@@ -68,6 +68,16 @@ body {
 
 
 #hold-canvas{
+    /*
     position: absolute; 
+    */
+
 	top: 70%; 
+}
+
+#upcoming{
+    /*
+    position: absolute; 
+    */
+	top: 30%; 
 }
