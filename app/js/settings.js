@@ -45,6 +45,8 @@ function updateDesignConfig() {
         chrome.storage.local.set({ design: "tetra" })
     } else if (design == "wool"){
         chrome.storage.local.set({ design: "wool" })
+    } else if (design == "custom"){
+        chrome.storage.local.set({ design: "custom" })
     } else {
         chrome.storage.local.set({ design: "crafty" })
     }
