@@ -1132,7 +1132,7 @@ var highscore = 0 //roxiun add local storage here
                 if (leftrepeat){
                     LRactions.push(DIR.LEFT);
                     console.log("r50")
-                    await new Promise(r => setTimeout(r, 50));
+                    await new Promise(r => setTimeout(r, 40));
                 }else{
                     if (leftthing){
                         console.log("200")
@@ -1205,7 +1205,7 @@ var highscore = 0 //roxiun add local storage here
                 if (rightrepeat){
                     LRactions.push(DIR.RIGHT);
                     console.log("r50")
-                    await new Promise(r => setTimeout(r, 50));
+                    await new Promise(r => setTimeout(r, 40));
                 }else{
                     if (rightthing){
                         await new Promise(r => setTimeout(r, 10));
