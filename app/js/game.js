@@ -28,6 +28,8 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
     function pause(){
         chrome.storage.local.get(["isPaused"], function(pausedvalue) {
             if (!pausedvalue.isPaused){
+                saveSettings();
+                chrome.storage.local.set({ pausedHandler: true })
                 window.location.replace("../html/pause.html");
             } else if (!playing){
                 clearHoldCanvas();
@@ -36,6 +38,7 @@ chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualS
                 html("level", level)
                 enterToPlay("hide")
                 lost = false;
+                chrome.storage.local.set({ pausedHandler: false })
                 chrome.storage.local.set({ isPaused: false })
                 play();
                 handled = true;
