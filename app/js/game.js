@@ -2196,7 +2196,7 @@ var highscore = 0 //roxiun add local storage here
             right=false
             down=false
             pieceinHold=false
-            saveSettings();
+            saveSettings();*/
 
 
           
