@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //#endregion
     chrome.storage.local.get(['nextEnabled', 'design', 'hasBorder', 'holdEnabled', 'sidebarEnabled', 'canvasSize', 'markersEnabled', 'previewEnabled', "autoplayEnabled", "transEnabled"], function(config) {   
         test = config.nextEnabled;
-        option1.text = "Enabled";
+        option1.text = "★ Enabled";
         option1.value = "enabled";
         option2.text = "Disabled";
         option2.value = "disabled";
@@ -210,21 +210,21 @@ document.addEventListener('DOMContentLoaded', function () {
         design2.value = "legends";
         design3.text = "Bold";
         design3.value = "bold";
-        design4.text = "Tetra";
+        design4.text = "★ Tetra";
         design4.value = "tetra";
         design5.text = "Wool";
         design5.value = "wool";
         design6.text = "Crafty";
         design6.value = "crafty";
-        border1.text = "Enabled";
+        border1.text = "★ Enabled";
         border1.value = "enabled";
         border2.text = "Disabled";
         border2.value = "disabled";
-        hold1.text = "Enabled";
+        hold1.text = "★ Enabled";
         hold1.value = "enabled";
         hold2.text = "Disabled";
         hold2.value = "disabled";
-        sidebar1.text = "Enabled";
+        sidebar1.text = "★ Enabled";
         sidebar1.value = "enabled";
         sidebar2.text = "Disabled";
         sidebar2.value = "disabled";
@@ -238,11 +238,11 @@ document.addEventListener('DOMContentLoaded', function () {
         markers1.value = "enabled";
         markers2.text = "Disabled";
         markers2.value = "disabled";
-        preview1.text = "Enabled";
+        preview1.text = "★ Enabled";
         preview1.value = "enabled";
         preview2.text = "Disabled";
         preview2.value = "disabled";
-        autoplay1.text = "Enabled";
+        autoplay1.text = "★ Enabled";
         autoplay1.value = "enabled";
         autoplay2.text = "Disabled";
         autoplay2.value = "disabled";
