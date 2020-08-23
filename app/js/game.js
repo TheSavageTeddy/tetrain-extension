@@ -5,12 +5,37 @@ function mainmenu() {
 function pause() {
     window.location.replace("../html/pause.html");
 }
+async function retrieveSettings(){
+    return new Promise(function(resolve, reject){
+        chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler"], function(options){
+            console.log("====Settings Retrived====")
+            resolve(options);
+        })
+    });
+
+    
+    /*const configOut = await p;
+    return configOut; */
+}
 
 // Put all code in config because async bad
-chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler"], function(value) {
+async function game() {
     //-------------------------------------------------------------------------
     // config stuff
     //---------------------------------------- ---------------------------------
+    var value = await retrieveSettings()
+
+    async function rrs(){
+        var p = new Promise(function(resolve, reject){
+            chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler"], function(options){
+                console.log("====Settings Retrived====")
+                resolve(options);
+            })
+        });
+        value = await p
+        configured_reset = true
+    }
+    
     if (value.design == "clean") {
         var blockStyle = "smooth"
     } else if (value.design == "legends"){
@@ -1381,6 +1406,9 @@ var highscore = 0 //roxiun add local storage here
             right=false
             down=false
             pieceinHold=false
+            var configured_reset = false;
+            rrs();
+
         } else if (value.isPlaying || value.pausedHandler) {
             dt = 0;
             clearActions();
@@ -2237,5 +2265,6 @@ var highscore = 0 //roxiun add local storage here
 
 
 
-});
+}
 
+game();
