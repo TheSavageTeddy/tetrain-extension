@@ -11,10 +11,8 @@ function keydown(ev){
 }
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
-
 
     document.addEventListener('keydown', keydown, false);
 });
