@@ -13,9 +13,6 @@ async function retrieveSettings(){
         })
     });
 
-    
-    /*const configOut = await p;
-    return configOut; */
 }
 
 // Put all code in config because async bad
@@ -47,7 +44,6 @@ async function game() {
     function goBack(){
         chrome.storage.local.set({ pausedHandler: true })
         playing=false
-        //reset()
         mainmenu()
     }
 
@@ -73,7 +69,6 @@ async function game() {
         });
     }
     
-
     document.getElementById('back').addEventListener('click', goBack);
     document.getElementById('pause').addEventListener('click', pause);
 
@@ -155,9 +150,7 @@ async function game() {
     function get(id) {
         return document.getElementById(id);
     }
-
-
-    
+ 
     function hide(id) {
         get(id).style.visibility = 'hidden';
     }
@@ -189,7 +182,6 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function lose(s) {
-
       setVisualScore();
       checkHighScore();
       playing = false;
@@ -201,10 +193,8 @@ var highscore = 0 //roxiun add local storage here
         enterToPlay("lost")
       }else{
         enterToPlay("show");
-      }
-      
-  }
-
+      } 
+    }
 
     function random(min, max) {
         return (min + (Math.random() * (max - min)));
@@ -420,8 +410,6 @@ var highscore = 0 //roxiun add local storage here
 
     const KeysDict = swap(keyCodes)
 
-    console.log(KeysDict[value.KEY_SETTINGS[""]])
-
     var KEY = {
             ESC: 27,
             SPACE: parseInt(KeysDict[value.KEY_SETTINGS["HARD"]]),
@@ -597,7 +585,6 @@ var highscore = 0 //roxiun add local storage here
             
             document.getElementById("classic-container").style.minWidth = "470px";
 
-
             //next canvas
             document.getElementById('upcoming').style.height = '135px';
             document.getElementById('upcoming').style.width = '135px';
@@ -661,8 +648,7 @@ var highscore = 0 //roxiun add local storage here
         document.getElementById('canvas').style.left = "0px";
         document.getElementById('canvas-back').style.position = "absolute"
         document.getElementById('canvas-back').style.top = "0px";
-        document.getElementById('canvas-back').style.left = "0px";
-        
+        document.getElementById('canvas-back').style.left = "0px";   
     }
 
     if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
@@ -854,17 +840,11 @@ var highscore = 0 //roxiun add local storage here
         var last = now = timestamp();
         var alr = true
         html("level", level)
-//
-//
-//
-//
-//
-// main loop of things
-//
-//
-//
-//
-//
+
+//-------------------------------------------------------------------------
+// MAIN LOOP
+//-------------------------------------------------------------------------
+
         function frame() {
             saveSettings()
             now = timestamp();
@@ -876,21 +856,13 @@ var highscore = 0 //roxiun add local storage here
                 draw();
                 checkHighScore()
 
-
-
-
-
                 if (!left){
                     ldelay=0
                 }
                 if (!right){
                     rdelay=0
                 }
-
-
-
-
-                
+   
 
                 ctx.strokeStyle = "#FF0000";
                 ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
@@ -899,8 +871,6 @@ var highscore = 0 //roxiun add local storage here
                 requestAnimationFrame(frame, canvas);
                 draw()
             if (!lost){
-
-            
               if (alr){
                   if (playing){
                       enterToPlay("hide");
@@ -927,7 +897,6 @@ var highscore = 0 //roxiun add local storage here
     function restart(event){
         var x = event.pageX - elemLeft,
             y = event.pageY - elemTop;
-        console.log(x, y);
         elements.forEach(function(element) {
             console.log(elements)
             if (y > element.top && y < element.top + element.height && x > element.left && x < element.left + element.width) {
@@ -948,17 +917,12 @@ var highscore = 0 //roxiun add local storage here
             y2 = event.pageY - elemTop2;
         y2 = y2+200
         x2 = x2-200;
-        console.log(x2, y2);
         elements2.forEach(function(element2) {
-            console.log(elements2)
             if (y2 > element2.top && y2 < element2.top + element2.height && x2 > element2.left && x2 < element2.left + element2.width) {
-                console.log('clicked an element');
-                console.log("pause called");
                 pause();
             }
         });
     }
-
 
     function addEvents() {
         try {
@@ -972,10 +936,7 @@ var highscore = 0 //roxiun add local storage here
         if (!value.sidebarEnabled){
             elem.addEventListener('click', restart, false);
         }
-        //
         window.addEventListener('resize', resize, false);
-
-
     }
 
     function resize(event) {
@@ -990,7 +951,6 @@ var highscore = 0 //roxiun add local storage here
         invalidate();
         invalidateNext();
     }
-
 
     function keydown(ev) {
         var handled = false;
@@ -1111,18 +1071,15 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function keyup(ev) {
-
         switch (ev.keyCode) {
 
             case KEY.LEFT:
                 ldelay=0
                 left = false;
-                console.log(left)
                 break;
             case KEY.RIGHT:
                 rdelay=0
                 right = false;
-                console.log(right)
                 break;
             
             case KEY.DOWN:
@@ -1132,72 +1089,22 @@ var highscore = 0 //roxiun add local storage here
                 break;
             
         }
-        /*
-        
-            //harddrop()
-        if (handled)
-            ev.preventDefault(); // prevent arrow keys from scrolling the page (supported in IE9+ and all other browsers)
-        */
     }
 
     async function leftBetterKey(){
         while (left){
-            /*
-            if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
-                if (ldelay==0){
-                    ldelay = 1
-                    rdelay=0
-                    LRactions.push(DIR.LEFT);
-                    ltimeout=1
-                    await new Promise(r => setTimeout(r, 500));
-                    ltimeout=0
-                    console.log("l1")
-                }else if (ldelay==1){
-                    ldelay = 1
-                    rdelay=0
-                    LRactions.push(DIR.LEFT);
-                    await new Promise(r => setTimeout(r, 80));
-                    console.log("l2")
-                }
-            }else{
-                if (ltimeout==2){
-                    if (unoccupied(current.type, current.x-1, current.y, current.dir) && ltimeout==0&&!right){
-                        if (ldelay==0){
-                            //ldelay = 1
-                            //rdelay=0
-                            LRactions.push(DIR.LEFT);
-                            ltimeout=1
-                            await new Promise(r => setTimeout(r, 500));
-                            ltimeout=0
-                            console.log("l1")
-                        }
-                        }else {
-                        await new Promise(r => setTimeout(r, 40));
-                    }
-                }else{
-                    ltimeout=2
-                    await new Promise(r => setTimeout(r, 40));
-                    ltimeout=0
-                }
-            }
-            */
-            if (!right && unoccupied(current.type, current.x-1, current.y, current.dir)){
-                
-                
+            if (!right && unoccupied(current.type, current.x-1, current.y, current.dir)){        
                 if (leftrepeat){
                     LRactions.push(DIR.LEFT);
-                    console.log("r50")
                     await new Promise(r => setTimeout(r, 50));
                 }else{
                     if (leftthing){
-                        console.log("200")
                         await new Promise(r => setTimeout(r, 10));
 
                     }else{
 
                         leftthing=true
                         LRactions.push(DIR.LEFT);
-                        console.log("200")
                         await new Promise(r => setTimeout(r, 150));
                         leftthing=false
                     }
@@ -1206,60 +1113,14 @@ var highscore = 0 //roxiun add local storage here
                 await new Promise(r => setTimeout(r, 10));
             }
         }
-
     }
     
 
     async function rightBetterKey(){
         while (right){
-            /*
-            if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
-                if (rdelay==0){
-                    rdelay=1
-                    ldelay=0
-                    LRactions.push(DIR.RIGHT);
-                    rtimeout=1
-                    await new Promise(r => setTimeout(r, 500));
-                    rtimeout=0
-                    console.log("r1")
-                }else if (rdelay==1){
-                    rdelay=1
-                    ldelay=0
-                    LRactions.push(DIR.RIGHT);
-                    await new Promise(r => setTimeout(r, 80));
-                    console.log("r2")
-                }
-            }else{
-                if (rtimeout==2){
-                    if (unoccupied(current.type, current.x+1, current.y, current.dir)&&rtimeout==0&&!left){
-                        if (rdelay==0){
-                            //rdelay=1
-                            //ldelay=0
-                            LRactions.push(DIR.RIGHT);
-                            rtimeout=1
-                            await new Promise(r => setTimeout(r, 500));
-                            rtimeout=0
-                            console.log("r1")
-                        }
-                    }else{
-                        await new Promise(r => setTimeout(r, 40));
-                        rtimeout=0
-                    }
-                }else{
-                    rtimeout=2
-                    await new Promise(r => setTimeout(r, 40));
-                    rtimeout=0
-                }
-                
-
-            }
-            */
             if (!left && (unoccupied(current.type, current.x+1, current.y, current.dir))){
-
-
                 if (rightrepeat){
                     LRactions.push(DIR.RIGHT);
-                    console.log("r50")
                     await new Promise(r => setTimeout(r, 50));
                 }else{
                     if (rightthing){
@@ -1267,43 +1128,22 @@ var highscore = 0 //roxiun add local storage here
                     }else{
                         rightthing=true
                         LRactions.push(DIR.RIGHT);
-                        console.log("r200")
                         await new Promise(r => setTimeout(r, 150));
                         rightthing=false
-                    }
-                    
+                    }            
                 }
             }else{
                 await new Promise(r => setTimeout(r, 10));
             }
     }
-}
-
-
+    }
 
 
     async function downBetterKey(){
         while (down){
-
-            /*
-            if (unoccupied(current.type, current.x, current.y+1, current.dir)){
-                LRactions.push(DIR.DOWN);
-                console.log("downbetterkey")
-                await new Promise(r => setTimeout(r, 80));
-            }else{
-                await new Promise(r => setTimeout(r, 80));
-            }
-            */
-
             LRactions.push(DIR.DOWN);
-            console.log("downbetterkey")
             await new Promise(r => setTimeout(r, 80));
-
-
-
-
-
-    }
+        }
     }
 
 
@@ -1322,8 +1162,6 @@ var highscore = 0 //roxiun add local storage here
         });
         chrome.storage.local.set({ pausedHandler: false });
     }
-
-
 
     function setVisualScore(n) {
         vscore = n || score;
@@ -1460,8 +1298,7 @@ var highscore = 0 //roxiun add local storage here
             setNextPiece();
         }
     }
-
-    
+  
     function update(idt) {
         if (playing) {
             setVisualScore(score);
@@ -1471,8 +1308,7 @@ var highscore = 0 //roxiun add local storage here
             if (dt > step) {
                 dt = dt - step;
                 isrotating=false
-                drop();
-                
+                drop();    
             }
         }
     }
@@ -1482,25 +1318,18 @@ var highscore = 0 //roxiun add local storage here
             case DIR.LEFT:
                 if (unoccupied(current.type, current.x-1, current.y, current.dir)){
                     rdelay=0
-                    move(DIR.LEFT);
-
-                    
+                    move(DIR.LEFT);    
                 }
                 break;
             case DIR.RIGHT:
                 if (unoccupied(current.type, current.x+1, current.y, current.dir)){
                     ldelay=0
-                    move(DIR.RIGHT);
-
-                    
+                    move(DIR.RIGHT);     
                 }
                 break;
             case DIR.DOWN:
                 if (unoccupied(current.type, current.x, current.y+1, current.dir)){
-
-                    move(DIR.DOWN);
-
-                    
+                    move(DIR.DOWN);    
                 }
                 break;
         }
@@ -1509,33 +1338,9 @@ var highscore = 0 //roxiun add local storage here
 
     function handle(action) {
         switch (action) {
-            /*
-            case DIR.LEFT:
-                if (unoccupied(current.type, current.x-1, current.y, current.dir)){
-                    rdelay=0
-                    move(DIR.LEFT);
-                    console.log("left")
-                    
-                }
-                break;
-            case DIR.RIGHT:
-                if (unoccupied(current.type, current.x+1, current.y, current.dir)){
-                    ldelay=0
-                    move(DIR.RIGHT);
-                    console.log("right")
-                    
-                }
-                break;
-            */
             case DIR.UP:
                 rotate();
                 break;
-            /*
-            case DIR.DOWN:
-                drop();
-                score = score + 1;
-                break;
-            */
         }
     }
 
@@ -1648,14 +1453,12 @@ var highscore = 0 //roxiun add local storage here
                 rota = true
                 isrotating==true
                 invalidate();
-                console.log("l, x+1")
             }else if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.LEFT)
 
                 rota = true
                 invalidate();
-                console.log("l, x-1")
             }
         }else if (current.type== j){
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
@@ -1665,14 +1468,12 @@ var highscore = 0 //roxiun add local storage here
                 rota = true
                 isrotating==true
                 invalidate();
-                console.log("j, x-1")
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.RIGHT)
 
                 rota = true
                 invalidate();
-                console.log("j, x+1")
             }
         } else if (current.type == t){//both sides need check
             if (unoccupied(current.type, current.x - 1, current.y, newdir)) {
@@ -1698,77 +1499,15 @@ var highscore = 0 //roxiun add local storage here
                 isrotating==true
                 rota = true
                 invalidate();
-                console.log("i, x-1")
             }else if (unoccupied(current.type, current.x + 1, current.y, newdir)) {
                 current.dir = newdir;
                 move(DIR.RIGHT)
                 isrotating==true
                 rota = true
                 invalidate();
-                console.log("i, x+1")
             }
-            /*DOESNT WORK AAAA
-            else if (unoccupied(current.type, current.x+2, current.y, newreversedir)) {
-                current.dir = newdir;
-                move(DIR.RIGHTTWICE)
-                isrotating==true
-                rota = true
-                invalidate();
-
-            }else if (unoccupied(current.type, current.x-2, current.y, newreversedir)) {
-                current.dir = newdir;
-                move(DIR.LEFTTWICE)
-                isrotating==true
-                rota = true
-                invalidate();
-
-            }*/
-            /* DO NOT USE
-            else if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                current.dir = newdir;
-                move(DIR.RIGHT)
-                move(DIR.RIGHT)
-                
-                rota = true
-                invalidate();
-            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
-                current.dir = newdir;
-                move(DIR.LEFT)
-                move(DIR.LEFT)
-                
-                rota = true
-                invalidate();
-            
-            
-            }
-            
-
-            if (unoccupied(current.type, current.x + 2, current.y, newdir)) {
-                current.dir = newdir;
-                move(DIR.RIGHT)
-                move(DIR.RIGHT)
-                
-                
-                rota = true
-                isrotating==true
-                invalidate();
-            }else if (unoccupied(current.type, current.x - 2, current.y, newdir)) {
-                current.dir = newdir;
-                move(DIR.LEFT)
-                move(DIR.LEFT)
-                
-                rota = true
-                isrotating==true
-                invalidate();
-            
-        
-            }
-            */
         }
     }
-
-        
-
 
     function drawNoSidebarScore(){
         if (!value.sidebarEnabled){
@@ -1785,8 +1524,6 @@ var highscore = 0 //roxiun add local storage here
         }
     }
 
-
-    
     function drop() {
         if (!move(DIR.DOWN) && !isrotating) {
             dropPiece();
@@ -1803,7 +1540,6 @@ var highscore = 0 //roxiun add local storage here
 
     function dropPiece() { //not when dropping from top, its when it touches bottom/other pieces
         eachblock(current.type, current.x, current.y, current.dir, function(x, y) {
-
             setBlock(x, y, current.type);
         });
     }
@@ -1836,19 +1572,15 @@ var highscore = 0 //roxiun add local storage here
                 }
             }
             if (rows==0){
-                console.log("a")
             }else{
                 level=Math.floor(rows/10)+1
-                console.log("level:"+level)
                 html("level", level)
             }
         
+        }
     }
-    }
-
 
     function harddrop() {
-
         var x = current.x,
             y = current.y;
         var ii = 0
@@ -2038,23 +1770,6 @@ var highscore = 0 //roxiun add local storage here
 
     function drawNext() {
         if (invalid.next) {
-            /*
-            if (false) {
-                //wont need this
-                if (next.type.size == 2){
-                    var padding = ((next.type.size) / 2)+(2/5);
-
-                }else if (next.type.size == 3){
-                    var padding = 4/5+0.092;
-                }else if (next.type.size == 4){
-                    var padding = 2/5-(0.092);
-                }
-            } else {
-
-
-                
-            }
-            */
             if (next.type.size == 2){
                 var padding = ((next.type.size) / 2)+(2/5);
 
@@ -2089,13 +1804,6 @@ var highscore = 0 //roxiun add local storage here
     function drawHold() {
         if (pieceinHold) {
             try {
-                /*if (value.canvasSize == "small") {
-                    var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
-                } else {
-                    var padding = (nu - next.type.size) / 3;
-                } */
-                //var paddingh = (nu - hold_current.type.size) / 2; // half-arsed attempt at centering hold piece display
-                
                 if (hold_current.type.size == 2){
                     var paddingh = ((hold_current.type.size) / 2)+(2/5);
     
@@ -2105,8 +1813,6 @@ var highscore = 0 //roxiun add local storage here
                     var paddingh = 2/5-(0.092);
                 }
                 
-
-
                 hctx.save();
                 if (blockStyle == "smooth") {
 
@@ -2133,7 +1839,6 @@ var highscore = 0 //roxiun add local storage here
 
     function clearHoldCanvas(){
         if (!pieceinHold || !value.ispieceinHold){
-            console.log("Clearing hold canvas")
             hctx.clearRect(0, 0, hcanvas.width, hcanvas.height);
         }
     }
@@ -2165,7 +1870,6 @@ var highscore = 0 //roxiun add local storage here
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);
         }
-        //ctx.strokeRect(x*dx, y*dy, dx, dy)
     }
 
     function drawGhostBlock(ctx, x, y, color) {
@@ -2176,18 +1880,12 @@ var highscore = 0 //roxiun add local storage here
             ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
             ctx.strokeStyle = "#000000";
         }
-        //ctx.strokeRect(x*dx, y*dy, dx, dy)
     }
 
     //draw the press enter to play
     var lost = false //
     function enterToPlay(t) {
         if (t=="show"){
-            
-            /*console.log(pe)
-            if (peConfigured){
-                ctx.drawImage(pe, canvas.width/4, 200);
-            } */
             ctx.font = "40px Arial";
             ctx.fillStyle = "#FFFFFF";
             ctx.textAlign = "center";
@@ -2209,26 +1907,6 @@ var highscore = 0 //roxiun add local storage here
             ctx.fillText("Enter to", canvas.width/2, 240);
             ctx.fillText("play again", canvas.width/2, 280);
             
-            // clear storage
-            /*dt = 0;
-            canSwap = true;
-            clearActions();
-            clearBlocks();
-            clearRows();
-            clearScore();
-            setCurrentPiece(next);
-            setNextPiece();
-            clearHoldCanvas();
-
-            rdelay=0
-            ldelay=0
-            left=false
-            right=false
-            down=false
-            pieceinHold=false
-            saveSettings();*/
-
-
           
         }else{
           //ctx.clearRect(0, 100, 300, 300);
@@ -2236,12 +1914,6 @@ var highscore = 0 //roxiun add local storage here
           //we dont even need to clear it aaaaa
         }
     }
-
-
-
-
-
-
 
 
 
@@ -2258,7 +1930,6 @@ var highscore = 0 //roxiun add local storage here
         html("level", level)
         enterToPlay("hide")
         lost = false;
-        //chrome.storage.local.set({ isPaused: false })
         play();
         handled = true;
         isr = false;

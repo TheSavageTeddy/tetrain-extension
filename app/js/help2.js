@@ -19,7 +19,6 @@ function frontPage(){
 }
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('back').addEventListener('click', goBack);
 
