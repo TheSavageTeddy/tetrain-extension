@@ -60,6 +60,50 @@ function createExperimentalEnableDisable(select_element, local_name){
         }
     });
 }
+function createMultiOption(select_element, local_name, options){
+    var select_node = document.getElementById(select_element);
+    var options_dict = {}
+    var options_list = []
+    for (const [key, value] of Object.entries(options)) {
+        options_dict[key] = document.createElement("option");
+        options_dict[key].text = key;
+        options_dict[key].value = value;
+    };
+    chrome.storage.local.get([local_name], function(local_config) {  
+        for (const [key, value] of Object.entries(options_dict)) {
+            if (value.value == local_config[local_name]){
+                select_node.appendChild(options_dict[key])
+            } else {
+                options_list.push(options_dict[key]);
+            }
+        } 
+        for (const [key, value] of Object.entries(options_list)) {
+            select_node.appendChild(options_list[key])
+        } 
+    });
+}
+function updateEnableDisableConfig(ev){
+    //select_element, local_name
+    var local_name = config_options[2][ev['path'][0]['id']]
+    var element = document.getElementById(ev['path'][0]['id']).value;
+    if (element == "enabled") {
+        var obj= {};
+        obj[local_name] = true
+        chrome.storage.local.set(obj)
+    } else {
+        var obj= {};
+        obj[local_name] = false
+        chrome.storage.local.set(obj)
+    }
+}
+function updateMultiConfig(ev){
+    //select_element, local_name
+    var local_name = config_options[3][ev['path'][0]['id']]['local']
+    var element = document.getElementById(ev['path'][0]['id']).value;
+    var obj = {};
+    obj[local_name]  = element
+    chrome.storage.local.set(obj)
+}
 
 const config_options = {
     2: { // Enable/Disable Options
@@ -99,11 +143,17 @@ const config_options = {
 
 document.addEventListener('DOMContentLoaded', function () {
     //Create Config
+    for (const [key, value] of Object.entries(config_options[3])) {
+        createMultiOption(key, value['local'], value['options']);
+        document.getElementById(key).addEventListener('change', updateMultiConfig, false);
+    };
     for (const [key, value] of Object.entries(config_options[2])) {
         createEnableDisable(key, value);
+        document.getElementById(key).addEventListener('change', updateEnableDisableConfig, false);
     };
     for (const [key, value] of Object.entries(config_options[4])) {
         createExperimentalEnableDisable(key, value);
+        document.getElementById(key).addEventListener('change', updateEnableDisableConfig, false);
     };
     //Listeners
     document.getElementById('back').addEventListener('click', goBack);
