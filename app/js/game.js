@@ -1043,6 +1043,10 @@ var highscore = 0 //roxiun add local storage here
             
         }
         if (ev.keyCode == KEY.ENTER) {
+            /*if (!value.pausedHandler && !value.isPaused && value.autoplayEnabled){
+                pieceinHold = false
+                chrome.storage.local.set({ ispieceinHold: false});
+            }*/
             clearHoldCanvas();
             show('start');
             level=1
@@ -2163,17 +2167,36 @@ var highscore = 0 //roxiun add local storage here
             rdelay=0
             
         } else if (t == "lost"){
-          lost = true//
-          playing = false
-          isr = true
-          pieceinHold = false
-          chrome.storage.local.set({ ispieceinHold: false});
-          ctx.font = "40px Arial";
-          ctx.fillStyle = "#FFFFFF";
-          ctx.textAlign = "center";
-          ctx.fillText("You died!", canvas.width/2, 200);
-          ctx.fillText("Enter to", canvas.width/2, 240);
-          ctx.fillText("play again", canvas.width/2, 280);
+            lost = true//
+            playing = false
+            isr = true
+            pieceinHold = false
+            chrome.storage.local.set({ ispieceinHold: false});
+            ctx.font = "40px Arial";
+            ctx.fillStyle = "#FFFFFF";
+            ctx.textAlign = "center";
+            ctx.fillText("You died!", canvas.width/2, 200);
+            ctx.fillText("Enter to", canvas.width/2, 240);
+            ctx.fillText("play again", canvas.width/2, 280);
+            
+            // clear storage
+            /*dt = 0;
+            canSwap = true;
+            clearActions();
+            clearBlocks();
+            clearRows();
+            clearScore();
+            setCurrentPiece(next);
+            setNextPiece();
+            clearHoldCanvas();
+
+            rdelay=0
+            ldelay=0
+            left=false
+            right=false
+            down=false
+            pieceinHold=false
+            saveSettings();
 
 
           
