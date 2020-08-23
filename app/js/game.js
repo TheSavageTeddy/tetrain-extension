@@ -1441,6 +1441,7 @@ var highscore = 0 //roxiun add local storage here
             }
             setCurrentPiece(current);
             setNextPiece(next);
+            
 
 
             rdelay=0
