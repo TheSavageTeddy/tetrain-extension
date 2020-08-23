@@ -1432,6 +1432,7 @@ var highscore = 0 //roxiun add local storage here
         }
     }
 
+    
     function update(idt) {
         if (playing) {
             setVisualScore(score);
