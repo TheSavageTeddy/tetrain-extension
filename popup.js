@@ -9,6 +9,11 @@ function classic() {
 
   window.location.replace("app/html/classic.html");
 }
+
+function gamemodes(){
+  window.location.replace("app/html/gamemodes.html");
+}
+
 function settings() {
 
   window.location.replace("app/html/settings.html");
@@ -21,6 +26,8 @@ function help(){
 function credits(){
   window.location.replace("app/html/credits.html");
 }
+
+
 
 function createLocalStorage(){
   chrome.storage.local.set({ 
@@ -68,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   document.getElementById('classic').addEventListener('click', classic);
+  document.getElementById('gamemodes').addEventListener('click', gamemodes);
   document.getElementById('settings').addEventListener('click', settings);
   document.getElementById('help').addEventListener('click', help);
   document.getElementById('credits').addEventListener('click', credits);
