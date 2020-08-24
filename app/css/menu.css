@@ -103,8 +103,6 @@ text-decoration:none;
 
 text-align: center;
 
-min-height:50px;
-min-width:250px;
 
 margin: 10px;
 user-select: none;
@@ -162,4 +160,79 @@ opacity: 1;
 
 #changelog{
     font-size: 13px;
+}
+
+
+
+
+.side-button{
+    /* colors */
+	background-color:#000000;
+	border-radius:4px;
+	border:2px solid #ffffff;
+
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	text-decoration:none;
+
+    text-align: center;
+
+    min-height:50px;
+    min-width:115px;
+
+
+    margin: 10px;
+    user-select: none;
+
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.side-button:hover{
+    /* colors */
+    color: black;
+
+    background-color: white;
+    user-select: none;
+
+    opacity: 1;
+    
+}
+
+
+
+#gamemodes{
+    /* colors */
+background-color:#000000;
+border-radius:4px;
+border:2px solid rgb(71, 169, 255);
+
+cursor:pointer;
+color:rgb(71, 169, 255);
+font-family:Arial;
+font-size:22px;
+text-decoration:none;
+
+text-align: center;
+
+min-height:50px;
+min-width:250px;
+
+margin: 10px;
+user-select: none;
+
+cursor: pointer;
+transition-duration: 200ms;
+}
+
+#gamemodes:hover{
+/* colors */
+color: black;
+
+background-color: rgb(71, 169, 255);
+user-select: none;
+
+opacity: 1;
 }

@@ -1,0 +1,167 @@
+.starting-level-slide-container {
+    width: 100%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #ffffff; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #000000; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #000000; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+
+
+  html{
+    min-height:400px;
+    min-width:300px;
+    background-color: black;
+
+}
+
+.helptext{
+    color:white;
+}
+
+p{
+    color:white;
+}
+
+footer{
+    color:white;
+}
+
+.menu-container{
+    text-align: center;
+    color: white
+}
+
+#title{
+    color:white;
+}
+h1{
+    position: relative;
+    top: 50%;
+    transform: translateY(-40%);
+    color:white;
+}
+
+.back-button{
+    /* colors */
+	background-color:#000000;
+	border-radius:4px;
+	border:2px solid #ffffff;
+
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	text-decoration:none;
+
+    text-align: center;
+
+    min-height:50px;
+    min-width:250px;
+
+    margin: 10px;
+    user-select: none;
+
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.back-button:hover{
+    /* colors */
+    color: black;
+
+    background-color: white;
+    user-select: none;
+
+    opacity: 1;
+    
+}
+
+select{
+    /* colors */
+	background-color:#000000;
+	border-radius:4px;
+	border:2px solid #ffffff;
+
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:18px;
+	text-decoration:none;
+
+    text-align: right;
+
+    min-height:25px;
+    min-width:150px;
+
+    margin: 5px;
+    user-select: none;
+
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.back-button{
+    /* colors */
+	background-color:#000000;
+	border-radius:4px;
+	border:2px solid #ffffff;
+
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	text-decoration:none;
+
+    text-align: center;
+
+    min-height:50px;
+    min-width:250px;
+
+    margin: 10px;
+    user-select: none;
+
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+.back-button:hover{
+    /* colors */
+    color: black;
+
+    background-color: white;
+    user-select: none;
+
+    opacity: 1;
+    
+}
