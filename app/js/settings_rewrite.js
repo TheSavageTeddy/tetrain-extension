@@ -17,6 +17,10 @@ function customKeys(){
     hidemenu()
     window.location.replace("../html/customkeys.html");
 }
+function customTextures(){
+    hidemenu()
+    window.location.replace("../html/custom_textures.html");
+}
 
 function createEnableDisable(select_element, local_name){
     var select_node = document.getElementById(select_element);
@@ -158,5 +162,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //Listeners
     document.getElementById('back').addEventListener('click', goBack);
     document.getElementById('custom-keys').addEventListener('click', customKeys);
+    document.getElementById('custom-textures').addEventListener('click', customTextures);
     document.addEventListener('keydown', keydown, false);
 });

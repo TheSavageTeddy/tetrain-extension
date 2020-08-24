@@ -41,5 +41,3 @@
 * Multiple next block options
 * ✓ Better key input detection
   * See https://stackoverflow.com/questions/29118791/how-to-move-an-element-via-arrow-keys-continuously-smoothly
-
-
