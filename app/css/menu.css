@@ -163,3 +163,19 @@ opacity: 1;
 #changelog{
     font-size: 13px;
 }
+
+/*
+code from https://codepen.io/neogomo/pen/BjqJzr
+thanks to them :)
+*/
+
+.tooltip.fade:after,
+.tooltip.fade:before {
+  transform: translate3d(0,-10px,0);
+  transition: all .15s ease-in-out;
+}
+.tooltip.fade:hover:after,
+.tooltip.fade:hover:before {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
