@@ -434,7 +434,7 @@ var highscore = 0 //roxiun add local storage here
             start: 0.8,
             decrement: 0.005,
             min: 0.1,
-            increase: 0.07
+            increase: 0.05
         }, // how long before piece drops by 1 row (seconds)
         nx = 10, // width of tetris court (in blocks)
         ny = 20, // height of tetris court (in blocks)
