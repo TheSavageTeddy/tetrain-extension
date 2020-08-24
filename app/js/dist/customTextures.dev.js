@@ -18,6 +18,9 @@ function handleFileSelect(evt) {
   reader.onload = function (theFile) {
     return function (e) {
       console.log(e.target.result);
+      chrome.storage.local.set({
+        iPiece: e.target.result
+      });
       document.getElementById('list').innerHTML = ['<img src="', e.target.result, '" title="', theFile.name, '" width="50" />'].join('');
     };
   }(f);
@@ -26,6 +29,11 @@ function handleFileSelect(evt) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  chrome.storage.local.get(['iPiece'], function (config) {
+    if (typeof config.iPiece !== 'undefined') {
+      document.getElementById('list').innerHTML = ['<img src="', config.iPiece, '" width="50" />'].join('');
+    }
+  });
   document.getElementById('back').addEventListener('click', goBack);
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 });

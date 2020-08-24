@@ -8,14 +8,14 @@
 * Add 'modern' mode (or call it normal mode)
   * Can 'roll' blocks across ground
 
-### Release v1.02
+### ✓ Release v1.02
 * ✓ Fix hold after dying/restarting bug
 * ✓ Soft drop smooth key
 * ✓ Left Right smooth key
 * ✓ Changelog added
 * ✓ Pause bugs fixed
 * ✓ Pause and go back button
-* **PUBLISH THE UPDATE**
+* ✓ **PUBLISH THE UPDATE**
 
 
 ### ✓ First release! (v1.01)
