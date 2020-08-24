@@ -436,7 +436,6 @@ var highscore = 0 //roxiun add local storage here
             min: 0.1,
             increase: 0.05
         }, // how long before piece drops by 1 row (seconds)
-        level = 1,
         nx = 10, // width of tetris court (in blocks)
         ny = 20, // height of tetris court (in blocks)
         nu = 5; // width/height of upcoming preview (in blocks)
@@ -510,6 +509,8 @@ var highscore = 0 //roxiun add local storage here
         rota = false,
         rdelay = 0,
         ldelay = 0,
+
+        level = 1,
         
         rtimeout=0,
         ltimeout=0,
@@ -1926,8 +1927,9 @@ var highscore = 0 //roxiun add local storage here
 
     if (value.autoplayEnabled && !value.isPaused){
         show('start');
-        level=1
+        level=Math.floor(rows/10)+1
         html("level", level)
+
         enterToPlay("hide")
         lost = false;
         play();
