@@ -25,11 +25,17 @@ footer{
 #title{
     color:white;
 }
+
 h1{
     position: relative;
     top: 50%;
     transform: translateY(-40%);
     color:white;
+}
+
+h2{
+    position: absolute;
+    color: rgb(255, 0, 0);
 }
 
 .back-button{
