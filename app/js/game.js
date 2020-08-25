@@ -71,8 +71,26 @@ async function game() {
     
     document.getElementById('back').addEventListener('click', goBack);
     document.getElementById('pause').addEventListener('click', pause);
+    document.getElementById('restart').addEventListener('click', restartbutton);
 
     html("high-score", value.savedHighScore)
+
+    function restartbutton(){
+        chrome.storage.local.set({ isPaused: false });
+        chrome.storage.local.set({ pausedHandler: false });
+        enterToPlay("hide")
+        clearHoldCanvas();
+        show('start');
+        level=1
+        html("level", level)
+
+        lost = false;
+
+        play();
+        handled = true;
+        isr = false;
+    }
+
     function saveSettings() {
         if (playing) {
             chrome.storage.local.set({
