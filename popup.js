@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('settings').addEventListener('click', settings);
   document.getElementById('help').addEventListener('click', help);
   document.getElementById('credits').addEventListener('click', credits);
-  chrome.storage.local.get(['isPlaying', ''], function(config) {
-    if (config.isPlaying){
+  chrome.storage.local.get(['isPlaying', 'isPaused'], function(config) {
+    if (config.isPlaying && !config.isPaused){
       console.log("Game Detected")
       classic()
     }
