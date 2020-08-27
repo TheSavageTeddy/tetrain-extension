@@ -165,3 +165,39 @@ select{
     opacity: 1;
     
 }
+
+
+
+#classic{
+    /* colors */
+background-color:#000000;
+border-radius:4px;
+border:2px solid rgb(21, 255, 0);
+
+cursor:pointer;
+color:rgb(21, 255, 0);
+font-family:Arial;
+font-size:22px;
+text-decoration:none;
+
+text-align: center;
+
+min-height:50px;
+min-width:250px;
+
+margin: 10px;
+user-select: none;
+
+cursor: pointer;
+transition-duration: 200ms;
+}
+
+#classic:hover{
+/* colors */
+color: black;
+
+background-color: rgb(21, 255, 0);
+user-select: none;
+
+opacity: 1;
+}
