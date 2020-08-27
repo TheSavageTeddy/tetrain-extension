@@ -527,7 +527,7 @@ var highscore = 0 //roxiun add local storage here
         rota = false,
         rdelay = 0,
         ldelay = 0,
-
+        movementSpeed = 50, //roxiun add local storage setting to change it (options: 50,40,30)
         level = 1,
         
         rtimeout=0,
@@ -1115,7 +1115,7 @@ var highscore = 0 //roxiun add local storage here
             if (!right && unoccupied(current.type, current.x-1, current.y, current.dir)){        
                 if (leftrepeat){
                     LRactions.push(DIR.LEFT);
-                    await new Promise(r => setTimeout(r, 50));
+                    await new Promise(r => setTimeout(r, movementSpeed));
                 }else{
                     if (leftthing){
                         await new Promise(r => setTimeout(r, 10));
@@ -1140,7 +1140,7 @@ var highscore = 0 //roxiun add local storage here
             if (!left && (unoccupied(current.type, current.x+1, current.y, current.dir))){
                 if (rightrepeat){
                     LRactions.push(DIR.RIGHT);
-                    await new Promise(r => setTimeout(r, 50));
+                    await new Promise(r => setTimeout(r, movementSpeed));
                 }else{
                     if (rightthing){
                         await new Promise(r => setTimeout(r, 10));
@@ -1161,7 +1161,7 @@ var highscore = 0 //roxiun add local storage here
     async function downBetterKey(){
         while (down){
             LRactions.push(DIR.DOWN);
-            await new Promise(r => setTimeout(r, 80));
+            await new Promise(r => setTimeout(r, movementSpeed+30));
         }
     }
 
