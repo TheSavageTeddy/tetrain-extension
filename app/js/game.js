@@ -1229,7 +1229,11 @@ var highscore = 0 //roxiun add local storage here
 
     function setRows(n) {
         rows = n;
-        step = Math.max(speed.min, speed.start - (speed.increase*level));
+        if (speed.start - (speed.increase*level)<0.001){
+            step = Math.max(speed.min, speed.start - (speed.start+0.01));
+        }else{
+            step = Math.max(speed.min, speed.start - (speed.increase*level));
+        }
 
         invalidateRows();
     }
