@@ -1928,11 +1928,17 @@ var highscore = 0 //roxiun add local storage here
     var lost = false //
     function enterToPlay(t) {
         if (t=="show"){
-            ctx.font = "40px Arial";
+            ctx.font = "40px Monospace";
             ctx.fillStyle = "#FFFFFF";
             ctx.textAlign = "center";
             ctx.fillText("Enter", canvas.width/2, 200);
             ctx.fillText("to play", canvas.width/2, 240);
+
+            ctx.font = "40px Monospace";
+            ctx.fillStyle = "#000000";
+            ctx.textAlign = "center";
+            ctx.strokeText("Enter", canvas.width/2-3, 200);
+            ctx.strokeText("to play", canvas.width/2-3, 240);
             ldelay=0
             rdelay=0
             
@@ -1942,12 +1948,20 @@ var highscore = 0 //roxiun add local storage here
             isr = true
             pieceinHold = false
             chrome.storage.local.set({ ispieceinHold: false});
-            ctx.font = "40px Arial";
-            ctx.fillStyle = "#FFFFFF";
+            ctx.font = "40px Monospace";
+            ctx.fillStyle = "#ffffff";
             ctx.textAlign = "center";
             ctx.fillText("You died!", canvas.width/2, 200);
             ctx.fillText("Enter to", canvas.width/2, 240);
             ctx.fillText("play again", canvas.width/2, 280);
+
+            ctx.font = "Monospace";
+            ctx.fillStyle = "#000000";
+            ctx.textAlign = "center";
+            ctx.strokeText("You died!", canvas.width/2, 200);
+            ctx.strokeText("Enter to", canvas.width/2, 240);
+            ctx.strokeText("play again", canvas.width/2, 280);
+
             
           
         }else{
