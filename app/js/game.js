@@ -76,6 +76,18 @@ async function game() {
     html("high-score", value.savedHighScore)
 
     function restartbutton(){
+        
+        window.location.replace("../../popup.html");
+        window.location.replace("../html/classic.html");
+
+        setVisualScore();
+        checkHighScore();
+        playing = false;
+        chrome.storage.local.set({
+            isPlaying: false
+        });
+
+
         chrome.storage.local.set({ isPaused: false });
         chrome.storage.local.set({ pausedHandler: false });
         enterToPlay("hide")
@@ -96,6 +108,7 @@ async function game() {
             chrome.storage.local.set({
                 isPlaying: true
             });
+            drawHold()
         } else { // Set if game running or not
             chrome.storage.local.set({
                 isPlaying: false
