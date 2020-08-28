@@ -109,6 +109,7 @@ async function game() {
                 isPlaying: true
             });
             drawHold()
+            html("level", level)
         } else { // Set if game running or not
             chrome.storage.local.set({
                 isPlaying: false
