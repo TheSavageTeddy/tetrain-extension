@@ -137,6 +137,14 @@ const config_options = {
                 'Medium':'medium',
                 'Small':'small'
             }
+        },
+        'key-speed':{
+            'local':'movementSpeed',
+            'options':{
+                'Normal':'normal',
+                'Faster':'faster',
+                'Even Faster':'even-faster'
+            }
         }
     } ,
     4:{// Experimental Options
