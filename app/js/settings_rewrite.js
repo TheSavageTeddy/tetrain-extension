@@ -143,7 +143,7 @@ const config_options = {
             'options':{
                 'Normal':'normal',
                 'Faster':'faster',
-                'Even Faster':'even-faster'
+                'Even Faster':'evenfaster'
             }
         }
     } ,
