@@ -1217,7 +1217,14 @@ var highscore = 0 //roxiun add local storage here
 //error found here propety 7 0
 
     function clearRows() {
-        setRows(0);
+        //for(i=0; i<10; i++){
+            try{
+                setRows(0);
+                //break;
+            }catch(e){
+                console.log(e)
+            }
+        //}
     }
 
     function setRows(n) {
