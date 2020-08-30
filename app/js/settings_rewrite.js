@@ -138,8 +138,8 @@ const config_options = {
                 'Small':'small'
             }
         },
-        'key-speed':{
-            'local':'movementSpeed',
+        'piecespeed':{
+            'local':'keyspeed',
             'options':{
                 'Normal':'normal',
                 'Faster':'faster',

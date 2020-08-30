@@ -7,7 +7,7 @@ function pause() {
 }
 async function retrieveSettings(){
     return new Promise(function(resolve, reject){
-        chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler"], function(options){
+        chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler", "keyspeed"], function(options){
             console.log("====Settings Retrived====")
             resolve(options);
         })
@@ -24,7 +24,7 @@ async function game() {
 
     async function rrs(){
         var p = new Promise(function(resolve, reject){
-            chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler", "movementSpeed"], function(options){
+            chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler", "keyspeed"], function(options){
                 console.log("====Settings Retrived====")
                 resolve(options);
             })
@@ -33,12 +33,18 @@ async function game() {
         configured_reset = true
     }
 
-    if (value.movementSpeed == "normal"){
+    if (value.keyspeed == "normal"){
         var movementSpeed = 50
-    }else if (value.movementSpeed == "faster"){
+        console.log("normal speed")
+    }else if (value.keyspeed == "faster"){
         var movementSpeed = 40
-    }else if (value.movementSpeed == "evenfaster"){
+        console.log("faster speed")
+    }else if (value.keyspeed == "evenfaster"){
         var movementSpeed = 30
+        console.log("evenfaster speed")
+    }else{
+        console.log("error speed what the frick")
+        console.log(value.keyspeed)
     }
     
     if (value.design == "clean") {
@@ -549,7 +555,7 @@ var highscore = 0 //roxiun add local storage here
         rota = false,
         rdelay = 0,
         ldelay = 0,
-        movementSpeed = 50, //roxiun add local storage setting to change it (options: 50,40,30)
+        
         level = 1,
         
         rtimeout=0,
