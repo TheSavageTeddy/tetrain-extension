@@ -7,6 +7,12 @@
 
 * Add 'modern' mode (or call it normal mode)
   * Can 'roll' blocks across ground
+  
+### Release v2.01
+* ✓ movement speed setting
+* FIX THE VERY BAD BUG THING @ROXIUN
+* gamemodes - choose starting level
+* **PUBLISH THE UPDATE**
 
 ### ✓ Release v1.02
 * ✓ Fix hold after dying/restarting bug
