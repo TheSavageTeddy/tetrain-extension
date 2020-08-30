@@ -1328,6 +1328,9 @@ var highscore = 0 //roxiun add local storage here
             
 
 
+
+
+            
             rdelay=0
             ldelay=0
             left=false
