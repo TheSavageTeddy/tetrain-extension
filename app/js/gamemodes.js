@@ -21,13 +21,13 @@ function changeHTML(id, text){
 
 function practiceOver(){
     isPracticeHover = true
-    changeHTML("infotext", "Keep playing!<br>The blocks don't speed up!<br>")
+    changeHTML("infotext", "Keep playing!<br>The blocks don't speed up<br><i>Highscores are disabled</i>")
     
 }
 
 function practiceOut(){
     isPracticeHover = false
-    changeHTML("infotext", "<br><br>")
+    changeHTML("infotext", "<br><br><br>")
 }
 
 var isPracticeHover = false;
