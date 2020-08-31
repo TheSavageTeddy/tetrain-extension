@@ -141,9 +141,9 @@ const config_options = {
         'piecespeed':{
             'local':'keyspeed',
             'options':{
-                'Normal':'normal',
-                'Faster':'faster',
-                'Even Faster':'evenfaster'
+                'Normal (50)':'normal',
+                'Faster (40)':'faster',
+                'Even Faster (30)':'evenfaster'
             }
         }
     } ,
