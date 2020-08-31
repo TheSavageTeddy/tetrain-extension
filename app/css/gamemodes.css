@@ -241,13 +241,19 @@ https://cssgradient.io/
     cursor: pointer;
     transition-duration: 200ms;
     }
+
+#practice:hover{
+    /* colors */
+    color: black;
     
-#practice:hover ~ #infotext{
-/* colors */
-color: black;
+    background-color: rgb(45, 255, 164);
+    user-select: none;
+    
+    opacity: 1;
+}
+    
+#practice:hover ~ #infocontainer{
 
-background-color: rgb(45, 255, 164);
-user-select: none;
+    color: black;
 
-opacity: 1;
 }
