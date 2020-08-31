@@ -39,9 +39,10 @@
 
 
 
-  html{
-    min-height:400px;
-    min-width:300px;
+html{
+    height:400px;
+    width:290px;
+
     background-color: black;
 
 }
