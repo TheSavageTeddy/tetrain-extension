@@ -18,7 +18,6 @@ function changeHTML(id, text){
     document.getElementById(id).innerHTML = text
 }
 
-
 function practiceOver(){
     changeHTML("infotext", "Keep playing!<br>The blocks don't speed up<br><i>Highscores disabled</i>")
 }
