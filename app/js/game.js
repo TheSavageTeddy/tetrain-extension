@@ -24,7 +24,36 @@ async function game() {
 
     async function rrs(){
         var p = new Promise(function(resolve, reject){
-            chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler", "keyspeed"], function(options){
+            chrome.storage.local.get(["design", 
+            "isPlaying", 
+            "grid", 
+            "clearedRows", 
+            "visualScore", 
+            "currentScore", 
+            "nextPiece", 
+            "timeSinceStart", 
+            "currentPiece", 
+            "hasLost", 
+            "ispieceinHold", 
+            "currentHold", 
+            "isabletoSwap", 
+            "hasBorder", 
+            "nextEnabled", 
+            "holdEnabled", 
+            "sidebarEnabled", 
+            "canvasSize", 
+            "markersEnabled", 
+            "savedHighScore", 
+            "previewEnabled", 
+            "KEY_SETTINGS", 
+            "transEnabled", 
+            "autoplayEnabled", 
+            "currentLevel", 
+            "isPaused", 
+            "pausedHandler", 
+            "keyspeed"
+        ], function(options){
+            
                 console.log("====Settings Retrived====")
                 resolve(options);
             })
