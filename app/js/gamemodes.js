@@ -14,11 +14,22 @@ function getHTML(id){
     return document.getElementById(id)
 }
 
-
-function practiceOver(){
-    
+function changeHTML(id, text){
+    document.getElementById(id).innerHTML = text
 }
 
+
+function practiceOver(){
+    isPracticeHover = true
+    changeHTML("infotext", "eheuee")
+}
+
+function practiceOut(){
+    isPracticeHover = false
+    changeHTML("infotext", ".<br>.<br>.")
+}
+
+var isPracticeHover = false;
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -31,4 +42,5 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log(practice)
 
     practice.addEventListener("mouseover", practiceOver);
+    practice.addEventListener("mouseout", practiceOut);
 });
