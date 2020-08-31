@@ -20,17 +20,22 @@ function changeHTML(id, text){
 
 
 function practiceOver(){
-    isPracticeHover = true
-    changeHTML("infotext", "Keep playing!<br>The blocks don't speed up<br><i>Highscores are disabled</i>")
-    
+    changeHTML("infotext", "Keep playing!<br>The blocks don't speed up<br><i>Highscores disabled</i>")
 }
 
 function practiceOut(){
-    isPracticeHover = false
     changeHTML("infotext", "<br><br><br>")
 }
 
-var isPracticeHover = false;
+function classicOver(){
+    changeHTML("infotext", "The classic block game, with<br>levels!<br><br>")
+}
+
+function classicOut(){
+    changeHTML("infotext", "<br><br><br>")
+}
+
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -40,8 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     var practice = getHTML("practice")
-    console.log(practice)
+    var classic = getHTML("classic")
 
     practice.addEventListener("mouseover", practiceOver);
     practice.addEventListener("mouseout", practiceOut);
+
+    classic.addEventListener("mouseover", classicOver);
+    classic.addEventListener("mouseout", classicOut);
 });
