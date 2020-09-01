@@ -1,3 +1,5 @@
+
+
 function goBack(){
     window.location.replace("../../popup.html");
 }
@@ -34,14 +36,19 @@ function classicOut(){
     changeHTML("infotext", "<br><br><br>")
 }
 
-
-
+function classicGame(){
+    var startlevel = getHTML("myRange").value
+    console.log(startlevel)
+    chrome.storage.local.set({ startinglevel: startlevel})
+    console.log(chrome.storage.local.get(["startinglevel"]))
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('back').addEventListener('click', goBack);
+    getHTML("back").addEventListener('click', goBack);
+
+    getHTML("classic").addEventListener('click', classicGame);
 
     document.addEventListener('keydown', keydown, false);
-
 
     var practice = getHTML("practice")
     var classic = getHTML("classic")
