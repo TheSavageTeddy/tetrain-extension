@@ -1267,6 +1267,7 @@ var highscore = 0 //roxiun add local storage here
                 //break;
             }catch(e){
                 console.log(e)
+                restart()
             }
         //}
     }

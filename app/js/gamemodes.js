@@ -36,6 +36,14 @@ function classicOut(){
     changeHTML("infotext", "<br><br><br>")
 }
 
+function lvlOver(){
+    changeHTML("infotext", "The classic block game, with<br>levels!<br><br>")
+}
+
+function lvlOut(){
+    changeHTML("infotext", "<br><br><br>")
+}
+
 function classicGame(){
     var startlevel = getHTML("myRange").value
     console.log(startlevel)
@@ -52,10 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var practice = getHTML("practice")
     var classic = getHTML("classic")
+    var startlevelelement = getHTML("myRange")
 
     practice.addEventListener("mouseover", practiceOver);
     practice.addEventListener("mouseout", practiceOut);
 
     classic.addEventListener("mouseover", classicOver);
     classic.addEventListener("mouseout", classicOut);
+
+    startlevelelement.addEventListener("mouseover", lvlOver);
+    startlevelelement.addEventListener("mouseout", lvlOut);
 });
