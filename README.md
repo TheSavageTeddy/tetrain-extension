@@ -11,6 +11,7 @@
 ### Release v2.01
 * ✓ movement speed setting
 * FIX THE VERY BAD BUG THING @ROXIUN
+* ✓ gamemodes page
 * gamemodes - choose starting level
 * **PUBLISH THE UPDATE**
 
