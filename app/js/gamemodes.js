@@ -37,7 +37,7 @@ function classicOut(){
 }
 
 function lvlOver(){
-    changeHTML("infotext", "The classic block game, with<br>levels!<br><br>")
+    changeHTML("infotext", "Change the level the<br>game starts on!<br><br>")
 }
 
 function lvlOut(){
