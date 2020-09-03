@@ -923,7 +923,8 @@ var highscore = 0 //roxiun add local storage here
 //-------------------------------------------------------------------------
 
         function frame() {
-            saveSettings()
+            //saveSettings() 
+            //removed due to laggy
             now = timestamp();
             if (rota){
                 rota = false
@@ -1169,6 +1170,7 @@ var highscore = 0 //roxiun add local storage here
     }
 
     async function leftBetterKey(){
+        
         while (left){
             if (!right && unoccupied(current.type, current.x-1, current.y, current.dir)){        
                 if (leftrepeat){
@@ -1274,6 +1276,7 @@ var highscore = 0 //roxiun add local storage here
 
     function setRows(n) {
         rows = n;
+
         if (speed.start - (speed.increase*level)<0.001){
             step = Math.max(speed.min, speed.start - (speed.start+0.01));
         }else{
@@ -1400,6 +1403,7 @@ var highscore = 0 //roxiun add local storage here
             LRhandle(LRactions.shift());
             dt = dt + idt;
             if (dt > step) {
+                saveSettings()
                 dt = dt - step;
                 isrotating=false
                 drop();    
@@ -1414,17 +1418,20 @@ var highscore = 0 //roxiun add local storage here
                     rdelay=0
                     move(DIR.LEFT);    
                 }
+                saveSettings()
                 break;
             case DIR.RIGHT:
                 if (unoccupied(current.type, current.x+1, current.y, current.dir)){
                     ldelay=0
                     move(DIR.RIGHT);     
                 }
+                saveSettings()
                 break;
             case DIR.DOWN:
                 if (unoccupied(current.type, current.x, current.y+1, current.dir)){
                     move(DIR.DOWN);    
                 }
+                saveSettings()
                 break;
         }
     }
@@ -1434,6 +1441,7 @@ var highscore = 0 //roxiun add local storage here
         switch (action) {
             case DIR.UP:
                 rotate();
+                saveSettings()
                 break;
         }
     }
