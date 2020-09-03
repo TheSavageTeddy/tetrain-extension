@@ -113,6 +113,11 @@ async function game() {
         });
     }
     
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
     document.getElementById('back').addEventListener('click', goBack);
     document.getElementById('pause').addEventListener('click', pause);
     document.getElementById('restart').addEventListener('click', restartbutton);
@@ -1265,10 +1270,16 @@ var highscore = 0 //roxiun add local storage here
     function clearRows() {
         //for(i=0; i<10; i++){
             try{
+                
                 setRows(0);
                 //break;
             }catch(e){
                 console.log(e)
+
+                //(disabled) sets score to error message, waits 2000ms
+                //document.getElementById("score").innerHTML="AN ERROR HAS OCCURED: RESTARTING GAME, YOUR GAME WILL NOT BE SAVED, BUT HIGHSCORE WILL"
+                //sleep(2000)
+
                 //basically presses q
                 lose("kys")
                 mainmenu()
