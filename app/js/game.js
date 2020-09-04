@@ -1698,6 +1698,7 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function flashcourt(){
+        saveSettings()
         if (blindflashcount>0){
             blindflash=true
             blindflashcount=blindflashcount-1
