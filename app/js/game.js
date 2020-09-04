@@ -1043,7 +1043,9 @@ var highscore = 0 //roxiun add local storage here
         var handled = false;
         switch (ev.keyCode) {
             case KEY.F:
-                flashcourt()
+                if (blindmode){
+                    flashcourt()
+                }
                 break;
             case KEY.SPACE:
                 if (playing==true){
