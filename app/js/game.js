@@ -637,7 +637,7 @@ var highscore = 0 //roxiun add local storage here
         
         level = 1,
 
-        blindmode=true,//blind tetris, set to true to enable. add gamemode setting for it later
+        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
         blindflash=false,//is it currently showing whole field
         blindflashcount=3,//amount of flashes available
 
