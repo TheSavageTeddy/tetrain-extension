@@ -252,14 +252,18 @@ async function game() {
 var highscore = 0 //roxiun add local storage here
 
     function checkHighScore(){
-        if (score>highscore && !blindmode){
-            highscore = score
-            if (value.savedHighScore>highscore) {
-                highscore = value.savedHighScore
-            } else {
-                chrome.storage.local.set({ savedHighScore: highscore })
+        if (!blindmode){
+            if (score>highscore){
+                highscore = score
+                if (value.savedHighScore>highscore) {
+                    highscore = value.savedHighScore
+                } else {
+                    chrome.storage.local.set({ savedHighScore: highscore })
+                }
+                html("high-score", highscore)
             }
-            html("high-score", highscore)
+        }else{
+            html("high-score", "Flashes left: "+blindflashcount)
         }
     }
 
