@@ -121,8 +121,9 @@ async function game() {
     document.getElementById('back').addEventListener('click', goBack);
     document.getElementById('pause').addEventListener('click', pause);
     document.getElementById('restart').addEventListener('click', restartbutton);
-
-    html("high-score", value.savedHighScore)
+    if (!blindmode){
+        html("high-score", value.savedHighScore)
+    }
 
     function restartbutton(){
         
@@ -251,7 +252,7 @@ async function game() {
 var highscore = 0 //roxiun add local storage here
 
     function checkHighScore(){
-        if (score>highscore){
+        if (score>highscore && !blindmode){
             highscore = score
             if (value.savedHighScore>highscore) {
                 highscore = value.savedHighScore
@@ -1658,6 +1659,10 @@ var highscore = 0 //roxiun add local storage here
             //do something
         }
         
+    }
+
+    function drawflashcount(){
+
     }
 
     function drop() {
