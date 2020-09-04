@@ -946,7 +946,7 @@ var highscore = 0 //roxiun add local storage here
                     rdelay=0
                 }
    
-
+                
                 ctx.strokeStyle = "#FF0000";
                 ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
                 ctx.strokeStyle = "#000000";
@@ -1410,6 +1410,8 @@ var highscore = 0 //roxiun add local storage here
     }
   
     function update(idt) {
+        //transform(m11, m12, m21, m22, dx, dy)
+        //ctx.transform(1, 1, -1, 1, 0, 0);
         if (playing) {
             setVisualScore(score);
             handle(actions.shift());
