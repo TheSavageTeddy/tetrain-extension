@@ -594,6 +594,8 @@ var highscore = 0 //roxiun add local storage here
         
         level = 1,
         blindmode=false,//blind tetris
+        blindflash=false,
+        blindflashcount=3,
 
         rtimeout=0,
         ltimeout=0,
@@ -1040,7 +1042,9 @@ var highscore = 0 //roxiun add local storage here
     function keydown(ev) {
         var handled = false;
         switch (ev.keyCode) {
-            
+            case KEY.F:
+                flashcourt()
+                break;
             case KEY.SPACE:
                 if (playing==true){
                     harddrop()
@@ -1643,8 +1647,14 @@ var highscore = 0 //roxiun add local storage here
         }
     }
 
+    function flashcourt(){
+        blindflash=true
+        blindflashcount=blindflashcount-1
+    }
+
     function drop() {
         if (!move(DIR.DOWN) && !isrotating) {
+            blindflash=false
             dropPiece();
             removeLines();
             setCurrentPiece(next);
@@ -1884,6 +1894,8 @@ var highscore = 0 //roxiun add local storage here
                 for (x = 0; x < nx; x++) {
                     if (block = getBlock(x, y)){
                         if (!blindmode){
+                            drawBlock(ctx, x, y, block.color);
+                        }else if (blindflash){
                             drawBlock(ctx, x, y, block.color);
                         }
                     }
