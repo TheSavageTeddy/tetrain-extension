@@ -122,7 +122,7 @@ async function game() {
     document.getElementById('pause').addEventListener('click', pause);
     document.getElementById('restart').addEventListener('click', restartbutton);
     if (!blindmode){
-        html("high-score", value.savedHighScore)
+        html("high-score", "Highscore: "+value.savedHighScore)
     }
 
     function restartbutton(){
