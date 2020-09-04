@@ -1651,8 +1651,13 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function flashcourt(){
-        blindflash=true
-        blindflashcount=blindflashcount-1
+        if (blindflashcount>0){
+            blindflash=true
+            blindflashcount=blindflashcount-1
+        }else{
+            //do something
+        }
+        
     }
 
     function drop() {
