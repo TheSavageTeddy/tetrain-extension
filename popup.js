@@ -1,4 +1,10 @@
+function getHTML(id){
+  return document.getElementById(id)
+}
 
+function changeHTML(id, text){
+  document.getElementById(id).innerHTML = text
+}
 
 function hidemenu(){ //this function in unnessasary, keep it just in case
   m = document.getElementById("menu-items")
@@ -27,7 +33,13 @@ function credits(){
   window.location.replace("app/html/credits.html");
 }
 
+function classicover(){
+  //changeHTML("classic", "Play")
+}
 
+function classicout(){
+  //changeHTML("classic", "Play")
+}
 
 function createLocalStorage(){
   chrome.storage.local.set({ 
@@ -74,11 +86,32 @@ document.addEventListener('DOMContentLoaded', function () {
       chrome.tabs.create({url: chrome.extension.getURL('app/html/release.html')});
     }
   });
+  //click
   document.getElementById('classic').addEventListener('click', classic);
   document.getElementById('gamemodes').addEventListener('click', gamemodes);
   document.getElementById('settings').addEventListener('click', settings);
   document.getElementById('help').addEventListener('click', help);
   document.getElementById('credits').addEventListener('click', credits);
+  //mouseover
+  document.getElementById('classic').addEventListener('mouseover', classicover);
+  /*
+  document.getElementById('gamemodes').addEventListener('mouseover', gamemodesover);
+  document.getElementById('settings').addEventListener('mouseover', settingsover);
+  document.getElementById('help').addEventListener('mouseover', helpover);
+  document.getElementById('credits').addEventListener('mouseover', creditsover);
+  */
+  //mouseout
+  
+  document.getElementById('classic').addEventListener('mouseout', classicout);
+  /*
+  document.getElementById('gamemodes').addEventListener('mouseout', gamemodesout);
+  document.getElementById('settings').addEventListener('mouseout', settingsout);
+  document.getElementById('help').addEventListener('mouseout', helpout);
+  document.getElementById('credits').addEventListener('mouseout', creditsout);
+  */
+
+
+
   chrome.storage.local.get(['isPlaying', 'isPaused'], function(config) {
     if (config.isPlaying && !config.isPaused){
       console.log("Game Detected")
