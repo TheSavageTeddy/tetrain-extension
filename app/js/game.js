@@ -593,9 +593,10 @@ var highscore = 0 //roxiun add local storage here
         ldelay = 0,
         
         level = 1,
+
         blindmode=false,//blind tetris
-        blindflash=false,
-        blindflashcount=3,
+        blindflash=false,//is it currently showing whole field
+        blindflashcount=3,//amount of flashes available
 
         rtimeout=0,
         ltimeout=0,
