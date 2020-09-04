@@ -7,7 +7,37 @@ function pause() {
 }
 async function retrieveSettings(){
     return new Promise(function(resolve, reject){
-        chrome.storage.local.get(["design", "isPlaying", "grid", "clearedRows", "visualScore", "currentScore", "nextPiece", "timeSinceStart", "currentPiece", "hasLost", "ispieceinHold", "currentHold", "isabletoSwap", "hasBorder", "nextEnabled", "holdEnabled", "sidebarEnabled", "canvasSize", "markersEnabled", "savedHighScore", "previewEnabled", "KEY_SETTINGS", "transEnabled", "autoplayEnabled", "currentLevel", "isPaused", "pausedHandler", "keyspeed"], function(options){
+        chrome.storage.local.get([
+            "design", 
+            "isPlaying", 
+            "grid", 
+            "clearedRows", 
+            "visualScore", 
+            "currentScore", 
+            "nextPiece", 
+            "timeSinceStart", 
+            "currentPiece", 
+            "hasLost", 
+            "ispieceinHold", 
+            "currentHold", 
+            "isabletoSwap", 
+            "hasBorder", 
+            "nextEnabled", 
+            "holdEnabled", 
+            "sidebarEnabled", 
+            "canvasSize", 
+            "markersEnabled", 
+            "savedHighScore", 
+            "previewEnabled", 
+            "KEY_SETTINGS", 
+            "transEnabled", 
+            "autoplayEnabled", 
+            "currentLevel", 
+            "isPaused", 
+            "pausedHandler", 
+            "keyspeed", 
+            "flashcount"
+    ], function(options){
             console.log("====Settings Retrived====")
             resolve(options);
         })
@@ -51,7 +81,8 @@ async function game() {
             "currentLevel", 
             "isPaused", 
             "pausedHandler", 
-            "keyspeed"
+            "keyspeed",
+            "flashcount"
         ], function(options){
             
                 console.log("====Settings Retrived====")
@@ -62,6 +93,8 @@ async function game() {
         configured_reset = true
     }
     //hello from the future!
+
+
 
     if (value.keyspeed == "normal"){
         var movementSpeed = 50
@@ -176,6 +209,11 @@ async function game() {
         chrome.storage.local.set({ nextPiece: next}); // Save Next Piece
         chrome.storage.local.set({ timeSinceStart: dt}); // Save Time since start
         chrome.storage.local.set({ currentLevel: level});// Save current level
+
+        
+        chrome.storage.local.set({ flashcount: blindflashcount});
+        
+        
         if (pieceinHold){
             chrome.storage.local.set({ currentHold: hold_current}); // Save current hold piece
             chrome.storage.local.set({ ispieceinHold: true});
@@ -599,7 +637,7 @@ var highscore = 0 //roxiun add local storage here
         
         level = 1,
 
-        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
+        blindmode=true,//blind tetris, set to true to enable. add gamemode setting for it later
         blindflash=false,//is it currently showing whole field
         blindflashcount=3,//amount of flashes available
 
@@ -1349,6 +1387,7 @@ var highscore = 0 //roxiun add local storage here
 
     function reset() {
         if (isr) {
+            blindflashcount=3
             dt = 0;
             canSwap = true;
             clearActions();
@@ -1369,6 +1408,7 @@ var highscore = 0 //roxiun add local storage here
             rrs();
 
         } else if (value.isPlaying || value.pausedHandler) {
+
             dt = 0;
             clearActions();
             clearBlocks();
@@ -1376,6 +1416,7 @@ var highscore = 0 //roxiun add local storage here
             clearScore();
             setCurrentPiece(next);
             setNextPiece();
+            blindflashcount = value.flashcount
             dt = value.timeSinceStart;
             blocks = value.grid;
             current = value.currentPiece;
@@ -1412,6 +1453,7 @@ var highscore = 0 //roxiun add local storage here
             down=false
             right=false
         } else {
+
             dt = 0;
             canSwap = true;
             clearActions();
