@@ -592,7 +592,7 @@ var highscore = 0 //roxiun add local storage here
         ldelay = 0,
         
         level = 1,
-        
+        blindmode=false,//blind tetris
         rtimeout=0,
         ltimeout=0,
         handled,
@@ -1843,7 +1843,10 @@ var highscore = 0 //roxiun add local storage here
 
         drawRows();
         if (value.previewEnabled){
-            drawGhost();
+            if(!blindmode){
+                drawGhost();
+            }
+            
         }
         ctx.restore();
 
@@ -1869,6 +1872,7 @@ var highscore = 0 //roxiun add local storage here
     
 
     function drawCourt() {
+        
         if (invalid.court) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (playing)
@@ -1876,8 +1880,11 @@ var highscore = 0 //roxiun add local storage here
             var x, y, block;
             for (y = 0; y < ny; y++) {
                 for (x = 0; x < nx; x++) {
-                    if (block = getBlock(x, y))
-                        drawBlock(ctx, x, y, block.color);
+                    if (block = getBlock(x, y)){
+                        if (!blindmode){
+                            drawBlock(ctx, x, y, block.color);
+                        }
+                    }
                 }
             }
             ctx.strokeRect(0, 0, nx * dx - 1, ny * dy - 1); // court boundary
@@ -1990,13 +1997,16 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function drawGhostBlock(ctx, x, y, color) {
-        if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
-            ctx.drawImage(tetra_ghost[color], x * dx, y * dy, dx, dy);
-        } else {
-            ctx.strokeStyle = color;
-            ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
-            ctx.strokeStyle = "#000000";
+        if(!blindmode){//no ghost blocks for blind mode
+            if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
+                ctx.drawImage(tetra_ghost[color], x * dx, y * dy, dx, dy);
+            } else {
+                ctx.strokeStyle = color;
+                ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
+                ctx.strokeStyle = "#000000";
+            }
         }
+
     }
 
     //draw the press enter to play
