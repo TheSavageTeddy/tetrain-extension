@@ -500,6 +500,7 @@ var highscore = 0 //roxiun add local storage here
             DOWN: parseInt(KeysDict[value.KEY_SETTINGS["SOFT"]]),
             ENTER: 13,
             Q: 81,
+            F: 70,
             C: parseInt(KeysDict[value.KEY_SETTINGS["HOLD"]])
         },
 
@@ -593,7 +594,7 @@ var highscore = 0 //roxiun add local storage here
         
         level = 1,
         blindmode=false,//blind tetris
-        
+
         rtimeout=0,
         ltimeout=0,
         handled,
