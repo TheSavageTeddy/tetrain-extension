@@ -593,6 +593,7 @@ var highscore = 0 //roxiun add local storage here
         
         level = 1,
         blindmode=false,//blind tetris
+        
         rtimeout=0,
         ltimeout=0,
         handled,
