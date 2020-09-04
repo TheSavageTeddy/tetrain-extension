@@ -260,7 +260,7 @@ var highscore = 0 //roxiun add local storage here
                 } else {
                     chrome.storage.local.set({ savedHighScore: highscore })
                 }
-                html("high-score", highscore)
+                html("high-score", "Highscore: "+highscore)
             }
         }else{
             html("high-score", "Flashes left: "+blindflashcount)
@@ -599,7 +599,7 @@ var highscore = 0 //roxiun add local storage here
         
         level = 1,
 
-        blindmode=false,//blind tetris
+        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
         blindflash=false,//is it currently showing whole field
         blindflashcount=3,//amount of flashes available
 
