@@ -54,7 +54,7 @@ function classicGame(){
         console.log(local_config.startinglevel)
     });
 
-    window.location.replace("../app/html/classic.html");
+    window.location.replace("../html/classic.html");
 }
 
 document.addEventListener('DOMContentLoaded', function () {

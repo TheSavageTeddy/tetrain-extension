@@ -36,7 +36,8 @@ async function retrieveSettings(){
             "isPaused", 
             "pausedHandler", 
             "keyspeed", 
-            "flashcount"
+            "flashcount",
+            "startinglevel"
     ], function(options){
             console.log("====Settings Retrived====")
             resolve(options);
@@ -82,7 +83,8 @@ async function game() {
             "isPaused", 
             "pausedHandler", 
             "keyspeed",
-            "flashcount"
+            "flashcount",
+            "startinglevel"
         ], function(options){
             
                 console.log("====Settings Retrived====")
@@ -94,6 +96,7 @@ async function game() {
     }
     //hello from the future!
 
+    
 
 
     if (value.keyspeed == "normal"){
@@ -646,6 +649,17 @@ var highscore = 0 //roxiun add local storage here
         ltimeout=0,
         handled,
         down;
+
+        try{
+            level = value.startinglevel
+            console.log("eeeeee")
+            console.log(level)
+        }catch(e){
+            console.log(e)
+            level = 1
+            html("level", level)
+            console.log("aaaaa")
+        }
         
 
     //-------------------------------------------------------------------------
@@ -1344,9 +1358,10 @@ var highscore = 0 //roxiun add local storage here
         rows = n;
 
         if (speed.start - (speed.increase*level)<0.001){
-            step = Math.max(speed.min, speed.start - (speed.start+0.01));
+            step = Math.max(speed.min, speed.start - (speed.start+0.00001));
         }else{
             step = Math.max(speed.min, speed.start - (speed.increase*level));
+            console.log(speed.start - (speed.increase*level))
         }
 
         invalidateRows();
@@ -1763,7 +1778,7 @@ var highscore = 0 //roxiun add local storage here
             }
             if (rows==0){
             }else{
-                level=Math.floor(rows/10)+1
+                level=Math.floor(rows/10)+1+Number(value.startinglevel)-1
                 html("level", level)
             }
         
@@ -2142,7 +2157,7 @@ var highscore = 0 //roxiun add local storage here
 
     if (value.autoplayEnabled && !value.isPaused){
         show('start');
-        level=Math.floor(rows/10)+1
+        level=Math.floor(rows/10)+1+Number(value.startinglevel)-1
         html("level", level)
 
         enterToPlay("hide")
