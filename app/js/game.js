@@ -170,7 +170,7 @@ async function game() {
             isPlaying: false
         });
 
-
+        reset()
         chrome.storage.local.set({ isPaused: false });
         chrome.storage.local.set({ pausedHandler: false });
         enterToPlay("hide")
@@ -181,9 +181,10 @@ async function game() {
 
         lost = false;
 
-        play();
+        //play();
         handled = true;
         isr = false;
+
     }
 
     function saveSettings() {

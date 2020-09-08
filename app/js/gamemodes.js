@@ -46,11 +46,15 @@ function lvlOut(){
 
 function classicGame(){
     var startlevel = getHTML("myRange").value
+
     console.log(startlevel)
+
     chrome.storage.local.set({ startinglevel: startlevel});
     chrome.storage.local.get(["startinglevel"], function(local_config) {   
         console.log(local_config.startinglevel)
     });
+
+    window.location.replace("../app/html/classic.html");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
