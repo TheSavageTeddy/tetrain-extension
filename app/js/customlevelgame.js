@@ -650,7 +650,16 @@ var highscore = 0 //roxiun add local storage here
         handled,
         down;
 
-
+        try{
+            level = value.startinglevel
+            console.log("eeeeee")
+            console.log(level)
+        }catch(e){
+            console.log(e)
+            level = 1
+            html("level", level)
+            console.log("aaaaa")
+        }
         
 
     //-------------------------------------------------------------------------

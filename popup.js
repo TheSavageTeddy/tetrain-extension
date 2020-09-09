@@ -12,7 +12,7 @@ function hidemenu(){ //this function in unnessasary, keep it just in case
 }
 
 function classic() {
-
+  chrome.storage.local.set({ startinglevel: 1});
   window.location.replace("app/html/classic.html");
 }
 
