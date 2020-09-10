@@ -1,6 +1,15 @@
 function getHTML(id){
   return document.getElementById(id)
 }
+//keydown
+function keydown(ev){
+  switch (ev.keyCode) {
+    case 13:
+      classic();
+    case 71:
+      gamemodes();
+  }
+}
 
 function changeHTML(id, text){
   document.getElementById(id).innerHTML = text
@@ -109,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('help').addEventListener('mouseout', helpout);
   document.getElementById('credits').addEventListener('mouseout', creditsout);
   */
+  //keystrokes
+  document.addEventListener('keydown', keydown, false);
 
 
 
