@@ -1930,6 +1930,7 @@ var highscore = 0 //roxiun add local storage here
             ctx.lineWidth = 1;
         }
         drawCourt();
+        drawParticle();
         drawNext();
         drawScore();
         if (!value.sidebarEnabled){
@@ -2076,6 +2077,11 @@ var highscore = 0 //roxiun add local storage here
             html('rows', rows);
             invalid.rows = false;
         }
+    }
+
+    function drawParticle(x, y){
+        ctx.strokeStyle = "white";
+        ctx.strokeRect(x, y, 5, 5);
     }
 
     function drawPiece(ctx, type, x, y, dir) {
