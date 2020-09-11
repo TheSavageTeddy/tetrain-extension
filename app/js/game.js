@@ -548,7 +548,8 @@ var highscore = 0 //roxiun add local storage here
             ENTER: 13,
             Q: 81,
             F: 70,
-            C: parseInt(KeysDict[value.KEY_SETTINGS["HOLD"]])
+            C: parseInt(KeysDict[value.KEY_SETTINGS["HOLD"]]),
+            BACK: 8
         },
 
         DIR = {
@@ -1193,7 +1194,7 @@ var highscore = 0 //roxiun add local storage here
                 hold()
             }
         }
-        if (ev.keyCode == KEY.Q) {
+        if (ev.keyCode == KEY.Q || ev.keyCode == KEY.BACK) {
             lose("kys")
             mainmenu()
         }
