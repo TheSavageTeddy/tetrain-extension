@@ -1752,7 +1752,11 @@ var highscore = 0 //roxiun add local storage here
 
     function dropPiece() { //not when dropping from top, its when it touches bottom/other pieces
         eachblock(current.type, current.x, current.y, current.dir, function(x, y) {
+            drawParticle(current.x, current.y)
+            
+            
             setBlock(x, y, current.type);
+            
         });
     }
 
@@ -1930,7 +1934,7 @@ var highscore = 0 //roxiun add local storage here
             ctx.lineWidth = 1;
         }
         drawCourt();
-        drawParticle();
+        //drawParticle(10,10);
         drawNext();
         drawScore();
         if (!value.sidebarEnabled){
@@ -2080,9 +2084,11 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function drawParticle(x, y){
-        ctx.strokeStyle = "white";
-        ctx.strokeRect(x, y, 5, 5);
+        ctx.fillStyle = "white";
+        ctx.fillRect(x, y, 5, 5);
     }
+
+    
 
     function drawPiece(ctx, type, x, y, dir) {
         eachblock(type, x, y, dir, function(x, y) {
