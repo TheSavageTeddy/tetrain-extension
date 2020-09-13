@@ -1754,8 +1754,7 @@ var highscore = 0 //roxiun add local storage here
 
     function dropPiece() { //not when dropping from top, its when it touches bottom/other pieces
         eachblock(current.type, current.x, current.y, current.dir, function(x, y) {
-            particle = 5;
-            drawParticle(current.x, current.y);
+            
             
             
             setBlock(x, y, current.type);
@@ -1938,6 +1937,7 @@ var highscore = 0 //roxiun add local storage here
         }
         drawCourt();
         //drawParticle(10,10);
+        drawParticle();
         drawNext();
         drawScore();
         if (!value.sidebarEnabled){
@@ -2088,11 +2088,13 @@ var highscore = 0 //roxiun add local storage here
 
     function drawParticle(x, y){
 
-        
         ctx.fillStyle = "white";
-        ctx.fillRect(x, y, 5, 5);
+        for (i in particle){
+            console.log("i: "+i)
 
 
+            ctx.fillRect(x, y, 5, 5);
+        }
 
     }
 
