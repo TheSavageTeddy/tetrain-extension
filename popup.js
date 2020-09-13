@@ -6,8 +6,10 @@ function keydown(ev){
   switch (ev.keyCode) {
     case 13:
       classic();
+      break
     case 71:
       gamemodes();
+      break
   }
 }
 
