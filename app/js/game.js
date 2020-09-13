@@ -646,7 +646,8 @@ var highscore = 0 //roxiun add local storage here
         blindflash=false,//is it currently showing whole field
         blindflashcount=3,//amount of flashes available
 
-        particle=[],
+        parX=[],//particle coords
+        parY=[],
 
         rtimeout=0,
         ltimeout=0,
@@ -2089,11 +2090,11 @@ var highscore = 0 //roxiun add local storage here
     function drawParticle(x, y){
 
         ctx.fillStyle = "white";
-        for (i in particle){
+        for (i=1; i<30; i++){
             console.log("i: "+i)
 
 
-            ctx.fillRect(x, y, 5, 5);
+            ctx.fillRect(parY[i], parX[i], 5, 5);
         }
 
     }
