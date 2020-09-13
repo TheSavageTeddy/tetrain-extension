@@ -646,6 +646,8 @@ var highscore = 0 //roxiun add local storage here
         blindflash=false,//is it currently showing whole field
         blindflashcount=3,//amount of flashes available
 
+        particle=[],
+
         rtimeout=0,
         ltimeout=0,
         handled,
@@ -1752,7 +1754,8 @@ var highscore = 0 //roxiun add local storage here
 
     function dropPiece() { //not when dropping from top, its when it touches bottom/other pieces
         eachblock(current.type, current.x, current.y, current.dir, function(x, y) {
-            drawParticle(current.x, current.y)
+            particle = 5;
+            drawParticle(current.x, current.y);
             
             
             setBlock(x, y, current.type);
@@ -2084,8 +2087,13 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function drawParticle(x, y){
+
+        
         ctx.fillStyle = "white";
         ctx.fillRect(x, y, 5, 5);
+
+
+
     }
 
     
