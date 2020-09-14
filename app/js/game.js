@@ -1462,7 +1462,25 @@ var highscore = 0 //roxiun add local storage here
             rows = value.clearedRows
             next = value.nextPiece;
             lost = value.hasLost;
-            level = value.currentLevel
+            level = value.currentLevel;
+            blindmode = value.ghostmode;
+/*
+            if (value.ghostmode) {
+                blindmode=true//blind tetris, set to true to enable. add gamemode setting for it later
+                blindflash=false//is it currently showing whole field
+                blindflashcount=3//amount of flashes available
+                console.log("ghostmode on")
+            }else{
+                blindmode=false//blind tetris, set to true to enable. add gamemode setting for it later
+                blindflash=false//is it currently showing whole field
+                blindflashcount=3//amount of flashes available
+                console.log("ghostmode off")
+            }
+            */
+
+
+
+
             if (value.ispieceinHold){
                 pieceinHold = true;
                 hold_current = value.currentHold;
