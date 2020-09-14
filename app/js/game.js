@@ -711,14 +711,14 @@ var highscore = 0 //roxiun add local storage here
         }
     }
 
-    if (){
-        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
+    if (value.ghostmode) {
+        var blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
         blindflash=false,//is it currently showing whole field
-        blindflashcount=3,//amount of flashes available
+        blindflashcount=3//amount of flashes available
     }else{
-        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
+        var blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
         blindflash=false,//is it currently showing whole field
-        blindflashcount=3,//amount of flashes available
+        blindflashcount=3//amount of flashes available
     }
 
 
