@@ -37,7 +37,8 @@ async function retrieveSettings(){
             "pausedHandler", 
             "keyspeed", 
             "flashcount",
-            "startinglevel"
+            "startinglevel",
+            "ghostmode"
     ], function(options){
             console.log("====Settings Retrived====")
             resolve(options);
@@ -84,7 +85,8 @@ async function game() {
             "pausedHandler", 
             "keyspeed",
             "flashcount",
-            "startinglevel"
+            "startinglevel",
+            "ghostmode"
         ], function(options){
             
                 console.log("====Settings Retrived====")
@@ -642,9 +644,7 @@ var highscore = 0 //roxiun add local storage here
         
         level = 1,
 
-        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
-        blindflash=false,//is it currently showing whole field
-        blindflashcount=3,//amount of flashes available
+
 
         parX=[],//particle coords
         parY=[],
@@ -709,6 +709,16 @@ var highscore = 0 //roxiun add local storage here
                 left: 30
             });
         }
+    }
+
+    if (){
+        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
+        blindflash=false,//is it currently showing whole field
+        blindflashcount=3,//amount of flashes available
+    }else{
+        blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
+        blindflash=false,//is it currently showing whole field
+        blindflashcount=3,//amount of flashes available
     }
 
 

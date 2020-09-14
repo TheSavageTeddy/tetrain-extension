@@ -36,6 +36,14 @@ function classicOut(){
     changeHTML("infotext", "<br><br><br>")
 }
 
+function ghostOver(){
+    changeHTML("infotext", "Pieces are invisible when dropped!<br>Press 'F' to flash to see pieces until <br>you drop the current piece<br>")
+}
+
+function ghostOut(){
+    changeHTML("infotext", "<br><br><br>")
+}
+
 function lvlOver(){
     changeHTML("infotext", "Change the level the<br>game starts on!<br><br>")
 }
@@ -46,6 +54,10 @@ function lvlOut(){
 
 function classicGame(){
     var startlevel = getHTML("myRange").value
+    //ghost mode to false
+    var ghostmode = false
+    chrome.storage.local.set({ ghostmode: ghostmode});
+    //
 
     console.log(startlevel)
 
@@ -57,15 +69,28 @@ function classicGame(){
     window.location.replace("../html/classic.html");
 }
 
+function ghostGame(){
+    var ghostmode = true
+    chrome.storage.local.set({ ghostmode: ghostmode});
+    chrome.storage.local.get(["ghostmode"], function(local_config) {   
+        console.log(local_config.ghostmode)
+    });
+
+    //window.location.replace("../html/classic.html");
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     getHTML("back").addEventListener('click', goBack);
 
     getHTML("classic").addEventListener('click', classicGame);
 
+    getHTML("ghost").addEventListener('click', ghostGame);
+
     document.addEventListener('keydown', keydown, false);
 
     var practice = getHTML("practice")
     var classic = getHTML("classic")
+    var ghost = getHTML("ghost")
     var startlevelelement = getHTML("myRange")
 
     practice.addEventListener("mouseover", practiceOver);
@@ -73,6 +98,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     classic.addEventListener("mouseover", classicOver);
     classic.addEventListener("mouseout", classicOut);
+
+    ghost.addEventListener("mouseover", ghostOver);
+    ghost.addEventListener("mouseout", ghostOut);
 
     startlevelelement.addEventListener("mouseover", lvlOver);
     startlevelelement.addEventListener("mouseout", lvlOut);
