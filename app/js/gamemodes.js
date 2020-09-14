@@ -76,7 +76,7 @@ function ghostGame(){
         console.log(local_config.ghostmode)
     });
 
-    //window.location.replace("../html/classic.html");
+    window.location.replace("../html/classic.html");
 }
 
 document.addEventListener('DOMContentLoaded', function () {

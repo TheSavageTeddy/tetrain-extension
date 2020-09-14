@@ -124,8 +124,7 @@ async function game() {
     }
 
     function goBack(){
-        chrome.storage.local.set({ pausedHandler: true })
-        playing=false
+        lose("kys")
         mainmenu()
     }
 
@@ -216,7 +215,7 @@ async function game() {
         chrome.storage.local.set({ timeSinceStart: dt}); // Save Time since start
         chrome.storage.local.set({ currentLevel: level});// Save current level
 
-        
+        chrome.storage.local.set({ ghostmode: blindmode});
         chrome.storage.local.set({ flashcount: blindflashcount});
         
         
@@ -712,13 +711,15 @@ var highscore = 0 //roxiun add local storage here
     }
 
     if (value.ghostmode) {
-        var blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
+        var blindmode=true,//blind tetris, set to true to enable. add gamemode setting for it later
             blindflash=false,//is it currently showing whole field
             blindflashcount=3//amount of flashes available
+        console.log("ghostmode on")
     }else{
         var blindmode=false,//blind tetris, set to true to enable. add gamemode setting for it later
             blindflash=false,//is it currently showing whole field
             blindflashcount=3//amount of flashes available
+        console.log("ghostmode off")
     }
 
 
