@@ -38,7 +38,9 @@ async function retrieveSettings(){
             "keyspeed", 
             "flashcount",
             "startinglevel",
-            "ghostmode"
+            "ghostmode",
+            "practicemode",
+            "canhighscore"
     ], function(options){
             console.log("====Settings Retrived====")
             resolve(options);
@@ -86,7 +88,9 @@ async function game() {
             "keyspeed",
             "flashcount",
             "startinglevel",
-            "ghostmode"
+            "ghostmode",
+            "practicemode",
+            "canhighscore"
         ], function(options){
             
                 console.log("====Settings Retrived====")
@@ -137,7 +141,11 @@ async function game() {
             } else if (!playing){
                 clearHoldCanvas();
                 show('start');
-                level=Math.floor(rows/10)+1+Number(value.startinglevel)-1
+                if (!practicemode){
+                    level=Math.floor(rows/10)+1+Number(startingLevel)-1
+                }else{
+                    level=1
+                }
                 html("level", level)
                 enterToPlay("hide")
                 lost = false;
@@ -297,14 +305,18 @@ var highscore = 0 //roxiun add local storage here
 
     function checkHighScore(){
         if (!blindmode){
-            if (score>highscore){
-                highscore = score
-                if (value.savedHighScore>highscore) {
-                    highscore = value.savedHighScore
-                } else {
-                    chrome.storage.local.set({ savedHighScore: highscore })
+            if (canhighscore){
+                if (score>highscore){
+                    highscore = score
+                    if (value.savedHighScore>highscore) {
+                        highscore = value.savedHighScore
+                    } else {
+                        chrome.storage.local.set({ savedHighScore: highscore })
+                    }
+                    html("high-score", "Highscore: "+highscore)
                 }
-                html("high-score", "Highscore: "+highscore)
+            }else{
+                html("high-score", "<strike>Highscore:</strike>")
             }
         }else{
             html("high-score", "Flashes left: "+blindflashcount)
@@ -650,6 +662,10 @@ var highscore = 0 //roxiun add local storage here
 
         parX=[],//particle coords
         parY=[],
+
+        practicemode = value.practicemode,
+
+        canhighscore = value.canhighscore,
 
         rtimeout=0,
         ltimeout=0,
@@ -1376,14 +1392,21 @@ var highscore = 0 //roxiun add local storage here
             //step = Math.max(0.0001, speed.start - (speed.increase*level));
             //console.log(speed.start - (speed.increase*level))
         //}
-        level=Math.floor(rows/10)+1+Number(startingLevel)-1
-
-        if (level < 15){
-            step = Math.max(0.0001, speed.start - (speed.increase*level));
-            console.log(speed.start - (speed.increase*level))
+        if (!practicemode){
+            level=Math.floor(rows/10)+1+Number(startingLevel)-1
         }else{
-            step = Math.max(0.0001, speed.start - (speed.increase/(level/15)*level));
-            console.log(speed.start - (speed.increase*level))
+            level=1
+        }
+        if (!practicemode){
+            if (level < 15){
+                step = Math.max(0.0001, speed.start - (speed.increase*level));
+                console.log(speed.start - (speed.increase*level))
+            }else{
+                step = Math.max(0.0001, speed.start - (speed.increase/(level/15)*level));
+                console.log(speed.start - (speed.increase*level))
+            }
+        }else{
+            step = speed.start
         }
 
 
@@ -1469,7 +1492,11 @@ var highscore = 0 //roxiun add local storage here
             //level = value.currentLevel;
             console.log(level)
             startingLevel=value.startinglevel
-            level=Math.floor(rows/10)+1+Number(startingLevel)-1
+            if (!practicemode){
+                level=Math.floor(rows/10)+1+Number(startingLevel)-1
+            }else{
+                level=1
+            }
             
             console.log(level)
             blindmode = value.ghostmode;
@@ -1831,7 +1858,11 @@ var highscore = 0 //roxiun add local storage here
             }
             if (rows==0){
             }else{
-                level=Math.floor(rows/10)+1+Number(startingLevel)-1
+                if (!practicemode){
+                    level=Math.floor(rows/10)+1+Number(startingLevel)-1
+                }else{
+                    level=1
+                }
                 html("level", level)
             }
         
@@ -2232,7 +2263,11 @@ var highscore = 0 //roxiun add local storage here
 
     if (value.autoplayEnabled && !value.isPaused){
         show('start');
-        level=Math.floor(rows/10)+1+Number(startingLevel)-1
+        if (!practicemode){
+            level=Math.floor(rows/10)+1+Number(startingLevel)-1
+        }else{
+            level=1
+        }
         html("level", level)
 
         enterToPlay("hide")

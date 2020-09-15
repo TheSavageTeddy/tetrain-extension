@@ -53,6 +53,8 @@ function lvlOut(){
 }
 
 function classicGame(){
+    chrome.storage.local.set({ canhighscore: true});
+
     var startlevel = getHTML("myRange").value
     chrome.storage.local.set({ startinglevel: startlevel});
     chrome.storage.local.get(["startinglevel"], function(local_config) {   
@@ -66,13 +68,15 @@ function classicGame(){
 
     console.log(startlevel)
 
-    
+    var practiceMode = false
+    chrome.storage.local.set({ practicemode: practiceMode})
 
 
     window.location.replace("../html/classic.html");
 }
 
 function ghostGame(){
+    chrome.storage.local.set({ canhighscore: false});
     //get starting level
     var startlevel = getHTML("myRange").value
     chrome.storage.local.set({ startinglevel: startlevel});
@@ -83,6 +87,28 @@ function ghostGame(){
         console.log(local_config.ghostmode)
     });
 
+    var practiceMode = false
+    chrome.storage.local.set({ practicemode: practiceMode})
+
+    window.location.replace("../html/classic.html");
+}
+
+function practiceGame(){
+
+    chrome.storage.local.set({ canhighscore: false});
+    
+    var startlevel = getHTML("myRange").value
+    chrome.storage.local.set({ startinglevel: startlevel});
+    //ghostmode off
+    var ghostmode = false
+    chrome.storage.local.set({ ghostmode: ghostmode});
+    chrome.storage.local.get(["ghostmode"], function(local_config) {   
+        console.log(local_config.ghostmode)
+    });
+
+    var practiceMode = true
+    chrome.storage.local.set({ practicemode: practiceMode})
+
     window.location.replace("../html/classic.html");
 }
 
@@ -92,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
     getHTML("classic").addEventListener('click', classicGame);
 
     getHTML("ghost").addEventListener('click', ghostGame);
+
+    getHTML("practice").addEventListener('click', practiceGame);
 
     document.addEventListener('keydown', keydown, false);
 
@@ -112,3 +140,4 @@ document.addEventListener('DOMContentLoaded', function () {
     startlevelelement.addEventListener("mouseover", lvlOver);
     startlevelelement.addEventListener("mouseout", lvlOut);
 });
+

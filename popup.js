@@ -26,6 +26,15 @@ function classic() {
   //var ghostmode = false
   //chrome.storage.local.set({ ghostmode: ghostmode});
   //chrome.storage.local.set({ startinglevel: 1});
+  chrome.storage.local.set({ practicemode: false});
+  chrome.storage.local.set({ canhighscore: true});
+  window.location.replace("app/html/classic.html");
+}
+
+function classicpractice() {
+  //var ghostmode = false
+  //chrome.storage.local.set({ ghostmode: ghostmode});
+  //chrome.storage.local.set({ startinglevel: 1});
   window.location.replace("app/html/classic.html");
 }
 
@@ -130,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
   chrome.storage.local.get(['isPlaying', 'isPaused'], function(config) {
     if (config.isPlaying && !config.isPaused){
       console.log("Game Detected")
-      classic()
+      classicpractice()
     }
   });
 });
