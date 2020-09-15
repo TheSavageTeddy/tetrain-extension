@@ -107,14 +107,28 @@ async function game() {
 
     if (value.keyspeed == "normal"){
         var movementSpeed = 50
+        var movementDelay = 150
         console.log("normal speed")
     }else if (value.keyspeed == "faster"){
         var movementSpeed = 40
+        var movementDelay = 140
         console.log("faster speed")
     }else if (value.keyspeed == "evenfaster"){
         var movementSpeed = 30
+        var movementDelay = 130
         console.log("evenfaster speed")
+    }else if (value.keyspeed == "morefaster"){
+        var movementSpeed = 20
+        var movementDelay = 120
+
+    }else if (value.keyspeed == "speed"){
+        var movementSpeed = 10
+        var movementDelay = 110
+
     }else{
+        //default movement speed i guess idk
+        var movementSpeed = 30
+        var movementDelay = 150
         console.log("error speed what the frick")
         console.log(value.keyspeed)
     }
@@ -1285,7 +1299,7 @@ var highscore = 0 //roxiun add local storage here
 
                         leftthing=true
                         LRactions.push(DIR.LEFT);
-                        await new Promise(r => setTimeout(r, 150));
+                        await new Promise(r => setTimeout(r, movementDelay));
                         leftthing=false
                     }
                 }
@@ -1308,7 +1322,7 @@ var highscore = 0 //roxiun add local storage here
                     }else{
                         rightthing=true
                         LRactions.push(DIR.RIGHT);
-                        await new Promise(r => setTimeout(r, 150));
+                        await new Promise(r => setTimeout(r, movementDelay));
                         rightthing=false
                     }            
                 }
