@@ -54,6 +54,11 @@ function lvlOut(){
 
 function classicGame(){
     var startlevel = getHTML("myRange").value
+    chrome.storage.local.set({ startinglevel: startlevel});
+    chrome.storage.local.get(["startinglevel"], function(local_config) {   
+        console.log(local_config.startinglevel)
+    });
+
     //ghost mode to false
     var ghostmode = false
     chrome.storage.local.set({ ghostmode: ghostmode});
@@ -61,15 +66,17 @@ function classicGame(){
 
     console.log(startlevel)
 
-    chrome.storage.local.set({ startinglevel: startlevel});
-    chrome.storage.local.get(["startinglevel"], function(local_config) {   
-        console.log(local_config.startinglevel)
-    });
+    
+
 
     window.location.replace("../html/classic.html");
 }
 
 function ghostGame(){
+    //get starting level
+    var startlevel = getHTML("myRange").value
+    chrome.storage.local.set({ startinglevel: startlevel});
+    //ghostmode on
     var ghostmode = true
     chrome.storage.local.set({ ghostmode: ghostmode});
     chrome.storage.local.get(["ghostmode"], function(local_config) {   
