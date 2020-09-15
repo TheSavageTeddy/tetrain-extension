@@ -125,7 +125,7 @@ const config_options = {
                 'Minimal':'clean',
                 'Classic':'legends',
                 'Bold':'bold',
-                'Tetra':'tetra',
+                '★ Tetra':'tetra',
                 'Wool':'wool',
                 'Crafty':'crafty'
             }
@@ -133,7 +133,7 @@ const config_options = {
         'size':{
             'local':'canvasSize',
             'options':{
-                'Big':'big',
+                '★ Big':'big',
                 'Medium':'medium',
                 'Small':'small'
             }
@@ -142,7 +142,7 @@ const config_options = {
             'local':'keyspeed',
             'options':{
                 'Normal (50)':'normal',
-                'Faster (40)':'faster',
+                '★ Faster (40)':'faster',
                 'Even Faster (30)':'evenfaster',
                 'More faster? (20)':'morenfaster',
                 'Speeeeeeed (10)':'speed'
