@@ -23,11 +23,12 @@ function hidemenu(){ //this function in unnessasary, keep it just in case
 }
 
 function classic() {
-  //var ghostmode = false
-  //chrome.storage.local.set({ ghostmode: ghostmode});
-  //chrome.storage.local.set({ startinglevel: 1});
+
+  chrome.storage.local.set({ ghostmode: false});
+  chrome.storage.local.set({ startinglevel: 1});
   chrome.storage.local.set({ practicemode: false});
   chrome.storage.local.set({ canhighscore: true});
+  
   window.location.replace("app/html/classic.html");
 }
 
