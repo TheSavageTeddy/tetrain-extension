@@ -175,6 +175,22 @@ const keyCodes = {
     255: 'toggle touchpad',
 };
 
+function resetKeys(){
+    chrome.storage.local.get(['KEY_SETTINGS'], function(config) {   
+        chrome.storage.local.set({ 
+            KEY_SETTINGS: {
+              LEFT:"left arrow",
+              RIGHT:"right arrow",
+              SOFT:"down arrow",
+              ROTATE_RIGHT:"up arrow",
+              HARD:"spacebar",
+              HOLD:"c",
+            }
+          });
+    });
+    document.getElementById("reset-text").innerHTML = "Settings reset, exit for it to take place"
+}
+
 function hidemenu(){
     m = document.getElementById("menu-items")
     m.style.display = "none"
@@ -387,4 +403,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('hard').addEventListener('change', updateKeysConfigHard);
     document.getElementById('rright').addEventListener('change', updateKeysConfigRright);
     document.getElementById('hold').addEventListener('change', updateKeysConfigHold);
+
+    document.getElementById('reset-button').addEventListener('click', resetKeys);
 });
