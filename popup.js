@@ -23,9 +23,9 @@ function hidemenu(){ //this function in unnessasary, keep it just in case
 }
 
 function classic() {
-  var ghostmode = false
-  chrome.storage.local.set({ ghostmode: ghostmode});
-  chrome.storage.local.set({ startinglevel: 1});
+  //var ghostmode = false
+  //chrome.storage.local.set({ ghostmode: ghostmode});
+  //chrome.storage.local.set({ startinglevel: 1});
   window.location.replace("app/html/classic.html");
 }
 

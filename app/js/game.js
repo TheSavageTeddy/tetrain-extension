@@ -137,7 +137,7 @@ async function game() {
             } else if (!playing){
                 clearHoldCanvas();
                 show('start');
-                level=1
+                level=Math.floor(rows/10)+1+Number(value.startinglevel)-1
                 html("level", level)
                 enterToPlay("hide")
                 lost = false;
@@ -203,8 +203,7 @@ async function game() {
                 isPlaying: false
             });
         }
-        chrome.storage.local.set({ grid: ldelay });//save delays for the smooth keystroke things
-        chrome.storage.local.set({ grid: rdelay });
+
 
         chrome.storage.local.set({ grid: blocks }); // Save Grid
         chrome.storage.local.set({ clearedRows: rows }); // Save cleared Rows
@@ -214,7 +213,9 @@ async function game() {
         chrome.storage.local.set({ nextPiece: next}); // Save Next Piece
         chrome.storage.local.set({ timeSinceStart: dt}); // Save Time since start
         chrome.storage.local.set({ currentLevel: level});// Save current level
-
+        console.log(value.startinglevel)
+        chrome.storage.local.set({ startinglevel: startingLevel});
+        console.log(value.startinglevel)
         chrome.storage.local.set({ ghostmode: blindmode});
         chrome.storage.local.set({ flashcount: blindflashcount});
         
@@ -640,8 +641,10 @@ var highscore = 0 //roxiun add local storage here
         rota = false,
         rdelay = 0,
         ldelay = 0,
-        
-        level = 1,
+
+        startingLevel = value.startinglevel,
+        level,
+        //level = 1,
 
 
 
@@ -1373,6 +1376,7 @@ var highscore = 0 //roxiun add local storage here
             //step = Math.max(0.0001, speed.start - (speed.increase*level));
             //console.log(speed.start - (speed.increase*level))
         //}
+        level=Math.floor(rows/10)+1+Number(startingLevel)-1
 
         if (level < 15){
             step = Math.max(0.0001, speed.start - (speed.increase*level));
@@ -1462,7 +1466,12 @@ var highscore = 0 //roxiun add local storage here
             rows = value.clearedRows
             next = value.nextPiece;
             lost = value.hasLost;
-            level = value.currentLevel;
+            //level = value.currentLevel;
+            console.log(level)
+            startingLevel=value.startinglevel
+            level=Math.floor(rows/10)+1+Number(startingLevel)-1
+            
+            console.log(level)
             blindmode = value.ghostmode;
 /*
             if (value.ghostmode) {
@@ -1822,7 +1831,7 @@ var highscore = 0 //roxiun add local storage here
             }
             if (rows==0){
             }else{
-                level=Math.floor(rows/10)+1+Number(value.startinglevel)-1
+                level=Math.floor(rows/10)+1+Number(startingLevel)-1
                 html("level", level)
             }
         
@@ -2223,7 +2232,7 @@ var highscore = 0 //roxiun add local storage here
 
     if (value.autoplayEnabled && !value.isPaused){
         show('start');
-        level=Math.floor(rows/10)+1+Number(value.startinglevel)-1
+        level=Math.floor(rows/10)+1+Number(startingLevel)-1
         html("level", level)
 
         enterToPlay("hide")
