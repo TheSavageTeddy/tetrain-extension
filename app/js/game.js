@@ -149,6 +149,7 @@ async function game() {
                 html("level", level)
                 enterToPlay("hide")
                 lost = false;
+                ghostlost=false
                 chrome.storage.local.set({ pausedHandler: false })
                 chrome.storage.local.set({ isPaused: false })
                 play();
@@ -192,6 +193,7 @@ async function game() {
         html("level", level)
 
         lost = false;
+        ghostlost=false
 
         //play();
         handled = true;
@@ -1079,6 +1081,7 @@ var highscore = 0 //roxiun add local storage here
                 html("level", level)
                 enterToPlay("hide")
                 lost = false
+                ghostlost=false
                 play();
                 handled = true;
                 isr = false;
@@ -1213,6 +1216,7 @@ var highscore = 0 //roxiun add local storage here
             html("level", level)
             enterToPlay("hide")
             lost = false;
+            ghostlost=false
             chrome.storage.local.set({ isPaused: false });
             chrome.storage.local.set({ pausedHandler: false });
             play();
@@ -2059,6 +2063,8 @@ var highscore = 0 //roxiun add local storage here
                             drawBlock(ctx, x, y, block.color);
                         }else if (blindflash){
                             drawBlock(ctx, x, y, block.color);
+                        }else if (ghostlost){
+                            drawBlock(ctx, x, y, block.color);
                         }
                     }
                 }
@@ -2207,6 +2213,7 @@ var highscore = 0 //roxiun add local storage here
 
     //draw the press enter to play
     var lost = false //
+    var ghostlost = false
     function enterToPlay(t) {
         if (t=="show"){
             ctx.font = "40px Monospace";
@@ -2224,6 +2231,8 @@ var highscore = 0 //roxiun add local storage here
             rdelay=0
             
         } else if (t == "lost"){
+            ghostlost=true
+            //ghostlost=false
             lost = true//
             playing = false
             isr = true
@@ -2272,6 +2281,7 @@ var highscore = 0 //roxiun add local storage here
 
         enterToPlay("hide")
         lost = false;
+        ghostlost=false
         play();
         handled = true;
         isr = false;
