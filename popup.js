@@ -99,13 +99,17 @@ function createLocalStorage(){
 // `DOMContentLoaded` event on the document, and adding your listeners to
 // specific elements when it triggers.
 document.addEventListener('DOMContentLoaded', function () {
-  chrome.storage.local.get(['isConfigured', "isBeta"], function(config) {
+  chrome.storage.local.get(['isConfigured', "isBeta", 'isNewUpdate'], function(config) {
     if (config.isConfigured == null){
       console.log("Configuring Local Storage")
       createLocalStorage()
     }
     if (!config.isBeta){
       createLocalStorage();
+      chrome.tabs.create({url: chrome.extension.getURL('app/html/release.html')});
+    }
+    if (!config.isNewUpdate){
+      chrome.storage.local.set({ isNewUpdate: true })
       chrome.tabs.create({url: chrome.extension.getURL('app/html/release.html')});
     }
   });
