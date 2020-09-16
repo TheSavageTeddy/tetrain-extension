@@ -671,6 +671,8 @@ var highscore = 0 //roxiun add local storage here
         rdelay = 0,
         ldelay = 0,
 
+        alreadygiven = false,
+
         startingLevel = value.startinglevel,
         level,
         //level = 1,
@@ -1868,6 +1870,18 @@ var highscore = 0 //roxiun add local storage here
         }
         if (n > 0) {
             addRows(n);
+
+            if (rows % 3 == 0 && !alreadygiven){
+                alreadygiven = true//i actually thing alreadygiven is unnesasary, as the
+                                   //function only calls when rows cleared, but lets
+                                   //keep it just in case 
+                blindflashcount = blindflashcount + 1
+                console.log("given flash")
+            }else{
+                alreadygiven = false
+                console.log("nope")
+            }
+
             if (n < 4) {
                 addScore((100 + ((n - 1) * 200))*level); // 1: 100, 2: 300, 3: 500, 4: 800
                 backtoback=false
