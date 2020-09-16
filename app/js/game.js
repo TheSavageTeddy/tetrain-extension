@@ -40,7 +40,8 @@ async function retrieveSettings(){
             "startinglevel",
             "ghostmode",
             "practicemode",
-            "canhighscore"
+            "canhighscore",
+            "iPiece"
     ], function(options){
             //console.log("====Settings Retrived====")
             resolve(options);
@@ -887,6 +888,10 @@ var highscore = 0 //roxiun add local storage here
                 };
                 tetra_images[key].src = `../img/assets/wool/wool_colored_${key}.jpeg`;
             };
+        }
+        if (value.iPiece !== 'undefined'){
+            tetra_images['cyan'].src = value.iPiece;
+            console.log("tesing the custom textures")
         }
     }
 
