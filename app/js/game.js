@@ -159,7 +159,7 @@ async function game() {
                 if (!practicemode){
                     level=Math.floor(rows/10)+1+Number(startingLevel)-1
                 }else{
-                    level=1
+                    level=Number(startingLevel)
                 }
                 html("level", level)
                 enterToPlay("hide")
@@ -1420,7 +1420,7 @@ var highscore = 0 //roxiun add local storage here
         if (!practicemode){
             level=Math.floor(rows/10)+1+Number(startingLevel)-1
         }else{
-            level=1
+            level=Number(startingLevel)
         }
         if (!practicemode){
             if (level < 15){
@@ -1431,7 +1431,14 @@ var highscore = 0 //roxiun add local storage here
                 //console.log(speed.start - (speed.increase*level))
             }
         }else{
-            step = speed.start
+            //practice mode enabled
+            if (level < 15){
+                step = Math.max(0.0001, speed.start - (speed.increase*level));
+                //console.log(speed.start - (speed.increase*level))
+            }else{
+                step = Math.max(0.0001, speed.start - (speed.increase/(level/15)*level));
+                //console.log(speed.start - (speed.increase*level))
+            }
         }
 
 
@@ -1520,7 +1527,7 @@ var highscore = 0 //roxiun add local storage here
             if (!practicemode){
                 level=Math.floor(rows/10)+1+Number(startingLevel)-1
             }else{
-                level=1
+                level=Number(startingLevel)
             }
             
             //console.log(level)
@@ -1898,7 +1905,7 @@ var highscore = 0 //roxiun add local storage here
                 if (!practicemode){
                     level=Math.floor(rows/10)+1+Number(startingLevel)-1
                 }else{
-                    level=1
+                    level=Number(startingLevel)
                 }
                 html("level", level)
             }
@@ -2308,7 +2315,7 @@ var highscore = 0 //roxiun add local storage here
         if (!practicemode){
             level=Math.floor(rows/10)+1+Number(startingLevel)-1
         }else{
-            level=1
+            level=Number(startingLevel)
         }
         html("level", level)
 
