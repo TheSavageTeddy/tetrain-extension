@@ -228,10 +228,10 @@ https://cssgradient.io/
     /* colors */
     background-color:#000000;
     border-radius:4px;
-    border:2px solid rgb(45, 255, 164);
+    border:2px solid rgb(107, 255, 216);
     
     cursor:pointer;
-    color:rgb(45, 255, 164);
+    color:rgb(107, 255, 216);
     font-family:Arial;
     font-size:22px;
     text-decoration:none;
@@ -252,7 +252,7 @@ https://cssgradient.io/
     /* colors */
     color: black;
     
-    background-color: rgb(45, 255, 164);
+    background-color: rgb(107, 255, 216);
     user-select: none;
     
     opacity: 1;
@@ -289,7 +289,7 @@ https://cssgradient.io/
 
     cursor: pointer;
     transition-duration: 200ms;
-}
+}   
 
 #ghost:hover{
     /* colors */
