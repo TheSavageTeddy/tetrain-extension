@@ -109,18 +109,104 @@ async function game() {
     }
     //hello from the future!
 
+//
+    var i = {
+        size: 4,
+        blocks: [0x0F00, 0x2222, 0x00F0, 0x4444],
+        color: 'cyan'
+    };
+    var j = {
+        size: 3,
+        blocks: [0x8E00, 0x6440, 0x0E20, 0x44C0],
+        color: 'blue'
+    };
+    var l = {
+        size: 3,
+        blocks: [0x2E00, 0x4460, 0x0E80, 0xC440],
+        color: 'orange'
+    };
+    var o = {
+        size: 2,
+        blocks: [0xCC00, 0xCC00, 0xCC00, 0xCC00],
+        color: 'yellow'
+    };
+    var s = {
+        size: 3,
+        blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620],
+        color: 'lime'
+    };
+    var t = {
+        size: 3,
+        blocks: [0x4E00, 0x4640, 0x0E40, 0x4C40],
+        color: 'magenta'
+    };
+    var z = {
+        size: 3,
+        blocks: [0x0C60, 0x4C80, 0xC600, 0x2640],
+        color: 'red'
+    };
+//
+
+
+    
     var piecebag = value.pieceBag.split(" ")//from local storage
     console.log(piecebag)
 
-    var cleanedPieceBag = []//only will contain I O L J Z S T
+    // unused
+    //var cleanedPieceBag = []//only will contain I O L J Z S T
+    var varpiecebag = []
+    var varpiecebagsave = []
+    console.log(value.pieceBag)
 
-    if (!value.pieceBag == "I O L J Z S T"){
-        for (i=0; i<length(piecebag); i++){
-            if (piecebag[i] == "I" || piecebag[i] == "O" || piecebag[i] == "L" || piecebag[i] == "J" || piecebag[i] == "Z" || piecebag[i] == "S" || piecebag[i] == "T"){
-                cleanedPieceBag.push(piecebag[i])
+    var custombag = false
+    if (value.pieceBag != "I O L J Z S T"){
+        custombag = true
+        var countthing=0
+        while (true){
+
+            if (piecebag[countthing] == "I"){
+                varpiecebag.push(i)
+                console.log("I piece")
+                console.log(i)
+                console.log(varpiecebag)
+            }else if (piecebag[countthing] == "T"){
+                varpiecebag.push(t)
+                console.log("T piece")
+            }else if (piecebag[countthing] == "O"){
+                varpiecebag.push(o)
+                console.log("O piece")
+            }else if (piecebag[countthing] == "L"){
+                varpiecebag.push(l)
+                console.log("L piece")
+            }else if (piecebag[countthing] == "J"){
+                varpiecebag.push(j)
+                console.log("J piece")
+            }else if (piecebag[countthing] == "Z"){
+                varpiecebag.push(z)
+                console.log("Z piece")
+            }else if (piecebag[countthing] == "S"){
+                varpiecebag.push(s)
+                console.log("S piece")
+            }else{
+                console.log("invalid piece detected lol")
             }
+            countthing++;
+            if (countthing>=piecebag.length){
+                break
+            }
+
+
+            
         }
     }
+
+    varpiecebagsave = varpiecebag
+
+    console.log("varpiecebag: ")
+    console.log(varpiecebag)
+    console.log("varpiecebagsave: ")
+    console.log(varpiecebagsave)
+
 
     if (value.keyspeed == "normal"){
         var movementSpeed = 50
@@ -948,41 +1034,7 @@ var highscore = 0 //roxiun add local storage here
     //
     //
     //
-    var i = {
-        size: 4,
-        blocks: [0x0F00, 0x2222, 0x00F0, 0x4444],
-        color: 'cyan'
-    };
-    var j = {
-        size: 3,
-        blocks: [0x8E00, 0x6440, 0x0E20, 0x44C0],
-        color: 'blue'
-    };
-    var l = {
-        size: 3,
-        blocks: [0x2E00, 0x4460, 0x0E80, 0xC440],
-        color: 'orange'
-    };
-    var o = {
-        size: 2,
-        blocks: [0xCC00, 0xCC00, 0xCC00, 0xCC00],
-        color: 'yellow'
-    };
-    var s = {
-        size: 3,
-        blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620],
-        color: 'lime'
-    };
-    var t = {
-        size: 3,
-        blocks: [0x4E00, 0x4640, 0x0E40, 0x4C40],
-        color: 'magenta'
-    };
-    var z = {
-        size: 3,
-        blocks: [0x0C60, 0x4C80, 0xC600, 0x2640],
-        color: 'red'
-    };
+
 
     //------------------------------------------------
     // do the bit manipulation and iterate through each
@@ -1025,9 +1077,74 @@ var highscore = 0 //roxiun add local storage here
     //-----------------------------------------
     var pieces = [];
 
+
+
     function randomPiece() {
-        if (pieces.length == 0)
-            pieces = [i, j, l, o, s, t, z];
+
+        console.log("pieces.length: "+pieces.length)
+        if (pieces.length <= 0){
+            if (custombag){
+                /*
+                console.log("custom bag yes")
+                console.log("varpiecebagsave: ")
+                console.log(varpiecebagsave.join())
+                console.log("pieces: ")
+                console.log(pieces.join())
+                pieces = varpiecebagsave;
+                console.log("pieces: ")
+                console.log(pieces.join())
+                */
+
+
+                var countthing=0
+                while (true){
+        
+                    if (piecebag[countthing] == "I"){
+                        pieces.push(i)
+                        console.log("I piece")
+                        console.log(i)
+                        console.log(varpiecebag)
+                    }else if (piecebag[countthing] == "T"){
+                        pieces.push(t)
+                        console.log("T piece")
+                    }else if (piecebag[countthing] == "O"){
+                        pieces.push(o)
+                        console.log("O piece")
+                    }else if (piecebag[countthing] == "L"){
+                        pieces.push(l)
+                        console.log("L piece")
+                    }else if (piecebag[countthing] == "J"){
+                        pieces.push(j)
+                        console.log("J piece")
+                    }else if (piecebag[countthing] == "Z"){
+                        pieces.push(z)
+                        console.log("Z piece")
+                    }else if (piecebag[countthing] == "S"){
+                        pieces.push(s)
+                        console.log("S piece")
+                    }else{
+                        console.log("invalid piece detected lol")
+                    }
+                    countthing++;
+                    if (countthing>=piecebag.length){
+                        break
+                    }
+        
+        
+                    
+                }
+
+
+                
+            }else{
+                console.log("custom bag no")
+                pieces = [i, j, l, o, s, t, z];
+            }
+        }
+        console.log("varpiecebag: ")
+        console.log(varpiecebag.join())
+        console.log("varpiecebagsave: ")
+        console.log(varpiecebagsave.join())
         var type = pieces.splice(random(0, pieces.length - 1), 1)[0];
         if (type == j || type == l || type == t || type == o) {
             return {
@@ -1054,6 +1171,7 @@ var highscore = 0 //roxiun add local storage here
                 piece_type: 2
             };
         }
+        
 
     }
 
@@ -1092,7 +1210,11 @@ var highscore = 0 //roxiun add local storage here
                     rdelay=0
                 }
    
-                
+                console.log("varpiecebag: ")
+                console.log(varpiecebag)
+                console.log("varpiecebagsave: ")
+                console.log(varpiecebagsave)
+
                 ctx.strokeStyle = "#FF0000";
                 ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
                 ctx.strokeStyle = "#000000";
@@ -1872,11 +1994,12 @@ var highscore = 0 //roxiun add local storage here
 
     function drop() {
         if (!move(DIR.DOWN) && !isrotating) {
-            blindflash=false
+            
             dropPiece();
             removeLines();
             setCurrentPiece(next);
             setNextPiece(randomPiece());
+            blindflash=false
             clearActions();
             canSwap = true;
             if (occupied(current.type, current.x, current.y, current.dir)) {
@@ -2342,6 +2465,10 @@ var highscore = 0 //roxiun add local storage here
     //-------------------------------------------------------------------------
     // FINALLY, lets run the game
     //-------------------------------------------------------------------------
+    
+    
+    //try fix this bug
+    
 
     run();
 
