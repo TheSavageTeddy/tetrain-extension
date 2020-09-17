@@ -11,7 +11,7 @@ function getHTML(id){
     return document.getElementById(id)
 }
 
-function handleFileSelect(evt) {
+function handleiFileSelect(evt) {
     var files = evt.target.files;
     var f = files[0];
     var reader = new FileReader();
@@ -20,21 +20,20 @@ function handleFileSelect(evt) {
         return function(e) {
             console.log(e.target.result);
             chrome.storage.local.set({ iPiece: e.target.result })
-            document.getElementById('list').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
+            document.getElementById('ilist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };
     })(f);
     
     reader.readAsDataURL(f);
-
 }
 
 
 document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get(['iPiece'], function(config) {
         if (typeof config.iPiece !== 'undefined'){
-            getHTML('list').innerHTML = ['<img src="', config.iPiece,'" width="50" />'].join('');
+            getHTML('ilist').innerHTML = ['<img src="', config.iPiece,'" width="50" />'].join('');
         }
     });
     getHTML('back').addEventListener('click', goBack);
-    getHTML('files').addEventListener('change', handleFileSelect, false);
+    getHTML('ifiles').addEventListener('change', handleiFileSelect, false);
 });
