@@ -2249,7 +2249,7 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function drawBlock(ctx, x, y, color) {
-        if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
+        if (value.design == "tetra" || value.design == "wool" || value.design == "crafty" || value.design == "custom") {
             ctx.drawImage(tetra_images[color], x * dx, y * dy, dx, dy);
         } else {
             ctx.fillStyle = color;
@@ -2259,7 +2259,7 @@ var highscore = 0 //roxiun add local storage here
 
     function drawGhostBlock(ctx, x, y, color) {
         if(!blindmode){//no ghost blocks for blind mode
-            if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
+            if (value.design == "tetra" || value.design == "wool" || value.design == "crafty" || value.design == "custom") {
                 ctx.drawImage(tetra_ghost[color], x * dx, y * dy, dx, dy);
             } else {
                 ctx.strokeStyle = color;
