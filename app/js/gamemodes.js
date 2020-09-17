@@ -52,15 +52,39 @@ function lvlOut(){
     changeHTML("infotext", "<br><br><br>")
 }
 
+function piecesOver(){
+    changeHTML("infotext", "Change pieces used!<br><i>Highscores will not be saved if<br>changed, press reset to reset</i><br>")
+}
+
+function piecesOut(){
+    changeHTML("infotext", "<br><br><br>")
+}
+
 
 function piecesReset(){
-    
+    getHTML("text-input").value = "I O L J Z S T"
 }
 
 
 
 function classicGame(){
-    chrome.storage.local.set({ canhighscore: true});
+
+    var piecebag = getHTML("text-input").value
+    chrome.storage.local.set({ pieceBag: piecebag});
+    chrome.storage.local.get(["pieceBag"], function(local_config) {   
+        console.log(local_config.pieceBag)
+    });
+
+    if (piecebag == "I O L J Z S T"){
+        chrome.storage.local.set({ canhighscore: true});
+    }else{
+        chrome.storage.local.set({ canhighscore: false});
+    }
+
+    chrome.storage.local.get(["canhighscore"], function(local_config) {   
+        console.log(local_config.canhighscore)
+    });
+    
 
     var startlevel = getHTML("myRange").value
     chrome.storage.local.set({ startinglevel: startlevel});
@@ -83,6 +107,15 @@ function classicGame(){
 }
 
 function ghostGame(){
+
+//highscore is false anyways
+    var piecebag = getHTML("text-input").value
+    chrome.storage.local.set({ pieceBag: piecebag});
+    chrome.storage.local.get(["pieceBag"], function(local_config) {   
+        console.log(local_config.pieceBag)
+    });
+
+
     chrome.storage.local.set({ canhighscore: false});
     //get starting level
     var startlevel = getHTML("myRange").value
@@ -102,6 +135,7 @@ function ghostGame(){
 
 function practiceGame(){
 
+    //highscore is false anyways
     chrome.storage.local.set({ canhighscore: false});
     
     var startlevel = getHTML("myRange").value
@@ -136,7 +170,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var classic = getHTML("classic")
     var ghost = getHTML("ghost")
     var startlevelelement = getHTML("myRange")
+    var startlevelelement = getHTML("text-input")
 
+    //yes i can just use one function for the out function but like just in case
+    //ok im not bad plz..
     practice.addEventListener("mouseover", practiceOver);
     practice.addEventListener("mouseout", practiceOut);
 
@@ -148,5 +185,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     startlevelelement.addEventListener("mouseover", lvlOver);
     startlevelelement.addEventListener("mouseout", lvlOut);
+
+    startlevelelement.addEventListener("mouseover", piecesOver);
+    startlevelelement.addEventListener("mouseout", piecesOut);
 });
 
