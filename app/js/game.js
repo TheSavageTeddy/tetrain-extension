@@ -1210,10 +1210,7 @@ var highscore = 0 //roxiun add local storage here
                     rdelay=0
                 }
    
-                console.log("varpiecebag: ")
-                console.log(varpiecebag)
-                console.log("varpiecebagsave: ")
-                console.log(varpiecebagsave)
+
 
                 ctx.strokeStyle = "#FF0000";
                 ctx.strokeRect(0, canvas.height/20, canvas.width, 1);
