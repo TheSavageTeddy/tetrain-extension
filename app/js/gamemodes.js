@@ -136,7 +136,13 @@ function ghostGame(){
 function practiceGame(){
 
     //highscore is false anyways
-    chrome.storage.local.set({ canhighscore: false});
+    var piecebag = getHTML("text-input").value
+    chrome.storage.local.set({ pieceBag: piecebag});
+    chrome.storage.local.get(["pieceBag"], function(local_config) {   
+        console.log(local_config.pieceBag)
+    });
+
+    
     
     var startlevel = getHTML("myRange").value
     chrome.storage.local.set({ startinglevel: startlevel});
