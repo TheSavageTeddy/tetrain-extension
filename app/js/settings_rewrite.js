@@ -125,9 +125,10 @@ const config_options = {
                 'Minimal':'clean',
                 'Classic':'legends',
                 'Bold':'bold',
-                '★ Tetra':'tetra',
+                'Tetra':'tetra',
                 'Wool':'wool',
-                'Crafty':'crafty'
+                'Crafty':'crafty',
+                'Custom':'custom'
             }
         },
         'size':{

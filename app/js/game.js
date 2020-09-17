@@ -840,7 +840,7 @@ var highscore = 0 //roxiun add local storage here
         document.getElementById('canvas-back').style.left = "0px";   
     }
 
-    if (value.design == "tetra" || value.design == "wool" || value.design == "crafty") {
+    if (value.design == "tetra" || value.design == "wool" || value.design == "crafty" || value.design == "custom") {
         var tetra_images,
             tetra_ghost,
             icntr;
@@ -883,18 +883,37 @@ var highscore = 0 //roxiun add local storage here
                 };
                 tetra_images[key].src = `../img/assets/crafty/${key}.jpeg`;
             };
-        } else {
+        } else if (value.design == "wool"){
             for (const [key, value] of Object.entries(tetra_images)) {
                 tetra_images[key].onload = function () {
                     icntr++;
                 };
                 tetra_images[key].src = `../img/assets/wool/wool_colored_${key}.jpeg`;
             };
+        } else if (value.design == "custom"){
+            //tetra things
+            for (const [key, value] of Object.entries(tetra_images)) {
+                tetra_images[key].onload = function () {
+                    icntr++;
+                };
+                tetra_images[key].src = `../img/assets/tetra/stack-${key}.svg`;
+            };
+            //tetra ghost
+            for (const [key, value] of Object.entries(tetra_ghost)) {
+                tetra_ghost[key].onload = function () {
+                    icntr++;
+                };
+                tetra_ghost[key].src = `../img/assets/tetra/ghost-${key}.svg`;
+            };
+            
+
+            //actual custom textures
+            if (value.iPiece !== 'undefined'){
+                tetra_images['cyan'].src = value.iPiece;
+                console.log("tesing the custom textures")
+            }
         }
-        if (value.iPiece !== 'undefined'){
-            tetra_images['cyan'].src = value.iPiece;
-            console.log("tesing the custom textures")
-        }
+
     }
 
     var bimg = new Image();
