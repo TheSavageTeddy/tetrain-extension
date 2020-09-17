@@ -318,3 +318,22 @@ https://cssgradient.io/
 #text-input:hover {
     opacity: 1; /* Fully shown on mouse-over */
 }
+
+
+
+#pieces-reset-button{
+    border-color: white;
+    background-color: black;
+    color: white;
+    text-decoration:none;
+    border-radius:4px;
+    border:2px solid white;
+
+    transition-duration: 200ms;
+}
+
+
+#pieces-reset-button:hover{
+    color: black;
+    background-color: white;
+}

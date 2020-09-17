@@ -52,6 +52,13 @@ function lvlOut(){
     changeHTML("infotext", "<br><br><br>")
 }
 
+
+function piecesReset(){
+    
+}
+
+
+
 function classicGame(){
     chrome.storage.local.set({ canhighscore: true});
 
@@ -120,6 +127,8 @@ document.addEventListener('DOMContentLoaded', function () {
     getHTML("ghost").addEventListener('click', ghostGame);
 
     getHTML("practice").addEventListener('click', practiceGame);
+
+    getHTML("pieces-reset-button").addEventListener('click', piecesReset)
 
     document.addEventListener('keydown', keydown, false);
 
