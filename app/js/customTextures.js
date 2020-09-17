@@ -7,6 +7,10 @@ function goBack(){
     window.location.replace("../html/settings.html");
 }
 
+function getHTML(id){
+    return document.getElementById(id)
+}
+
 function handleFileSelect(evt) {
     var files = evt.target.files;
     var f = files[0];
@@ -28,9 +32,9 @@ function handleFileSelect(evt) {
 document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get(['iPiece'], function(config) {
         if (typeof config.iPiece !== 'undefined'){
-            document.getElementById('list').innerHTML = ['<img src="', config.iPiece,'" width="50" />'].join('');
+            getHTML('list').innerHTML = ['<img src="', config.iPiece,'" width="50" />'].join('');
         }
     });
-    document.getElementById('back').addEventListener('click', goBack);
-    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    getHTML('back').addEventListener('click', goBack);
+    getHTML('files').addEventListener('change', handleFileSelect, false);
 });
