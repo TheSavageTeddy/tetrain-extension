@@ -1012,7 +1012,24 @@ var highscore = 0 //roxiun add local storage here
             //actual custom textures
             if (value.iPiece !== 'undefined'){
                 tetra_images['cyan'].src = value.iPiece;
-                console.log("tesing the custom textures")
+            }
+            if (value.oPiece !== 'undefined'){
+                tetra_images['yellow'].src = value.oPiece;
+            }
+            if (value.jPiece !== 'undefined'){
+                tetra_images['blue'].src = value.jPiece;
+            }
+            if (value.lPiece !== 'undefined'){
+                tetra_images['orange'].src = value.lPiece;
+            }
+            if (value.sPiece !== 'undefined'){
+                tetra_images['lime'].src = value.sPiece;
+            }
+            if (value.tPiece !== 'undefined'){
+                tetra_images['magenta'].src = value.tPiece;
+            }
+            if (value.zPiece !== 'undefined'){
+                tetra_images['red'].src = value.zPiece;
             }
         }
 
@@ -2401,6 +2418,11 @@ var highscore = 0 //roxiun add local storage here
                 ctx.strokeStyle = color;
                 ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
                 ctx.strokeStyle = "#000000";
+            }
+            if (value.design == "wool" || value.design == "crafty" || value.design == "custom"){
+                ctx.drawImage(tetra_images[color], x * dx, y * dy, dx, dy);
+                ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+                ctx.fillRect(x * dx, y * dy, dx, dy);
             }
         }
 
