@@ -41,7 +41,11 @@ async function retrieveSettings(){
             "ghostmode",
             "practicemode",
             "canhighscore",
-            "iPiece"
+            //custom textures
+            "iPiece",
+            //piece bag
+            "pieceBag"
+
     ], function(options){
             //console.log("====Settings Retrived====")
             resolve(options);
@@ -91,7 +95,9 @@ async function game() {
             "startinglevel",
             "ghostmode",
             "practicemode",
-            "canhighscore"
+            "canhighscore",
+
+            "pieceBag"
         ], function(options){
             
                 //console.log("====Settings Retrived====")
@@ -103,8 +109,18 @@ async function game() {
     }
     //hello from the future!
 
-    
+    var piecebag = value.pieceBag.split(" ")//from local storage
+    console.log(piecebag)
 
+    var cleanedPieceBag = []//only will contain I O L J Z S T
+
+    if (!value.pieceBag == "I O L J Z S T"){
+        for (i=0; i<length(piecebag); i++){
+            if (piecebag[i] == "I" || piecebag[i] == "O" || piecebag[i] == "L" || piecebag[i] == "J" || piecebag[i] == "Z" || piecebag[i] == "S" || piecebag[i] == "T"){
+                cleanedPieceBag.push(piecebag[i])
+            }
+        }
+    }
 
     if (value.keyspeed == "normal"){
         var movementSpeed = 50

@@ -28,6 +28,7 @@ function classic() {
   chrome.storage.local.set({ startinglevel: 1});
   chrome.storage.local.set({ practicemode: false});
   chrome.storage.local.set({ canhighscore: true});
+  chrome.storage.local.set({ pieceBag: "I O L J Z S T"});
   
   window.location.replace("app/html/classic.html");
 }
