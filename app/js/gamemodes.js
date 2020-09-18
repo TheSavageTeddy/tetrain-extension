@@ -37,7 +37,7 @@ function classicOut(){
 }
 
 function ghostOver(){
-    changeHTML("infotext", "Pieces are invisible when dropped!<br>Press 'F' to flash to see pieces until <br>you drop the current piece<br>")
+    changeHTML("infotext", "Pieces are invisible when dropped!<br>Press F to 'flash' pieces<br>3 rows = 1flash<br>")
 }
 
 function ghostOut(){
