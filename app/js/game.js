@@ -43,6 +43,12 @@ async function retrieveSettings(){
             "canhighscore",
             //custom textures
             "iPiece",
+            "sPiece",
+            "oPiece",
+            "zPiece",
+            "tPiece",
+            "jPiece",
+            "lPiece",
             //piece bag
             "pieceBag"
 
@@ -1010,25 +1016,25 @@ var highscore = 0 //roxiun add local storage here
             
 
             //actual custom textures
-            if (value.iPiece !== 'undefined'){
+            if (value.iPiece){
                 tetra_images['cyan'].src = value.iPiece;
             }
-            if (value.oPiece !== 'undefined'){
+            if (value.oPiece){
                 tetra_images['yellow'].src = value.oPiece;
             }
-            if (value.jPiece !== 'undefined'){
+            if (value.jPiece){
                 tetra_images['blue'].src = value.jPiece;
             }
-            if (value.lPiece !== 'undefined'){
+            if (value.lPiece){
                 tetra_images['orange'].src = value.lPiece;
             }
-            if (value.sPiece !== 'undefined'){
+            if (value.sPiece){
                 tetra_images['lime'].src = value.sPiece;
             }
-            if (value.tPiece !== 'undefined'){
+            if (value.tPiece){
                 tetra_images['magenta'].src = value.tPiece;
             }
-            if (value.zPiece !== 'undefined'){
+            if (value.zPiece){
                 tetra_images['red'].src = value.zPiece;
             }
         }
