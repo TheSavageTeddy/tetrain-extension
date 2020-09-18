@@ -2220,6 +2220,7 @@ var highscore = 0 //roxiun add local storage here
         drawCourt();
         //drawParticle(10,10);
         //drawParticle();
+        
         drawNext();
         drawScore();
         if (!value.sidebarEnabled){
