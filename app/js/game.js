@@ -1118,35 +1118,32 @@ var highscore = 0 //roxiun add local storage here
         
                     if (piecebag[countthing].toUpperCase() == "I"){
                         pieces.push(i)
-                        console.log("I piece")
+                        //console.log("I piece")
                     }else if (piecebag[countthing].toUpperCase() == "T"){
                         pieces.push(t)
-                        console.log("T piece")
+                        //console.log("T piece")
                     }else if (piecebag[countthing].toUpperCase() == "O"){
                         pieces.push(o)
-                        console.log("O piece")
+                        //console.log("O piece")
                     }else if (piecebag[countthing].toUpperCase() == "L"){
                         pieces.push(l)
-                        console.log("L piece")
+                        //console.log("L piece")
                     }else if (piecebag[countthing].toUpperCase() == "J"){
                         pieces.push(j)
-                        console.log("J piece")
+                        //console.log("J piece")
                     }else if (piecebag[countthing].toUpperCase() == "Z"){
                         pieces.push(z)
-                        console.log("Z piece")
+                        //console.log("Z piece")
                     }else if (piecebag[countthing].toUpperCase() == "S"){
                         pieces.push(s)
-                        console.log("S piece")
+                        //console.log("S piece")
                     }else{
-                        console.log("invalid piece detected lol")
+                        //console.log("invalid piece detected lol")
                     }
                     countthing++;
                     if (countthing>=piecebag.length){
                         break
                     }
-        
-        
-                    
                 }
 
 
