@@ -935,17 +935,22 @@ var highscore = 0 //roxiun add local storage here
             document.getElementById('canvas').style.width = '200px';
         }
     }
+
     
-    if (value.markersEnabled && !value.sidebarEnabled && value.canvasSize == "big"){
-        document.getElementById('wrapper').style.position = "relative";
-        document.getElementById('wrapper').style.height = "560px";
-        document.getElementById('wrapper').style.width = "280px";
-        document.getElementById('canvas').style.position = "absolute"
-        document.getElementById('canvas').style.top = "0px";
-        document.getElementById('canvas').style.left = "0px";
-        document.getElementById('canvas-back').style.position = "absolute"
-        document.getElementById('canvas-back').style.top = "0px";
-        document.getElementById('canvas-back').style.left = "0px";   
+    if (value.markersEnabled){
+        if (!value.sidebarEnabled && value.canvasSize == "big"){
+            document.getElementById('wrapper').style.position = "relative";
+            document.getElementById('wrapper').style.height = "560px";
+            document.getElementById('wrapper').style.width = "280px";
+            document.getElementById('canvas').style.position = "absolute"
+            document.getElementById('canvas').style.top = "0px";
+            document.getElementById('canvas').style.left = "0px";
+            document.getElementById('canvas-back').style.position = "absolute"
+            document.getElementById('canvas-back').style.top = "0px";
+            document.getElementById('canvas-back').style.left = "0px";   
+        }else if (a){
+
+        }
     }
 
     if (value.design == "tetra" || value.design == "wool" || value.design == "crafty" || value.design == "custom") {
@@ -1614,7 +1619,7 @@ var highscore = 0 //roxiun add local storage here
         }
 
 
-        //console.log(step)
+        console.log(step)
 
         invalidateRows();
     }
@@ -2226,7 +2231,7 @@ var highscore = 0 //roxiun add local storage here
         drawCourt();
         //drawParticle(10,10);
         //drawParticle();
-        
+
         drawNext();
         drawScore();
         if (!value.sidebarEnabled){
