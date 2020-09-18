@@ -1111,32 +1111,30 @@ var highscore = 0 //roxiun add local storage here
                 console.log("pieces: ")
                 console.log(pieces.join())
                 */
-
+                console.log("new custom bag")
 
                 var countthing=0
                 while (true){
         
-                    if (piecebag[countthing] == "I"){
+                    if (piecebag[countthing].toUpperCase() == "I"){
                         pieces.push(i)
                         console.log("I piece")
-                        console.log(i)
-                        console.log(varpiecebag)
-                    }else if (piecebag[countthing] == "T"){
+                    }else if (piecebag[countthing].toUpperCase() == "T"){
                         pieces.push(t)
                         console.log("T piece")
-                    }else if (piecebag[countthing] == "O"){
+                    }else if (piecebag[countthing].toUpperCase() == "O"){
                         pieces.push(o)
                         console.log("O piece")
-                    }else if (piecebag[countthing] == "L"){
+                    }else if (piecebag[countthing].toUpperCase() == "L"){
                         pieces.push(l)
                         console.log("L piece")
-                    }else if (piecebag[countthing] == "J"){
+                    }else if (piecebag[countthing].toUpperCase() == "J"){
                         pieces.push(j)
                         console.log("J piece")
-                    }else if (piecebag[countthing] == "Z"){
+                    }else if (piecebag[countthing].toUpperCase() == "Z"){
                         pieces.push(z)
                         console.log("Z piece")
-                    }else if (piecebag[countthing] == "S"){
+                    }else if (piecebag[countthing].toUpperCase() == "S"){
                         pieces.push(s)
                         console.log("S piece")
                     }else{
