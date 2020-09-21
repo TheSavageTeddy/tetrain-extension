@@ -196,4 +196,6 @@ input[type=file]:hover{
     cursor: pointer;
 }
 
-
+#bottom-page{
+    text-align: center;
+}
