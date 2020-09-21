@@ -26,7 +26,7 @@ function createEnableDisable(select_element, local_name){
     var select_node = document.getElementById(select_element);
     var en = document.createElement("option");
     var dis = document.createElement("option");
-    en.text = "Enabled";
+    en.text = "★ Enabled";
     en.value = "enabled";
     dis.text = "Disabled";
     dis.value = "disabled";

@@ -1627,18 +1627,36 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function getBlock(x, y) {
-        return (blocks && blocks[x] ? blocks[x][y] : null);
+        try{
+            return (blocks && blocks[x] ? blocks[x][y] : null);
+        }catch{
+            lose("kys")
+            mainmenu()
+        }//bug thing
+
     }
 
     function setBlock(x, y, type) {
-        blocks[x] = blocks[x] || [];
-        blocks[x][y] = type;
-        invalidate();
+        try{
+            blocks[x] = blocks[x] || [];
+            blocks[x][y] = type;
+            invalidate();
+        }catch{
+            lose("kys")
+            mainmenu()
+        }//bug thing
+
     }
 
     function clearBlocks() {
-        blocks = [];
-        invalidate();
+        try{
+            blocks = [];
+            invalidate();
+        }catch{
+            lose("kys")
+            mainmenu()
+        }//bug thing
+
     }
 
     function clearActions() {
