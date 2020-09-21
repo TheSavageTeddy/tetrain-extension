@@ -948,8 +948,6 @@ var highscore = 0 //roxiun add local storage here
             document.getElementById('canvas-back').style.position = "absolute"
             document.getElementById('canvas-back').style.top = "0px";
             document.getElementById('canvas-back').style.left = "0px";   
-        }else if (a){
-
         }
     }
 
