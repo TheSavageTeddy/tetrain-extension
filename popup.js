@@ -96,9 +96,7 @@ function createLocalStorage(){
   chrome.storage.local.set({ isBeta: true })
 }
 
-// Add event listeners once the DOM has fully loaded by listening for the
-// `DOMContentLoaded` event on the document, and adding your listeners to
-// specific elements when it triggers.
+
 document.addEventListener('DOMContentLoaded', function () {
   chrome.storage.local.get(['isConfigured', "isBeta", 'isNewUpdate'], function(config) {
     if (config.isConfigured == null){
@@ -114,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
       chrome.tabs.create({url: chrome.extension.getURL('app/html/release.html')});
     }
   });
+
   //click
   document.getElementById('classic').addEventListener('click', classic);
   document.getElementById('gamemodes').addEventListener('click', gamemodes);
