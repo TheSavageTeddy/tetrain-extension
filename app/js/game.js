@@ -2417,9 +2417,9 @@ var highscore = 0 //roxiun add local storage here
 
     function drawGhostBlock(ctx, x, y, color) {
         if(!blindmode){//no ghost blocks for blind mode
-            if (value.design == "tetra" || value.design == "wool" || value.design == "crafty" || value.design == "custom") {
+            if (value.design == "tetra") {
                 ctx.drawImage(tetra_ghost[color], x * dx, y * dy, dx, dy);
-            } else {
+            } else if (value.design != "wool" && value.design != "crafty" && value.design != "custom"){
                 ctx.strokeStyle = color;
                 ctx.strokeRect(x * dx, y * dy, dx-1, dy-1);
                 ctx.strokeStyle = "#000000";
