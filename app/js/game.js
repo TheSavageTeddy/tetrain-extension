@@ -1514,14 +1514,12 @@ var highscore = 0 //roxiun add local storage here
     }
     }
 
-
     async function downBetterKey(){
         while (down){
             LRactions.push(DIR.DOWN);
             await new Promise(r => setTimeout(r, movementSpeed+30));
         }
     }
-
 
     //-------------------------------------------------------------------------
     // GAME LOGIC
@@ -1583,8 +1581,6 @@ var highscore = 0 //roxiun add local storage here
         rows = n;
 
 //      1/60 = 0.016666666666
-
-
         //if (speed.start - (speed.increase*level)<0.0017){
             //step = 0.016666
             //console.log(speed.start - (speed.increase*level))
@@ -1615,10 +1611,7 @@ var highscore = 0 //roxiun add local storage here
                 //console.log(speed.start - (speed.increase*level))
             }
         }
-
-
         //console.log(step)
-
         invalidateRows();
     }
 
@@ -1633,7 +1626,6 @@ var highscore = 0 //roxiun add local storage here
             lose("kys")
             mainmenu()
         }//bug thing
-
     }
 
     function setBlock(x, y, type) {
@@ -1645,7 +1637,6 @@ var highscore = 0 //roxiun add local storage here
             lose("kys")
             mainmenu()
         }//bug thing
-
     }
 
     function clearBlocks() {
@@ -1656,7 +1647,6 @@ var highscore = 0 //roxiun add local storage here
             lose("kys")
             mainmenu()
         }//bug thing
-
     }
 
     function clearActions() {
@@ -1739,9 +1729,6 @@ var highscore = 0 //roxiun add local storage here
             }
             */
 
-
-
-
             if (value.ispieceinHold){
                 pieceinHold = true;
                 hold_current = value.currentHold;
@@ -1758,11 +1745,6 @@ var highscore = 0 //roxiun add local storage here
             setCurrentPiece(current);
             setNextPiece(next);
             
-
-
-
-
-
             rdelay=0
             ldelay=0
             left=false
@@ -2255,7 +2237,7 @@ var highscore = 0 //roxiun add local storage here
 
         drawNext();
         drawScore();
-        
+
         if (!value.sidebarEnabled){
             drawNoSidebarScore();
         }
