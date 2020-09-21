@@ -1,4 +1,5 @@
 # To do list
+## if you are reading this, this list is sorta outdated ok im kinda lazy to do stuff in it. this was used a bit early on ill just keep it here - teddy
 #### put ✓ before item to mark it done!
 #### put ! before item to mark it important/major issue!
 
