@@ -154,7 +154,7 @@ async function game() {
 //
 
 
-    
+
     var piecebag = value.pieceBag.split(" ")//from local storage
     //console.log(piecebag)
 
@@ -207,6 +207,7 @@ async function game() {
     }
 
     varpiecebagsave = varpiecebag
+
 /*
     /console.log("varpiecebag: ")
     /console.log(varpiecebag)
