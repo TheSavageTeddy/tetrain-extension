@@ -27,22 +27,6 @@ function handleiFileSelect(evt) {
     reader.readAsDataURL(f);
 }
 
-function handleiFileSelect(evt) {
-    var files = evt.target.files;
-    var f = files[0];
-    var reader = new FileReader();
-     
-    reader.onload = (function(theFile) {
-        return function(e) {
-            console.log(e.target.result);
-            chrome.storage.local.set({ iPiece: e.target.result })
-            document.getElementById('ilist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
-        };
-    })(f);
-    
-    reader.readAsDataURL(f);
-}
-
 function handleoFileSelect(evt) {
     var files = evt.target.files;
     var f = files[0];
