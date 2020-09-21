@@ -1,5 +1,4 @@
 # To do list
-### this is not actually a README lol
 #### put ✓ before item to mark it done!
 #### put ! before item to mark it important/major issue!
 
