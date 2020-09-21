@@ -148,37 +148,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     chrome.storage.local.get(['oPiece'], function(config) {
-        if (typeof config.iPiece !== 'undefined'){
+        if (typeof config.oPiece !== 'undefined'){
             getHTML('olist').innerHTML = ['<img src="', config.oPiece,'" width="50" />'].join('');
         }
     });
 
     chrome.storage.local.get(['lPiece'], function(config) {
-        if (typeof config.iPiece !== 'undefined'){
+        if (typeof config.lPiece !== 'undefined'){
             getHTML('llist').innerHTML = ['<img src="', config.lPiece,'" width="50" />'].join('');
         }
     });
 
     chrome.storage.local.get(['jPiece'], function(config) {
-        if (typeof config.iPiece !== 'undefined'){
+        if (typeof config.jPiece !== 'undefined'){
             getHTML('jlist').innerHTML = ['<img src="', config.jPiece,'" width="50" />'].join('');
         }
     });
 
     chrome.storage.local.get(['tPiece'], function(config) {
-        if (typeof config.iPiece !== 'undefined'){
+        if (typeof config.tPiece !== 'undefined'){
             getHTML('tlist').innerHTML = ['<img src="', config.tPiece,'" width="50" />'].join('');
         }
     });
 
     chrome.storage.local.get(['sPiece'], function(config) {
-        if (typeof config.iPiece !== 'undefined'){
+        if (typeof config.sPiece !== 'undefined'){
             getHTML('slist').innerHTML = ['<img src="', config.sPiece,'" width="50" />'].join('');
         }
     });
 
     chrome.storage.local.get(['zPiece'], function(config) {
-        if (typeof config.iPiece !== 'undefined'){
+        if (typeof config.zPiece !== 'undefined'){
             getHTML('zlist').innerHTML = ['<img src="', config.zPiece,'" width="50" />'].join('');
         }
     });
