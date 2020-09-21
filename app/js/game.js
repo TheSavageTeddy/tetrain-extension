@@ -156,13 +156,13 @@ async function game() {
 
     
     var piecebag = value.pieceBag.split(" ")//from local storage
-    console.log(piecebag)
+    //console.log(piecebag)
 
     // unused
     //var cleanedPieceBag = []//only will contain I O L J Z S T
     var varpiecebag = []
     var varpiecebagsave = []
-    console.log(value.pieceBag)
+    //console.log(value.pieceBag)
 
     var custombag = false
     if (value.pieceBag != "I O L J Z S T"){
@@ -172,29 +172,29 @@ async function game() {
 
             if (piecebag[countthing] == "I"){
                 varpiecebag.push(i)
-                console.log("I piece")
-                console.log(i)
-                console.log(varpiecebag)
+                //console.log("I piece")
+                //console.log(i)
+                //console.log(varpiecebag)
             }else if (piecebag[countthing] == "T"){
                 varpiecebag.push(t)
-                console.log("T piece")
+                //console.log("T piece")
             }else if (piecebag[countthing] == "O"){
                 varpiecebag.push(o)
-                console.log("O piece")
+                //console.log("O piece")
             }else if (piecebag[countthing] == "L"){
                 varpiecebag.push(l)
-                console.log("L piece")
+                //console.log("L piece")
             }else if (piecebag[countthing] == "J"){
                 varpiecebag.push(j)
-                console.log("J piece")
+                //console.log("J piece")
             }else if (piecebag[countthing] == "Z"){
                 varpiecebag.push(z)
-                console.log("Z piece")
+                //console.log("Z piece")
             }else if (piecebag[countthing] == "S"){
                 varpiecebag.push(s)
-                console.log("S piece")
+                //console.log("S piece")
             }else{
-                console.log("invalid piece detected lol")
+                //console.log("invalid piece detected lol")
             }
             countthing++;
             if (countthing>=piecebag.length){
@@ -207,12 +207,12 @@ async function game() {
     }
 
     varpiecebagsave = varpiecebag
-
-    console.log("varpiecebag: ")
-    console.log(varpiecebag)
-    console.log("varpiecebagsave: ")
-    console.log(varpiecebagsave)
-
+/*
+    /console.log("varpiecebag: ")
+    /console.log(varpiecebag)
+    /console.log("varpiecebagsave: ")
+    /console.log(varpiecebagsave)
+*/
 
     if (value.keyspeed == "normal"){
         var movementSpeed = 50
@@ -1107,7 +1107,7 @@ var highscore = 0 //roxiun add local storage here
 
     function randomPiece() {
 
-        console.log("pieces.length: "+pieces.length)
+        //console.log("pieces.length: "+pieces.length)
         if (pieces.length <= 0){
             if (custombag){
                 /*
@@ -1120,7 +1120,7 @@ var highscore = 0 //roxiun add local storage here
                 console.log("pieces: ")
                 console.log(pieces.join())
                 */
-                console.log("new custom bag")
+                //console.log("new custom bag")
 
                 var countthing=0
                 while (true){
@@ -1158,14 +1158,14 @@ var highscore = 0 //roxiun add local storage here
 
                 
             }else{
-                console.log("custom bag no")
+                //console.log("custom bag no")
                 pieces = [i, j, l, o, s, t, z];
             }
         }
-        console.log("varpiecebag: ")
-        console.log(varpiecebag.join())
-        console.log("varpiecebagsave: ")
-        console.log(varpiecebagsave.join())
+        //console.log("varpiecebag: ")
+        //console.log(varpiecebag.join())
+        //console.log("varpiecebagsave: ")
+        //console.log(varpiecebagsave.join())
         var type = pieces.splice(random(0, pieces.length - 1), 1)[0];
         if (type == j || type == l || type == t || type == o) {
             return {
@@ -1617,7 +1617,7 @@ var highscore = 0 //roxiun add local storage here
         }
 
 
-        console.log(step)
+        //console.log(step)
 
         invalidateRows();
     }
@@ -2059,10 +2059,10 @@ var highscore = 0 //roxiun add local storage here
                                    //function only calls when rows cleared, but lets
                                    //keep it just in case 
                 blindflashcount = blindflashcount + 1
-                console.log("given flash")
+                //console.log("given flash")
             }else{
                 alreadygiven = false
-                console.log("nope")
+                //console.log("nope")
             }
 
             if (n < 4) {
