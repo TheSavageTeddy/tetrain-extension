@@ -18,7 +18,7 @@ function handleiFileSelect(evt) {
      
     reader.onload = (function(theFile) {
         return function(e) {
-            console.log(e.target.result);
+            //console.log(e.target.result);
             chrome.storage.local.set({ iPiece: e.target.result })
             document.getElementById('ilist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };
@@ -34,7 +34,7 @@ function handleoFileSelect(evt) {
      
     reader.onload = (function(theFile) {
         return function(e) {
-            console.log(e.target.result);
+            //console.log(e.target.result);
             chrome.storage.local.set({ oPiece: e.target.result })
             document.getElementById('olist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };
@@ -50,7 +50,7 @@ function handlelFileSelect(evt) {
      
     reader.onload = (function(theFile) {
         return function(e) {
-            console.log(e.target.result);
+            //console.log(e.target.result);
             chrome.storage.local.set({ lPiece: e.target.result })
             document.getElementById('llist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };
@@ -66,7 +66,7 @@ function handlejFileSelect(evt) {
      
     reader.onload = (function(theFile) {
         return function(e) {
-            console.log(e.target.result);
+            //console.log(e.target.result);
             chrome.storage.local.set({ jPiece: e.target.result })
             document.getElementById('jlist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };
@@ -82,7 +82,7 @@ function handletFileSelect(evt) {
      
     reader.onload = (function(theFile) {
         return function(e) {
-            console.log(e.target.result);
+            //console.log(e.target.result);
             chrome.storage.local.set({ tPiece: e.target.result })
             document.getElementById('tlist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };
@@ -98,7 +98,7 @@ function handlesFileSelect(evt) {
      
     reader.onload = (function(theFile) {
         return function(e) {
-            console.log(e.target.result);
+            //console.log(e.target.result);
             chrome.storage.local.set({ sPiece: e.target.result })
             document.getElementById('slist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };
@@ -114,7 +114,7 @@ function handlezFileSelect(evt) {
      
     reader.onload = (function(theFile) {
         return function(e) {
-            console.log(e.target.result);
+            //console.log(e.target.result);
             chrome.storage.local.set({ zPiece: e.target.result })
             document.getElementById('zlist').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="50" />'].join('');
         };

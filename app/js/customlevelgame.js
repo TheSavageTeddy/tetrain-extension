@@ -39,7 +39,7 @@ async function retrieveSettings(){
             "flashcount",
             "startinglevel"
     ], function(options){
-            console.log("====Settings Retrived====")
+            //console.log("====Settings Retrived====")
             resolve(options);
         })
     });
@@ -87,7 +87,7 @@ async function game() {
             "startinglevel"
         ], function(options){
             
-                console.log("====Settings Retrived====")
+                //console.log("====Settings Retrived====")
                 resolve(options);
             })
         });
@@ -101,16 +101,16 @@ async function game() {
 
     if (value.keyspeed == "normal"){
         var movementSpeed = 50
-        console.log("normal speed")
+        //console.log("normal speed")
     }else if (value.keyspeed == "faster"){
         var movementSpeed = 40
-        console.log("faster speed")
+        //console.log("faster speed")
     }else if (value.keyspeed == "evenfaster"){
         var movementSpeed = 30
-        console.log("evenfaster speed")
+        //console.log("evenfaster speed")
     }else{
-        console.log("error speed what the frick")
-        console.log(value.keyspeed)
+        //console.log("error speed what the frick")
+        //console.log(value.keyspeed)
     }
     
     if (value.design == "clean") {
@@ -652,13 +652,13 @@ var highscore = 0 //roxiun add local storage here
 
         try{
             level = value.startinglevel
-            console.log("eeeeee")
-            console.log(level)
+            //console.log("eeeeee")
+            //console.log(level)
         }catch(e){
-            console.log(e)
+            //console.log(e)
             level = 1
             html("level", level)
-            console.log("aaaaa")
+            //console.log("aaaaa")
         }
         
 
@@ -1044,10 +1044,10 @@ var highscore = 0 //roxiun add local storage here
         var x = event.pageX - elemLeft,
             y = event.pageY - elemTop;
         elements.forEach(function(element) {
-            console.log(elements)
+            //console.log(elements)
             if (y > element.top && y < element.top + element.height && x > element.left && x < element.left + element.width) {
-                console.log('clicked an element');
-                console.log("restart called");
+                //console.log('clicked an element');
+                //console.log("restart called");
                 lose("kys");
                 show('start');
                 level=1
@@ -1075,7 +1075,7 @@ var highscore = 0 //roxiun add local storage here
             document.removeEventListener("keydown", keydown);
             document.removeEventListener('keyup', keyup, false);
         } catch (e) {
-            console.error(e)
+            //console.error(e)
         }
         document.addEventListener('keydown', keydown, false);
         document.addEventListener('keyup', keyup, false);
@@ -1341,7 +1341,7 @@ var highscore = 0 //roxiun add local storage here
                 setRows(0);
                 //break;
             }catch(e){
-                console.log(e)
+                //console.log(e)
 
                 //(disabled) sets score to error message, waits 2000ms
                 //document.getElementById("score").innerHTML="AN ERROR HAS OCCURED: RESTARTING GAME, YOUR GAME WILL NOT BE SAVED, BUT HIGHSCORE WILL"
@@ -1370,14 +1370,14 @@ var highscore = 0 //roxiun add local storage here
 
         if (level < 15){
             step = Math.max(0.0001, speed.start - (speed.increase*level));
-            console.log(speed.start - (speed.increase*level))
+            //console.log(speed.start - (speed.increase*level))
         }else{
             step = Math.max(0.0001, speed.start - (speed.increase/(level/15)*level));
-            console.log(speed.start - (speed.increase*level))
+            //console.log(speed.start - (speed.increase*level))
         }
 
 
-        console.log(step)
+        //console.log(step)
 
         invalidateRows();
     }
@@ -1850,7 +1850,7 @@ var highscore = 0 //roxiun add local storage here
                     hold_current = old_current_piece
                     drawHold();
                 } catch(err) {
-                    console.log(err)
+                    //console.log(err)
                 }
             } else {
                 pieceinHold = true;
@@ -2061,7 +2061,7 @@ var highscore = 0 //roxiun add local storage here
                 hctx.restore();
             }
             catch(err) {
-                console.log(err)
+                //console.log(err)
             }
         }
     }

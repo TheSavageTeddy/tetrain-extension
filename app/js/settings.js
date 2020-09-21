@@ -20,7 +20,7 @@ function customKeys(){
   
 function updateNextConfig() {
     nextpiece = document.getElementById("next-piece").value;
-    console.log(nextpiece)
+    //console.log(nextpiece)
     if (nextpiece === "enabled") {
         chrome.storage.local.set({ nextEnabled: true })
     } else {
@@ -28,13 +28,13 @@ function updateNextConfig() {
     }
     
     chrome.storage.local.get(['nextEnabled'], function(config) {
-        console.log(config.nextEnabled);
+        //console.log(config.nextEnabled);
     })
 }
 
 function updateDesignConfig() {
     design = document.getElementById("design").value;
-    console.log(design)
+    //console.log(design)
     if (design == "clean") {
         chrome.storage.local.set({ design: "clean" })
     } else if  (design == "legends") {
@@ -52,13 +52,13 @@ function updateDesignConfig() {
     }
     
     chrome.storage.local.get(['design'], function(config) {
-        console.log(config.design);
+        //console.log(config.design);
     })
 }
 
 function updateBorderConfig() {
     border_element = document.getElementById("border").value;
-    console.log(border_element)
+    //console.log(border_element)
     if (border_element === "enabled") {
         chrome.storage.local.set({ hasBorder: true })
     } else {
@@ -66,7 +66,7 @@ function updateBorderConfig() {
     }
     
     chrome.storage.local.get(['hasBorder'], function(config) {
-        console.log(config.hasBorder);
+        //console.log(config.hasBorder);
     })
 }
 
@@ -79,7 +79,7 @@ function updateHoldConfig() {
     }
     
     chrome.storage.local.get(['holdEnabled'], function(config) {
-        console.log(config.holdEnabled);
+        //console.log(config.holdEnabled);
     })
 }
 
@@ -92,7 +92,7 @@ function updatePreviewConfig() {
     }
     
     chrome.storage.local.get(['previewEnabled'], function(config) {
-        console.log(config.previewEnabled);
+        //console.log(config.previewEnabled);
     })
 }
 
@@ -105,7 +105,7 @@ function updateSidebarConfig() {
     }
     
     chrome.storage.local.get(['sidebarEnabled'], function(config) {
-        console.log(config.sidebarEnabled);
+        //console.log(config.sidebarEnabled);
     })
 }
 
@@ -120,7 +120,7 @@ function updateSizeConfig() {
     }
     
     chrome.storage.local.get(['canvasSize'], function(config) {
-        console.log(config.canvasSize);
+        //console.log(config.canvasSize);
     })
 }
 
@@ -133,7 +133,7 @@ function updateMarkersConfig() {
     }
     
     chrome.storage.local.get(['markersEnabled'], function(config) {
-        console.log(config.markersEnabled);
+        //console.log(config.markersEnabled);
     })
 }
 
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function () {
             node_design.appendChild(design5);
             node_design.appendChild(design6);
         } else if (config.design == "bold"){
-            console.log("bold")
+            //console.log("bold")
             node_design.appendChild(design3);
             node_design.appendChild(design2);
             node_design.appendChild(design1);

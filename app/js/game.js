@@ -1111,14 +1111,14 @@ var highscore = 0 //roxiun add local storage here
         if (pieces.length <= 0){
             if (custombag){
                 /*
-                console.log("custom bag yes")
-                console.log("varpiecebagsave: ")
-                console.log(varpiecebagsave.join())
-                console.log("pieces: ")
-                console.log(pieces.join())
+                //console.log("custom bag yes")
+                //console.log("varpiecebagsave: ")
+                //console.log(varpiecebagsave.join())
+                //console.log("pieces: ")
+                //console.log(pieces.join())
                 pieces = varpiecebagsave;
-                console.log("pieces: ")
-                console.log(pieces.join())
+                //console.log("pieces: ")
+                //console.log(pieces.join())
                 */
                 //console.log("new custom bag")
 
@@ -1730,12 +1730,12 @@ var highscore = 0 //roxiun add local storage here
                 blindmode=true//blind tetris, set to true to enable. add gamemode setting for it later
                 blindflash=false//is it currently showing whole field
                 blindflashcount=3//amount of flashes available
-                console.log("ghostmode on")
+                //console.log("ghostmode on")
             }else{
                 blindmode=false//blind tetris, set to true to enable. add gamemode setting for it later
                 blindflash=false//is it currently showing whole field
                 blindflashcount=3//amount of flashes available
-                console.log("ghostmode off")
+                //console.log("ghostmode off")
             }
             */
 
@@ -2404,13 +2404,13 @@ var highscore = 0 //roxiun add local storage here
         try{
             ctx.fillStyle = "white";
             for (i=1; i<30; i++){
-                console.log("i: "+i)
+                //console.log("i: "+i)
 
 
                 ctx.fillRect(parY[i], parX[i], 5, 5);
             }
         }catch(e){
-            console.log(e)
+            //console.log(e)
         }
         */
 

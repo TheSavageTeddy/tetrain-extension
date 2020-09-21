@@ -102,7 +102,7 @@ function createLocalStorage(){
 document.addEventListener('DOMContentLoaded', function () {
   chrome.storage.local.get(['isConfigured', "isBeta", 'isNewUpdate'], function(config) {
     if (config.isConfigured == null){
-      console.log("Configuring Local Storage")
+      //console.log("Configuring Local Storage")
       createLocalStorage()
     }
     if (!config.isBeta){
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   chrome.storage.local.get(['isPlaying', 'isPaused'], function(config) {
     if (config.isPlaying && !config.isPaused){
-      console.log("Game Detected")
+      //console.log("Game Detected")
       classicpractice()
     }
   });

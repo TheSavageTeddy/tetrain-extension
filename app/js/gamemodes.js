@@ -72,7 +72,7 @@ function classicGame(){
     var piecebag = getHTML("text-input").value
     chrome.storage.local.set({ pieceBag: piecebag});
     chrome.storage.local.get(["pieceBag"], function(local_config) {   
-        console.log(local_config.pieceBag)
+        //console.log(local_config.pieceBag)
     });
 
     if (piecebag == "I O L J Z S T"){
@@ -82,14 +82,14 @@ function classicGame(){
     }
 
     chrome.storage.local.get(["canhighscore"], function(local_config) {   
-        console.log(local_config.canhighscore)
+        //console.log(local_config.canhighscore)
     });
     
 
     var startlevel = getHTML("myRange").value
     chrome.storage.local.set({ startinglevel: startlevel});
     chrome.storage.local.get(["startinglevel"], function(local_config) {   
-        console.log(local_config.startinglevel)
+        //console.log(local_config.startinglevel)
     });
 
     //ghost mode to false
@@ -97,7 +97,7 @@ function classicGame(){
     chrome.storage.local.set({ ghostmode: ghostmode});
     //
 
-    console.log(startlevel)
+    //console.log(startlevel)
 
     var practiceMode = false
     chrome.storage.local.set({ practicemode: practiceMode})
@@ -112,7 +112,7 @@ function ghostGame(){
     var piecebag = getHTML("text-input").value
     chrome.storage.local.set({ pieceBag: piecebag});
     chrome.storage.local.get(["pieceBag"], function(local_config) {   
-        console.log(local_config.pieceBag)
+        //console.log(local_config.pieceBag)
     });
 
 
@@ -124,7 +124,7 @@ function ghostGame(){
     var ghostmode = true
     chrome.storage.local.set({ ghostmode: ghostmode});
     chrome.storage.local.get(["ghostmode"], function(local_config) {   
-        console.log(local_config.ghostmode)
+        //console.log(local_config.ghostmode)
     });
 
     var practiceMode = false
@@ -139,7 +139,7 @@ function practiceGame(){
     var piecebag = getHTML("text-input").value
     chrome.storage.local.set({ pieceBag: piecebag});
     chrome.storage.local.get(["pieceBag"], function(local_config) {   
-        console.log(local_config.pieceBag)
+        //console.log(local_config.pieceBag)
     });
 
     
@@ -150,7 +150,7 @@ function practiceGame(){
     var ghostmode = false
     chrome.storage.local.set({ ghostmode: ghostmode});
     chrome.storage.local.get(["ghostmode"], function(local_config) {   
-        console.log(local_config.ghostmode)
+        //console.log(local_config.ghostmode)
     });
 
     var practiceMode = true

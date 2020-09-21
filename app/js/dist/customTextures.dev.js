@@ -17,7 +17,7 @@ function handleFileSelect(evt) {
 
   reader.onload = function (theFile) {
     return function (e) {
-      console.log(e.target.result);
+      //console.log(e.target.result);
       chrome.storage.local.set({
         iPiece: e.target.result
       });
