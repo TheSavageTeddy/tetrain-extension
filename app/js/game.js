@@ -2244,23 +2244,24 @@ var highscore = 0 //roxiun add local storage here
             ctx.translate(0.5, 0.5);
             ctx.lineWidth = 1;
         }
+
+        if (value.previewEnabled && !blindmode){
+            drawGhost();
+        }
+
         drawCourt();
         //drawParticle(10,10);
         //drawParticle();
 
         drawNext();
         drawScore();
+        
         if (!value.sidebarEnabled){
             drawNoSidebarScore();
         }
 
         drawRows();
-        if (value.previewEnabled){
-            if(!blindmode){
-                drawGhost();
-            }
-            
-        }
+
         ctx.restore();
 
     }
