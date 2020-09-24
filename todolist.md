@@ -1,7 +1,10 @@
 # To do list
+
 ## if you are reading this, this list is sorta outdated ok im kinda lazy to do stuff in it. this was used a bit early on ill just keep it here - teddy
-#### put ✓ before item to mark it done!
-#### put ! before item to mark it important/major issue!
+
+#### put ✓ before item to mark it done
+
+#### put ! before item to mark it important/major issue
 
 ### Other
 
@@ -9,6 +12,7 @@
   * Can 'roll' blocks across ground
   
 ### Release v2.01
+
 * ✓ movement speed setting
 * FIX THE VERY BAD BUG THING @ROXIUN
 * ✓ gamemodes page
@@ -16,6 +20,7 @@
 * **PUBLISH THE UPDATE**
 
 ### ✓ Release v1.02
+
 * ✓ Fix hold after dying/restarting bug
 * ✓ Soft drop smooth key
 * ✓ Left Right smooth key
@@ -24,17 +29,18 @@
 * ✓ Pause and go back button
 * ✓ **PUBLISH THE UPDATE**
 
-
 ### ✓ First release! (v1.01)
+
 #### Essentials
+
 * Fix all bugs!
   * ✓ Glitching when rotating (needs testing)
   * ✓ **NEW BUG** can't rotate on side now, used to be able to can do
     * ! I piece can't rotate on side, if i turn the function on for it to be able to, it can sometimes glitch through blocks when rotating
     * ✓ All pieces can glitch (fixed now)
   * FIX THE FREAKING GRID
-   * doesn't work in medium or small size
-   * also make it show when overlay is on
+  * doesn't work in medium or small size
+  * also make it show when overlay is on
   * ✓ Fix image blocks flashing (when style is 'tetra')
 * ✓ Add 'ghost' blocks indicating where block will land
 * ✓ Add levels
@@ -42,9 +48,11 @@
 * ✓ Finish help page
 * ✓ Next piece setting work
 * ✓ Add hold and option to toggle on/off
+
 #### Optionals
+
 * ✓ Better style for blocks and positions
 * ✓ Resizable popup (needs fixing)
 * Multiple next block options
 * ✓ Better key input detection
-  * See https://stackoverflow.com/questions/29118791/how-to-move-an-element-via-arrow-keys-continuously-smoothly
+  * See <https://stackoverflow.com/questions/29118791/how-to-move-an-element-via-arrow-keys-continuously-smoothly>
