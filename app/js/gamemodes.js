@@ -87,6 +87,9 @@ function classicGame(){
     
 
     var startlevel = getHTML("myRange").value
+    if (startlevel > 25){
+        startlevel = 25
+    }
     chrome.storage.local.set({ startinglevel: startlevel});
     chrome.storage.local.get(["startinglevel"], function(local_config) {   
         //console.log(local_config.startinglevel)
@@ -119,6 +122,9 @@ function ghostGame(){
     chrome.storage.local.set({ canhighscore: false});
     //get starting level
     var startlevel = getHTML("myRange").value
+    if (startlevel > 25){
+        startlevel = 25
+    }
     chrome.storage.local.set({ startinglevel: startlevel});
     //ghostmode on
     var ghostmode = true
@@ -145,6 +151,9 @@ function practiceGame(){
     chrome.storage.local.set({ canhighscore: false});
     
     var startlevel = getHTML("myRange").value
+    if (startlevel > 25){
+        startlevel = 25
+    }
     chrome.storage.local.set({ startinglevel: startlevel});
     //ghostmode off
     var ghostmode = false
