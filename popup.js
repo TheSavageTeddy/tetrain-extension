@@ -94,6 +94,8 @@ function createLocalStorage(){
   chrome.storage.local.set({ currentHold: 0 });
   chrome.storage.local.set({ isConfigured: true })
   chrome.storage.local.set({ isBeta: true })
+  chrome.storage.local.set({ isBeta: true })
+  chrome.storage.local.set({ canhighscore: true});
   chrome.storage.local.set({ pieceBag: "I O L J Z S T" })
 }
 

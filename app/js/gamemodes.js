@@ -142,7 +142,7 @@ function practiceGame(){
         //console.log(local_config.pieceBag)
     });
 
-    
+    chrome.storage.local.set({ canhighscore: false});
     
     var startlevel = getHTML("myRange").value
     chrome.storage.local.set({ startinglevel: startlevel});
