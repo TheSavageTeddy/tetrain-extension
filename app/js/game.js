@@ -154,9 +154,13 @@ async function game() {
 //
 
 
-
-    var piecebag = value.pieceBag.split(" ")//from local storage
+    try{
+        var piecebag = value.pieceBag.split(" ")//from local storage
     //console.log(piecebag)
+    }catch(e){
+        chrome.storage.local.set({ pieceBag: "I O L J Z S T"});
+        var piecebag = value.pieceBag.split(" ")
+    }
 
     // unused
     //var cleanedPieceBag = []//only will contain I O L J Z S T
