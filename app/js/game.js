@@ -256,6 +256,8 @@ async function game() {
     }
 
     function goBack(){
+        restartbutton()
+
         lose("kys")
         mainmenu()
     }
@@ -707,7 +709,7 @@ var highscore = 0 //roxiun add local storage here
         speed = {
             start: 0.8,
             decrement: 0.005,
-            min: 0.0166666667,
+            min: 0.00001,
             increase: 0.05
         }, // how long before piece drops by 1 row (seconds)
         nx = 10, // width of tetris court (in blocks)
