@@ -1,21 +1,31 @@
+//
+//    FUNCTIONS
+//
 function getHTML(id){
   return document.getElementById(id)
-}
-//keydown
-function keydown(ev){
-  switch (ev.keyCode) {
-    case 13:
-      classic();
-      break
-    case 71:
-      gamemodes();
-      break
-  }
 }
 
 function changeHTML(id, text){
   document.getElementById(id).innerHTML = text
 }
+
+//
+//    KEYDOWN
+//
+function keydown(ev){
+  switch (ev.keyCode) {
+    case 13://enter key
+      classic();
+      break
+    case 71://g key
+      gamemodes();
+      break
+  }
+}
+
+//
+//
+//
 
 function hidemenu(){ //this function in unnessasary, keep it just in case
   m = document.getElementById("menu-items")
@@ -23,13 +33,13 @@ function hidemenu(){ //this function in unnessasary, keep it just in case
 }
 
 function classic() {
-
+  //actual classic game
   chrome.storage.local.set({ ghostmode: false});
   chrome.storage.local.set({ startinglevel: 1});
   chrome.storage.local.set({ practicemode: false});
   chrome.storage.local.set({ canhighscore: true});
   chrome.storage.local.set({ pieceBag: "I O L J Z S T"});
-  
+  //change window to game
   window.location.replace("app/html/classic.html");
 }
 
@@ -37,6 +47,8 @@ function classicpractice() {
   //var ghostmode = false
   //chrome.storage.local.set({ ghostmode: ghostmode});
   //chrome.storage.local.set({ startinglevel: 1});
+
+  //game, loaded in so does not reset local storage
   window.location.replace("app/html/classic.html");
 }
 
