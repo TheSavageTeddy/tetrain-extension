@@ -805,7 +805,9 @@ var highscore = 0 //roxiun add local storage here
         rtimeout=0,
         ltimeout=0,
         handled,
-        down;
+        down,
+
+        droptime = 60;
 
 
         
@@ -1638,6 +1640,7 @@ var highscore = 0 //roxiun add local storage here
 
     function setBlock(x, y, type) {
         try{
+            droptime = 60
             blocks[x] = blocks[x] || [];
             blocks[x][y] = type;
             invalidate();
@@ -2038,6 +2041,7 @@ var highscore = 0 //roxiun add local storage here
         eachblock(current.type, current.x, current.y, current.dir, function(x, y) {
 
             droptime = droptime - 1;
+
             
             parX.push(current.x);
             parY.push(current.y);
