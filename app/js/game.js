@@ -33,6 +33,7 @@ async function game() {
         configured_reset = true
     }
 
+    
     if (value.keyspeed == "normal"){
         var movementSpeed = 50
         console.log("normal speed")
