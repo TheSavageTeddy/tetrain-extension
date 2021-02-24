@@ -166,3 +166,7 @@ body {
     opacity: 1;
     
 }
+
+.hud-text{
+    line-height: 60%;
+}

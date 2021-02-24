@@ -811,7 +811,7 @@ var highscore = 0 //roxiun add local storage here
         
 
     //-------------------------------------------------------------------------
-    // tetris pieces
+    // pieces
     //
     // blocks: each element represents a rotation of the piece (0, 90, 180, 270)
     //         each element is a 16 bit integer where the 16 bits represent
@@ -1109,11 +1109,14 @@ var highscore = 0 //roxiun add local storage here
     // start with 4 instances of each piece and
     // pick randomly until the 'bag is empty'
     //-----------------------------------------
+    //no lol
+    //7bag better
     var pieces = [];
 
 
 
-    function randomPiece() {
+
+    function randomPiece(hi) {
 
         //console.log("pieces.length: "+pieces.length)
         if (pieces.length <= 0){
@@ -1167,14 +1170,23 @@ var highscore = 0 //roxiun add local storage here
                 
             }else{
                 //console.log("custom bag no")
-                pieces = [i, j, l, o, s, t, z];
+                pieces = [i, j, l, o, s, t, z, i];
+                //i at the end is meant to account of the 7bag not working
+
+                //this is very annoying i dont like this
             }
         }
         //console.log("varpiecebag: ")
         //console.log(varpiecebag.join())
         //console.log("varpiecebagsave: ")
         //console.log(varpiecebagsave.join())
-        var type = pieces.splice(random(0, pieces.length - 1), 1)[0];
+        if (hi){
+            var type = pieces.splice(pieces.length - 1, 1)[0];
+        }else{
+            var type = pieces.splice(random(0, pieces.length - 1), 1)[0];
+        }
+        
+        console.log("piece chosen!!!!!!! lololol")
         if (type == j || type == l || type == t || type == o) {
             return {
                 type: type,
@@ -1201,8 +1213,10 @@ var highscore = 0 //roxiun add local storage here
             };
         }
         
+        
 
     }
+
 
 
     //-------------------------------------------------------------------------
@@ -1663,12 +1677,12 @@ var highscore = 0 //roxiun add local storage here
     }
 
     function setCurrentPiece(piece) {
-        current = piece || randomPiece();
+        current = piece || randomPiece(true);
         invalidate();
     }
 
     function setNextPiece(piece) {
-        next = piece || randomPiece();
+        next = piece || randomPiece(true);
         invalidateNext();
     }
 
@@ -2024,7 +2038,7 @@ var highscore = 0 //roxiun add local storage here
             dropPiece();
             removeLines();
             setCurrentPiece(next);
-            setNextPiece(randomPiece());
+            setNextPiece(randomPiece(false));
             blindflash=false
             clearActions();
             canSwap = true;
