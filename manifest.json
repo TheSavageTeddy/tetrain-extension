@@ -1,12 +1,12 @@
 {
     "name": "TETRAIN",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "TETRAIN is a fun chrome extension game. It saves your game when you exit the popup window.",
     "author": "Roxiun & TheSavageTeddy",
     "permissions": [
         "storage"
     ],
-    "browser_action":{
+    "action":{
         "default_icon": "app/img/tetrain_128x.png",
         "default_popup": "popup.html",
         "default_title": "TETRAIN"
@@ -19,5 +19,5 @@
         "128": "app/img/128.png"
     },
     "offline_enabled":true,
-    "manifest_version": 2
+    "manifest_version": 3
 }

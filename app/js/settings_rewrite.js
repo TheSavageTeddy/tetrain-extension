@@ -87,9 +87,10 @@ function createMultiOption(select_element, local_name, options){
     });
 }
 function updateEnableDisableConfig(ev){
-    //select_element, local_name
-    var local_name = config_options[2][ev['path'][0]['id']]
-    var element = document.getElementById(ev['path'][0]['id']).value;
+    let event_html_id = ev.target.id
+    var local_name = config_options[2][event_html_id]
+    var element = document.getElementById(event_html_id).value;
+
     if (element == "enabled") {
         var obj= {};
         obj[local_name] = true
@@ -101,10 +102,11 @@ function updateEnableDisableConfig(ev){
     }
 }
 function updateMultiConfig(ev){
-    //select_element, local_name
-    var local_name = config_options[3][ev['path'][0]['id']]['local']
-    var element = document.getElementById(ev['path'][0]['id']).value;
+    let event_html_id = ev.target.id
+    var local_name = config_options[3][event_html_id]['local']
+    var element = document.getElementById(event_html_id).value;
     var obj = {};
+
     obj[local_name]  = element
     chrome.storage.local.set(obj)
 }

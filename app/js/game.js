@@ -301,33 +301,24 @@ async function game() {
         html("high-score", "Highscore: "+value.savedHighScore)
     }
 
-    function restartbutton(){
-        
-        window.location.replace("../../popup.html");
-        window.location.replace("../html/classic.html");
-
-        setVisualScore();
-        checkHighScore();
-        playing = false;
-        chrome.storage.local.set({
-            isPlaying: false
-        });
-
-        reset()
-        chrome.storage.local.set({ isPaused: false });
-        chrome.storage.local.set({ pausedHandler: false });
-        enterToPlay("hide")
+    function restartGame(){
         clearHoldCanvas();
         show('start');
         level=1
         html("level", level)
-
+        enterToPlay("hide")
         lost = false;
         ghostlost=false
-
-        //play();
+        chrome.storage.local.set({ isPaused: false });
+        chrome.storage.local.set({ pausedHandler: false });
+        play();
         handled = true;
         isr = false;
+    }
+
+    function restartbutton(){
+        
+        restartGame();
 
     }
 
@@ -1428,18 +1419,7 @@ var highscore = 0 //roxiun add local storage here
                 pieceinHold = false
                 chrome.storage.local.set({ ispieceinHold: false});
             }*/
-            clearHoldCanvas();
-            show('start');
-            level=1
-            html("level", level)
-            enterToPlay("hide")
-            lost = false;
-            ghostlost=false
-            chrome.storage.local.set({ isPaused: false });
-            chrome.storage.local.set({ pausedHandler: false });
-            play();
-            handled = true;
-            isr = false;
+            restartGame();
         }
         if (ev.keyCode == KEY.SPACE) {
             //harddrop()
